@@ -1,0 +1,1 @@
+document.write('china@webshu.com');

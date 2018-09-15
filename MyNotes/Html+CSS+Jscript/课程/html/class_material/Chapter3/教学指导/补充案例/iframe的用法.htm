@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0048)http://www.webshu.com/tutorial/tor/7,id=0408.htm -->
+<HTML><HEAD><TITLE>iframe的用法 - Webshu 网页制作</TITLE>
+<META http-equiv=Content-Type content=text/html;charset=gb2312>
+<STYLE>TD {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 150%
+}
+#p {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 150%
+}
+INPUT {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 150%
+}
+Q {
+	FONT-SIZE: 9pt; LINE-HEIGHT: 150%
+}
+TD {
+	COLOR: #00006a
+}
+#p {
+	COLOR: #00006a
+}
+A {
+	COLOR: #00006a
+}
+A:hover {
+	COLOR: #dd6600
+}
+#c {
+	TEXT-ALIGN: center
+}
+#d {
+	COLOR: #d20000
+}
+#n {
+	TEXT-DECORATION: none
+}
+.n {
+	TEXT-DECORATION: none
+}
+#u {
+	TEXT-DECORATION: underline
+}
+#r {
+	COLOR: #ff0000
+}
+#t {
+	COLOR: #5f82b6
+}
+.t {
+	COLOR: #5f82b6
+}
+#z {
+	BORDER-RIGHT: #cad6df 1px solid; BORDER-TOP: #cad6df 1px solid; BORDER-LEFT: #cad6df 1px solid; BORDER-BOTTOM: #cad6df 1px solid
+}
+#1 {
+	FONT-SIZE: 14px; LINE-HEIGHT: 160%
+}
+#1 {
+	COLOR: #000000
+}
+#0 {
+	COLOR: #000000
+}
+</STYLE>
+
+<SCRIPT>n=new Date();q=n.getDay()</SCRIPT>
+
+<META content="MSHTML 6.00.3790.4026" name=GENERATOR></HEAD>
+<BODY leftMargin=0 topMargin=0>
+<CENTER id=p style="MARGIN-TOP: 5px">
+<TABLE height=32 cellSpacing=0 width=770>
+  <TBODY>
+  <TR>
+    <TD width=150><A href="http://www.webshu.com/" target=_top><IMG height=21 
+      src="iframe的用法_files/g.gif" border=0></A>
+    <TD vAlign=bottom width=620>
+      <P align=right><A id=t href="http://www.webshu.com/" 
+      target=_top>Webshu.com</A> .. <A 
+      href="http://www2.webshu.com/effort/main.asp">咨询平台</A></P></TR></TBODY></TABLE>
+<P style="MARGIN-TOP: 1px">
+<TABLE id=z style="BORDER-BOTTOM-STYLE: none" cellSpacing=0 cellPadding=0 
+width=770>
+  <TBODY>
+  <TR>
+    <TD width=229 height=50>
+      <SCRIPT>document.write('<img src=../../l/i'+q+'.jpg height=50>')</SCRIPT>
+
+      <SCRIPT src="iframe的用法_files/ac2.js"></SCRIPT>
+  </TR></TBODY></TABLE>
+<SCRIPT src="iframe的用法_files/a2.js"></SCRIPT>
+
+<TABLE id=z cellSpacing=0 cellPadding=0 width=770>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=180 height=500>
+      <SCRIPT src="iframe的用法_files/ac5.js"></SCRIPT>
+
+    <TD width=1 bgColor=#cad6df>
+    <TD width=12>
+    <TD id=1 vAlign=top width=569>　<BR>iframe嵌入网页的用法<Q>作者：<A 
+      href="http://www.webshu.com/column/102/">自由勇</A>点击：<A 
+      id=r>MT-8000</A>最后更新<A id=d> 2003-10-12</A></Q>
+      <P>
+      <P>iframe并不是很常用的，在标准的网页中非常少用。但是有朋友经常问到，下面我简单地介绍一下它的用法，你只要熟练掌握这些参数足矣。
+      <P>&lt;iframe&gt;也应该是框架的一种形式，它与&lt;frame&gt;不同的是，iframe可以嵌在网页中的任意部分。我们举第一个例子，具体代码如：<BR>&lt;iframe 
+      width=420 height=330 frameborder=0 scrolling=auto 
+      src=URL&gt;&lt;/iframe&gt;，这里的URL可以是<A 
+      href="http://www.webshu.com/tutorial/tor/7,id=0401.htm">相对路径</A>，也可以是绝对路径，效果如<A 
+      href="iframe的用法_files/sp2.htm"></A>：
+      <P id=c><IFRAME src="iframe的用法_files/sp2.htm" frameBorder=0 width=420 
+      height=330></IFRAME>
+      <P>width表示宽度，height表示宽度，可根据实际情况调整。<BR>scrolling表示是否显示页面滚动条，可选的参数为auto、yes、no，如果省略这个参数，则默认为auto。
+      <P>二、如何实现页面上的超链接指向这个嵌入的网页？<BR>只要给这个iframe命名就可以了。方法是&lt;iframe 
+      name=**&gt;，例如我命名为aa，写入这句HTML语言<U>&lt;iframe width=420 height=330 name=aa 
+      frameborder=0 
+      src=http://www.cctv.com&gt;&lt;/iframe&gt;</U>，然后，网页上的超链接语句应该写为：&lt;a 
+      href=URL target=aa&gt;<BR>效果如下，请点击这里：<A id=d href="http://www.cctv.com/" 
+      target=aa>中央电视台</A>
+      <P id=c><IFRAME name=aa src="iframe的用法_files/sp2.htm" frameBorder=0 
+      width=420 height=330></IFRAME>
+      <P>三、如果把frameborder设为1，效果就像文本框一样，如下：
+      <P id=c><IFRAME src="iframe的用法_files/sp2.htm" frameBorder=1 width=420 
+      height=330></IFRAME>
+      <SCRIPT src="iframe的用法_files/ac4.js"></SCRIPT>
+      </P>
+    <TD width=8></TR></TBODY></TABLE>
+<SCRIPT src="iframe的用法_files/ha.js"></SCRIPT>
+</CENTER></P></BODY></HTML>

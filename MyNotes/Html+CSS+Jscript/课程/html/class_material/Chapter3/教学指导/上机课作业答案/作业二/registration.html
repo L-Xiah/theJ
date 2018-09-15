@@ -1,0 +1,66 @@
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=gb2312">
+<TITLE>无标题文档</TITLE>
+</HEAD>
+
+<BODY>
+<TABLE cellSpacing="3" cellPadding="2" width="80%" border="0" align="center" background="images/list-bg.gif">
+    <TR>
+      <TD vAlign="top" align="right" width="180"><P>* 会员名</P></TD>
+      <TD align="left"><INPUT name="username">
+        <BR>
+        由5-20个字符(包括字母、数字、下划线、中文)组成，会员注册成功后，会员名将不能修改。</TD>
+    </TR>
+    <TR>
+      <TD vAlign="top" align="right"><P>* 密码</P></TD>
+      <TD align="left"><INPUT type="password" value="" name="password">
+          <BR>
+        密码由6-16个字符组成，可以使用英文字母、数字或符号作为密码，建议您设置英文字母加数字作为您的密码，保障您的密码安全。</TD>
+    </TR>
+    <TR>
+      <TD vAlign="top" align="right"><P>* 电子邮件</P></TD>
+      <TD align="left"><INPUT name="email">
+          <BR>
+        请填写有效的E-mail地址，我们会通过E-mail给您发送促销以及订单的相关信息。</TD>
+    </TR>
+    <TR>
+      <TD align="right"><P>* 联络电话</P></TD>
+      <TD align="left">
+          <INPUT size="15" name="phone">
+	</TD>
+    </TR>
+    <TR>
+      <TD align="right"><P>* 地区</P></TD>
+      <TD><SELECT onChange="dosel2(this,confirmform.n_city1,confirmform.n_zone1,1);" name="n_area1">
+        <OPTION value="0" selected>请选择</OPTION>
+      </SELECT>
+        省
+        <SELECT onChange="dosel2(this,confirmform.n_city1,confirmform.n_zone1,1);" name="n_city1">
+          <OPTION value="0" selected>请选择</OPTION>
+        </SELECT>
+        市
+        <SELECT name="n_zone1">
+          <OPTION value="0" selected>请选择</OPTION>
+        </SELECT>
+        地区 </TD>
+    </TR>
+    <TR>
+      <TD vAlign="top" align="right"><P>* 详细地址</P></TD>
+      <TD align="left"><P>
+        <TEXTAREA name="address" cols="37"></TEXTAREA>
+      </P></TD>
+    </TR>
+    <TR>
+      <TD align="right"><P>* 邮编</P></TD>
+      <TD align="left"><INPUT name="zip"></TD>
+    </TR>
+</TABLE>
+<TABLE cellSpacing="3" align="center" cellPadding="2" width="80%" background="images/list-bg.gif" border="0">
+    <TR>
+      <TD width="180"></TD>
+      <TD align="left"><INPUT type="submit" value="提交">&nbsp;&nbsp;&nbsp;&nbsp;<INPUT type="reset" value="重填"> </TD>
+    </TR>
+</TABLE>
+</BODY>
+</HTML>
