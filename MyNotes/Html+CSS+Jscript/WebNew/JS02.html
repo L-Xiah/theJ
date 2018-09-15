@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script>/*有些浏览器默认不加载JS*/
+			
+			//自定义类
+			var stu={
+				id:1;
+				name:"xiah";
+				chinese:76;
+				math:89;
+				avgScore:function(){
+					return (this.math + this.chinese)/2;
+				}
+			}
+			
+			//Array数组
+			var list01 = new Array("Book1","Book2","Book3");
+			var list02 = new Array("Book4","Book5","Book6");
+			var list=list01.concat(list02);//拼装数组
+			list.sort();//排序	
+			list.toString();//转换为String
+			list.join(":");//合并中间加“:”
+			var arr = new Array;
+			arr=new Array(5);
+			arr[0]=true;
+			arr[1]=234;
+			arr[2]="098";
+			arr[3]="xiah";
+			arr[4]=78;
+			
+			
+			//Date类型
+			var tdate = new Date();
+			var olddate=new Date("2011-12-25");
+			tdate=tdate.setDate(olddate.getDate()+5);
+			
+			
+			//math类型，工具类，不能被创建
+			var mrand=Math.random();//取随机数【0-1）
+			var Pi=Math.PI();
+			
+			
+			//Number类型,toString
+			var thenumber = new Number(23.343);
+			thenumber.toFixed(2);//保留两位小数
+			
+			function dte(v1){
+				
+				if(!isNaN(v1)){ //判断是否是数值
+					v1=parseInt(v1);//转换成Int（相关函数parseFloat）
+					
+				}
+				if(typeof(v1)=="string"){//判读类型（）
+					
+				}
+	
+			}
+			
+			
+			
+			
+		</script>
+		
+		
+	</head>
+	<body>
+	</body>
+</html>

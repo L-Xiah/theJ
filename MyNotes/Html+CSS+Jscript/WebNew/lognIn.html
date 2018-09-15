@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> 注  册 </title>
+		
+		<style>
+			form{
+				border: dashed;
+				height: 700px;
+				margin:0 200px;/*边距上下左右（全部）*/
+				padding:10 10 10 10px;/*填充:上-右-下-左 */
+				border: 20 20px;/*边框：上下-左右*/
+				padding-left: 0;/*单独设置某个方向*/
+				
+			}
+			h1{
+				color: red;
+				font-size: 2em;
+				font-family: "宋体";
+				font-style: italic;
+				width: 700px;
+			}
+			
+			div{
+				/*float: right;*/
+				border-style: solid;
+				border-width: thin;
+				font-size: 1em;
+				
+				/*display: inline;*/
+				margin: 20px 100px 0px 100px;
+				padding: 0px 10px;
+				
+			}
+			
+			.hintZ{
+				margin: 0px 100px;
+			}
+			
+			.textin{
+				font-size: 1em;
+				margin: 10px 0px ;
+				padding: 0px;
+				border: 0px;
+				border-style: hidden;
+			}
+			
+			.textin:focus{
+				border-style: hidden;
+				
+			}
+			
+			input{
+				outline: none;
+				width: 500px;
+			}
+			
+			.preName{
+				display: inline-block;
+				width: 100px;
+			}
+			
+			.imgCorrect{
+				height: 1em;
+				float: right;
+				margin: 10px 0px;
+				visibility: hidden;	
+			}
+			#yanzh{
+				font-size: 2em;
+				background-color: blue;
+				font-style: italic;
+				float: right;
+				width: 70px;
+				margin: 5px 0px;
+			}
+			
+			#Regsubmit{
+				font-size: 3em;
+				margin: 20px 0px 0px 100px;
+				padding: 0px 10px;
+				/*width: 900px;*/
+				background-color: red;
+			}
+			
+		</style>
+		
+		
+		<script>
+		
+			function CommonSet(nonode1,img2,isNum){
+							
+				if (isNum==true) {
+					nonode1.style.visibility = "visible";
+				nonode1.style.color="gray";//gray
+				img2.src="img/thA60Q31QZ.jpg";
+					
+				} else{nonode1.style.visibility = "hidden";
+				}
+			}
+			function CommonChange(nodiv,nonode1,img1,img2){
+				nodiv.parentNode.style.borderColor="red";
+				nonode1.style.visibility = "visible";
+				nonode1.style.color="red";
+				
+				img1.src="img/error.png";
+				img2.style.visibility="hidden";
+			}
+			
+			
+			var isFalse=true;
+			function focusUse(){
+				if(isFalse==false){	return 0;}		
+				CommonSet(spanuse,imguse,true);			
+			}
+			function blurUse(){
+				if(isFalse==false){return 0;}
+				CommonSet(spanuse,imguse,false);
+			}
+			function changeUse(){
+				if(usename.value.length==0){
+					isFalse=true;
+					usename.parentNode.style.borderColor="black";
+					return 0};
+				if(usename.value.length<4 || usename.value.length>6 ){
+					isFalse=false;
+					CommonChange(usename,spanuse,imguse,imgcorrectuse);
+				}
+				else{
+					isFalse=true;
+					imgcorrectuse.style.visibility="visible";
+					usename.parentNode.style.borderColor="black";
+				}
+			}
+			
+			var isnewpwd=true;
+			function focusnewpassword(){
+				if(isnewpwd==false){return 0;}
+				CommonSet(spannewPassword,imgnewPassword,true);
+			}
+			function blurnewpwd(){
+				if(isnewpwd==false){return 0;}
+				CommonSet(spannewPassword,imgnewPassword,false);
+			}
+			function changenewpwd(){
+				butpwd.value="";
+				if (newPassword.value.length<6) {
+					isnewpwd=false;
+					CommonChange(newPassword,spannewPassword,imgnewPassword,imgcorrectpassword);
+				} else{
+					isnewpwd=true;
+					imgcorrectpassword.style.visibility="visible";
+					newPassword.parentNode.style.borderColor="black";
+				}
+			}
+			
+			
+			var isbutpwd=true;
+			function focusbutpwd(){
+				if(isbutpwd==false){return 0;}
+				CommonSet(spanbutpwd,imgbutpwd,true);
+			}
+			function blurbutpwd(){
+				if(isbutpwd==false){return 0;}
+				CommonSet(spanbutpwd,imgbutpwd,false);
+			}
+			function changebutpwd(){
+				if(butpwd.value.length==0){
+					isbutpwd=true;
+					butpwd.parentNode.style.borderColor="black";
+					return 0};
+				if (butpwd.value!=newPassword.value) {
+					isbutpwd=false;
+					CommonChange(butpwd,spanbutpwd,imgbutpwd,imgcorrectbutpwd);
+				} else{
+					isbutpwd=true;
+					imgcorrectbutpwd.style.visibility="visible";
+					butpwd.parentNode.style.borderColor="black";
+				}
+			}
+			
+			var argRand=[0,1,2,3,4,5,6,7,8,9,"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+			function clickyanzh(){
+				var v1=Math.floor(Math.random()*argRand.length);
+				var v2=Math.floor(Math.random()*argRand.length);
+				var v3=Math.floor(Math.random()*argRand.length);
+				var v4=Math.floor(Math.random()*argRand.length);
+				var tempstr="";
+				yanzh.innerHTML=argRand[v1]+tempstr+argRand[v2]+tempstr+argRand[v3]+tempstr+argRand[v4];
+			}
+			
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		
+		<h1> 
+			<img src="img/topbanner.PNG" />
+		</h1>
+		
+	
+		
+		<form name="fm">
+	
+			<div>
+				<p class="preName">用户名：</p>
+				<input class="textin" onfocus="focusUse()" onblur="blurUse()" onchange="changeUse()" type="text" id="usenameinp" placeholder="用户名"/>
+				<img src="img/correct.png" class="imgCorrect"  id="imgcorrectuse" />
+			</div>
+			<span style="visibility: hidden;" class="hintZ" id="spanusename"> 
+				<img src="img/thA60Q31QZ.jpg" style="height:1em ;" id="imguse" />
+				支持中文、字母、数字4-6个字符
+			</span>
+				
+				
+				<div>
+					<p class="preName">创建密码：</p>
+					<input class="textin"  type="password" onfocus="focusnewpassword()" onblur="blurnewpwd()" onchange="changenewpwd()" id="newPassword" placeholder="建议字母、数字两种组合"/>
+					<img src="img/correct.png" class="imgCorrect"  id="imgcorrectpassword" />
+				</div>
+				<span style="visibility: hidden;" class="hintZ" id="spannewPassword"> 
+					<img src="img/thA60Q31QZ.jpg" style="height:1em ;" id="imgnewPassword" />
+					建议字母、数字两种组合，不少于6个字符
+				</span>
+				
+				<div>
+					<p class="preName">确认密码：</p>	
+					<input class="textin"  type="password" id="butpwd" onfocus="focusbutpwd()" onblur="blurbutpwd()" onchange="changebutpwd()" placeholder="请确认密码一致" />
+					<img src="img/correct.png" class="imgCorrect"  id="imgcorrectbutpwd" />
+				</div>
+				<span style="visibility: hidden;" class="hintZ" id="spanbutpwd"> 
+					<img src="img/thA60Q31QZ.jpg" style="height:1em ;" id="imgbutpwd" />
+					两次密码保持一致!
+				</span>
+				
+				
+				
+				
+				<div>
+					<p class="preName" style="border-right: dashed thin;">中国+86：</p>
+					<input class="textin"  type="text" />
+				</div>
+				<div>
+					<p class="preName">验证码：</p>
+					<input class="textin"  type="text" placeholder="验证码"/>  
+					<span id="yanzh" onclick="clickyanzh()" >1234</span>
+						<!--placeholder 提示-->
+				</div>
+				
+				<input type="submit"  value="注册" id="Regsubmit" />
+			
+		</form>	
+		
+		
+		<script>
+			var usename=document.getElementById("usenameinp");
+			var spanuse=document.getElementById("spanusename");
+			var imguse=document.getElementById("imguse");
+			var imgcorrectuse=document.getElementById("imgcorrectuse");
+			
+			
+			var newPassword=document.getElementById("newPassword"); //input-Name
+			var spannewPassword=document.getElementById("spannewPassword");
+			var imgnewPassword=document.getElementById("imgnewPassword");
+			var imgcorrectpassword=document.getElementById("imgcorrectpassword");
+			
+			
+			var butpwd=document.getElementById("butpwd");
+			var spanbutpwd=document.getElementById("spanbutpwd");
+			var imgbutpwd=document.getElementById("imgbutpwd");
+			var imgcorrectbutpwd=document.getElementById("imgcorrectbutpwd");
+			
+			var yanzh=document.getElementById("yanzh");
+			clickyanzh();
+			
+		</script>
+		
+		
+		
+		<form>
+			<label>用 户 名</label>
+			<txt style='color: rgb(204, 204, 204); line-height: 46px; font-family: "Microsoft YaHei","Hiragino Sans GB"; font-size: 14px; margin-top: 1px; margin-left: 20px; display: none; position: absolute; z-index: 2;'>
+				您的账户名和登录名
+			</txt>
+			<input name="regName" class="field" id="form-account" aria-invalid="true" aria-required="true" aria-describedby="form-account-error" type="text" maxlength="20" placeholder=" " autocomplete="off" 
+				default='<i class="i-def"></i>支持中文、字母、数字、“-”“_”的组合，4-20个字符' />;
+			
+		</form>
+		
+		
+	</body>
+</html>

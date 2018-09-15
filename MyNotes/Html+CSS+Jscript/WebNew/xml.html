@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>xml 操作</title>
+	</head>
+	
+	
+	<script>
+		
+		var txt="<?xml version='1.0' encoding='UTF-8'?><school><class lesson='理科'><student><id>1</id><name>张三</name><score>99</score></student><student><id>2</id><name>李四</name><score>96</score></student><student><id>3</id><name>王五</name><score>58</score></student></class><class lesson='文科'><student><id>4</id><name>张七</name><score>99</score></student><student><id>5</id><name>李八</name><score>96</score></student><student><id>6</id><name>王九</name><score>58</score></student></class></school>"
+		var Pare=new DOMParser();
+		var xmlDOM = Pare.parseFromString(txt,"text/xml")
+		
+		function namelesson(){
+			
+			var namesle=document.getElementById("stuname");
+			var sorcesle=document.getElementById("stusorce");
+			
+			namesle.length=0;
+			sorcesle.length=0;
+					
+			var stu="";
+			var strArg=xmlDOM.getElementsByTagName("student");
+			for(var i=0;i<strArg.length;i++){
+				stu=strArg[i];
+				var classname=stu.parentNode.getAttribute("lesson");
+				if(classname=="文科"){
+					continue;
+				}
+				var name=stu.childNodes[1].firstChild.nodeValue;
+				var sorce=stu.childNodes[2].firstChild.nodeValue;
+//				document.writeln(name + "--" + sorce);
+				
+				var optionN=new Option(name);
+				namesle.options.add(optionN);
+				
+				optionN=new Option(sorce) ;
+				sorcesle.options.add(optionN);
+				
+			}
+			
+			
+		}
+		
+		
+		function selectchange(nonode){
+			var sorcesle=document.getElementById("stusorce");
+			
+			sorcesle.selectedIndex=nonode.selectedIndex;
+			
+		}
+		
+		
+	</script>
+	
+	
+	
+	<body>
+		
+		<input type="text" name="text1" />
+		<input type="text" name="text2" />
+		<input type="text" name="text3" />
+		<br />
+		<input type="text" name="text4" />
+		<input type="text" name="text2" />
+		<input type="text" name="text3" />
+		
+		<p>
+			<input type="button" onclick="namelesson()" value="查看" />
+		</p>
+		
+		
+		
+		<p>理科
+			姓名<select name="stuname" onchange="selectchange(this)" id="stuname" >
+				<option value="0">— —</option>
+				</select>
+			
+			分数<select name="stusorce" id="stusorce" >
+				<option value="0">— —</option>
+				</select>
+		</p>
+		
+		<p>文科
+			姓名<select name="stuname" onchange="selectchange(this)" id="stuname" >
+				<option value="0">— —</option>
+				</select>
+			
+			分数<select name="stusorce" id="stusorce" >
+				<option value="0">— —</option>
+				</select>
+		</p>
+		
+		
+	</body>
+</html>

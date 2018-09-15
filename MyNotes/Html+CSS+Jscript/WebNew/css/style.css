@@ -1,0 +1,66 @@
+*{
+				margin: 20px;/*边距上下左右（全部）*/
+				padding:0 0 0 20px;/*填充:上-右-下-左 */
+				border: 0 20px;/*边框：上下-左右*/
+				padding-left: 0;/*单独设置某个方向*/
+			}/*通用选择器*/
+			
+			a{
+				background: url(img/UC12.jpg);
+				background-repeat: no-repeat;/*背景图片的重复性--repeat/no-repeat/repeat-x/y*/
+				display: block;
+				text-decoration: none;
+			}
+			body{
+				color:black;
+				/*background-image: url(img/UC12.jpg);*/
+				/*background-attachment: fixed;/*背景固定*/*/
+			}
+			img{
+				width: 70px;
+				height: 70px;
+				opacity: 1;/*透明度*/
+			}
+			/*鼠标移动到img的事件*/
+			img:hover{
+				opacity: 0.1;
+			}
+			
+			p{
+				color: white;/*文字的颜色*/
+				background-color: red;/*背景颜色*/
+				visibility:visible;/*隐藏*/
+				text-indent: 30px;/*首行缩进*/
+				text-align: center;/*对齐方式*/
+				text-decoration:none;/*文本修饰*/
+				line-height: normal;/*行间距*/
+				text-transform: uppercase;/*大小写转换*/
+				white-space: nowrap;/*禁止自动换行*/
+				font-family: "宋体","微软雅黑","隶书";/*字体*/
+				font-size: 25px;/*字体大小（默认16px）：px、em(1em=一个标准字体、相对大小)*/
+				font-style: italic;/*字体的样式：斜体*/
+				font-weight: 100;/*字体的粗细100-900,默认400*/
+				/*font: 宋体 bold 2em;放在一起写*/
+			}
+			/*自定义字体名*/
+			@font-face {
+				font-family:xiah;
+				src:  url("宋体.ttf");
+			}
+			
+			ul{
+				list-style: lower-alpha inside;
+				list-style-position: inside;/*列表标识位置*/
+				/*list-style: url(img/UC12.jpg);/*自定义列表*/*/
+				list-style-type: lower-alpha;/*基本列表标识*/
+			}
+			
+		
+			table{
+				
+				/*border-collapse: collapse;	/*border-collapse单线表格边框*/*/
+				border-style: dotted;/**/
+				border-bottom-color: red;
+				/*边框上右下左border-top、right、bottom、left*/
+				vertical-align:auto;/*垂直对齐*/
+			}

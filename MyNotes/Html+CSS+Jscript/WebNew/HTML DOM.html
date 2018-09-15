@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>DOM 教程</title>
+		
+		<script>
+//			document.close()
+			
+			function change(){
+				document.getElementById("p1").innerHTML="New content^^^^";
+			}
+			
+			function removethe(){
+				var form2 = document.getElementById("P2");
+				var inp2 = document.getElementById("f2inp2");
+				form2.removeChild(inp2);
+				
+			}
+			
+			function thisTest(nonode){
+				nonode.style.background="red";
+			}
+			
+			var imouse =0;
+			function mouseoverP(nonode){
+				nonode.style.background="red";
+				if(imouse==0){
+					nonode.value="00--Type";
+					return 0;
+				}
+				if(imouse==1){
+					nonode.value="11--Type";
+					return 0;
+				}
+				if(imouse==2){
+					nonode.value="22--Type";
+					return 0;
+				}
+				else{
+					nonode.value="New--Start";
+					imouse=-1;
+				}
+				
+				
+			}
+			
+			function mouseoutP(nonode){
+				nonode.style.background="white";
+				imouse=imouse+1;
+			}
+			
+			
+			function changetest(nonode){
+				
+				var tempT=nonode.value;
+				var tempP=document.getElementById("hint");
+				if(tempT.length<=0){
+					tempP.style.visibility="hidden";
+					return 0;
+				}
+//				tempP.style.visibility="visible";
+				tempP.innerHTML="你的用户名是：" + tempT;
+				
+			}
+			
+			
+			function focusP(nonode){
+				nonode.style.background="red";
+			}
+			
+			function blurP(nonode){
+				nonode.style.background="white";
+				
+			}
+			
+			function submitform(){
+				var usename=form.username.value;
+				if (usename.length<4 || form.password.value.length<6){
+					alert("你的用户名或密码过短");
+					return false;
+				}
+				
+				//自定义的onclick事件需要加form.submit手动提交；
+				return true;
+			}
+			
+			function newp(){
+				alert("DOM改变事件！！");
+			}
+			
+			function loadP(){
+				
+			}
+			
+			
+		</script>
+	</head>
+	<body onload="loadP()">
+		<form name="fm">
+		<p id="p1">Hello Word!!</p>
+		<input type="button" onclick="change()" value="Change" />
+		<p>
+			<input name="inp1" type="text" />
+			<input name="inp2" type="text"/>
+			<input name="inp3" type="text"/>
+		</p>
+		<p id="P2">
+			<input name="f2inp1" type="text" />
+			<input name="f2inp2" id="f2inp2" type="text"/>
+			<input name="f2inp3" type="text"/>
+		</p>
+		
+		<input type="button" name="thens" onclick="removethe()" value="Remove" />
+		<p>
+			<input type="button" name="hthis" onclick="thisTest(this)" value="This" />
+			<!--this关键字指当前节点-->
+		</p>
+		
+			<script>
+				fm.thens.onclick=newp();
+			</script>		
+			
+		</form>
+			
+	
+		
+		
+		<p>
+			<input style="width: 100px;height: 100px;" type="button" onmouseout="mouseoutP(this)" onmouseover="mouseoverP(this)" value="MouseOver"/>
+		</p>
+		
+		
+		
+		<p>
+			<input type="text" onchange="changetest(this)"  />
+			<!--<p style="display: inline;visibility: visible;" id="hint">请输入你的用户名</p>-->
+			<span style="display: inline;" id="hint">请输入你的用户名</span>
+		</p>
+		
+		
+		<form name="form" action="CSS01.html" onsubmit="return submitform()" >
+		<p>
+			<span>用户名：</span>
+			<input type="text" onblur="blurP(this)" onfocus="focusP(this)" name="username"/>
+			<span>密码：</span>
+			<input type="password" onblur="blurP(this)" onfocus="focusP(this)" name="password" />
+			
+			<br />
+			<input type="submit" />
+		</p>	
+		</form>
+		
+		
+		
+		
+	</body>
+</html>

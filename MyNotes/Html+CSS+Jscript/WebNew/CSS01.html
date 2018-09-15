@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Index</title>
+	
+		<link href="css/style.css" rel="stylesheet" type="text/css" href="nav.css"/>
+		
+		<style>
+			#red{
+				color: blue;
+			}
+			.date{
+				/*font-size: 3em;*/
+				color: black;
+			}
+			.content{
+				color: blue;
+				font-size: 3em;
+			}
+			body>div{
+				border: dashed;
+				font-size: 3em;
+			}/*子选择器*/
+			body div{
+				/*border: dashed;*/
+			}/*后代选择器*/
+			div{
+				border: 1px solid red;
+				float: left;/*改变布局模式*/
+				display: inline;
+			}
+			
+			#B2{
+				position: relative;/*相对定位*/
+				bottom: 100px;
+			}
+			#B1{
+				position: absolute;  /*绝对定位*/
+				left: 100px;
+				top: 100px;
+			}
+			
+			p,span,h1,h2,h3{
+				
+			}/*分组选择器*/
+			
+		</style>
+		
+	</head>
+	<body>
+		<p>今天天气不错！——infosys
+			<br />
+			今天风和日丽，适宜出游！
+		</p><!--注释内容-->
+        <br />
+       <!--<a href="#">企 业 内 网</a>-->
+       <p id="red">哈哈</p>
+       <br />
+       <p class="date">20161019</p>
+       <p class="content">天气很好</p>
+       <br />
+       <p class="date">20161020</p>
+       <p class="content">天气</p>
+       
+       	<div id="AA">
+       		 <div id="A1">A1
+       		 	<div>A1A1</div>
+       		 </div>
+       		 
+       	 	 <div id="A1">A2</div>
+       	</div>
+      	<div id="BB">
+      		<div id="B1">B1</div>
+       	  	<div id="B2">B2</div>
+      	</div>
+         
+      	 <p>
+      	 	<br />
+      	 	<br />
+      	 	<br />
+      	 	sdjfng
+      	 </p>
+      	 
+      	 <img src="img/XB12.jpg"/>
+	</body>
+	
+	
+</html>

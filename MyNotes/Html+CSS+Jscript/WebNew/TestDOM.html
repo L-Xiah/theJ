@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script>
+			
+			var cityArg=new Array();
+			cityArg[0]=['吉安','南昌','九江']
+			cityArg[1]=['杨浦','浦东','嘉定','奉贤']
+			cityArg[2]=['深圳','广州','汕头']
+			
+			
+			
+			function selectchange(nonode){
+				alert("nish--" + nonode.innerHTML);
+								
+				var pindex=document.fm.province.selectedIndex;
+				
+				with (document.fm.ncity.options){
+					length=0;
+					for(var i in cityArg[pindex]){
+						var optionT=new Option(cityArg[pindex][i]);
+						add(optionT);
+					}
+					
+				}
+				
+			}
+			
+			
+		</script>
+		
+	</head>
+	<body>
+		<form name="fm">
+			
+			<h1>问卷调查！</h1>
+			<span>姓名</span>
+			<input type="text" />
+			<br>
+			类型1<select name="province" onchange="selectchange(this)" id="shengf" >
+				<option value="0">江西</option>
+				<option value="1">上海</option>
+				<option value="2">广东</option>
+			</select>
+			
+			类型2<select name="ncity" id="city" >
+				<option value="0">红</option>
+				<option value="1">红</option>
+				<option value="2">红</option>
+			</select>
+			
+		</form>
+		
+	</body>
+</html>

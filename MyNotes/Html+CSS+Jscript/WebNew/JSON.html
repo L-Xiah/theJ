@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSON</title>
+		
+		
+		
+	</head>
+	<body>
+		<form name="testfm">
+			<table id="tab1">
+				<tr id="testTr1">
+				
+				</tr>
+			
+				<tr id="testTr2">
+				
+				</tr>
+				
+				
+			</table>
+			
+			<input type="button" onclick="changeTR()" value="改变" />
+			
+		</form>
+			
+			
+		<script>
+			var testTr1=document.getElementById("testTr1");
+			var testTr2=document.getElementById("testTr2");
+			testTr1.innerHTML="<tb>01sddnd</tb><tb>02sddnd</tb><tb>03sddnd</tb>"	
+			testTr2.innerHTML="<tb>01sddnd</tb><tb>02sddnd</tb><tb>03sddnd</tb>"	
+			
+			function changeTR(){
+				testTr1.innerHTML +="<tb>101sddnd</tb><tb>102sddnd</tb><tb>103sddnd</tb>"	
+				
+			}
+			
+				
+		</script>
+			
+				
+		<form name="fm">
+			
+			
+		</form>
+		
+		<script>
+			var txt='{"school":{"class":[{"lesson":"理科","student":[{"id":"1","name":"张三","score":"99"},{"id":"2","name":"李四","score":"96"},{"id":"3","name":"王五","score":"58"}]},{"lesson":"文科","student":[{"id":"4","name":"张七","score":"99"},{"id":"5","name":"李八","score":"96"},{"id":"6","name":"王九","score":"58"}]}]}}';
+			
+			var sjson=JSON.parse(txt);
+			var obj = eval ("(" + txt + ")"); //也可用以解析，不安全会执行txt中的代码
+			var tempJson = (new Function("return " + txt))();//也可以解析JSON
+			
+			
+			for (i=0;i<sjson.school.class.length;i++) {
+							
+				var tempStuArg = sjson.school.class[i].student;
+				for (j=0;j<tempStuArg.length;j++) {
+					var temp=tempStuArg[j]
+					
+					fm.innerHTML +="<p>" + sjson.school.class[i].lesson + "//" + temp.name + "--" + temp.score + "</p>";
+				}
+			}
+			
+			
+		</script>
+	</body>
+</html>

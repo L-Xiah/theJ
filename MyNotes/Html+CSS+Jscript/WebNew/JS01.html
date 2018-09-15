@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JS课堂</title>
+		<script>/*有些浏览器默认不加载JS*/
+			
+			var a=1,b="天气小雨";
+			//alert("Hello World!"+a+"— —" + b);/*输出对话框*/
+			
+		</script>
+				
+		<script>//函数JS
+			//alert("Two Hello World!"+a+"— —" + b);/*输出对话框*/
+			function test01(){
+				var a="1223";
+				b="test01-B";/*变量前面没有Var申明时作为全局变量*/
+				alert("Test01___" + a + b);
+			}
+			
+			/*v1、v2、v3——参数（不用类型申明）；使用return返回值*/
+			//双斜杠注释
+			function test02(v1){
+				
+				if(isNaN(v1)){}
+				
+				alert("Test02___" + V1);
+				
+				return 1;/*可以返回任何类型*/
+				
+				return true;
+			}
+			
+			function test03(){
+				
+				alert("Test03___注册成功");	
+				return 1;/*可以返回任何类型*/
+				return true;
+			}
+			
+			function testIni(){
+				//alert("testIni___初始化");
+				var d = new Date()
+				var time = d.getHours()
+				if (d<12){
+					alert("Test03___早上好！！");
+				}
+				else if(d==12){
+					alert("Test03___中午好！！");
+				}
+				else{
+					alert("Test03___下午好！！");
+				}
+			}		
+		</script>
+		
+		
+	</head>
+	<body onload="testIni()">
+		<p id="weather">今天天气<b>四大</b></p>
+		<script>/*有些浏览器默认不加载JS*/
+			var p=document.getElementById("weather");
+			p.innerHTML="天气情况:小雨"
+		</script>
+		
+		<input type="button" onclick="test03()" value="注册" />
+		
+		
+		
+	</body>
+</html>
