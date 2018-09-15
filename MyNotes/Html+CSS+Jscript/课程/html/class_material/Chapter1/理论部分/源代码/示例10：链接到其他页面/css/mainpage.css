@@ -2,7 +2,7 @@
 
 body {
     margin-top:7px;
-	font-family:"宋体",sans-serif;
+	font-family:"锟斤拷锟斤拷",sans-serif;
 	font-size:12px;
 }
 a:link{
@@ -15,7 +15,8 @@ a:hover{
 color:#CC0000;
 }
 
-#head{ !头部样式
+#head{
+/*!头锟斤拷锟斤拷式*/
 	float:left;
 	margin:0px auto 0px auto;
 	width:950px;
@@ -32,7 +33,8 @@ color:#FFFFFF;
 font-size:12px;
 }
 
-#content{ !中间内容部分样式
+#content{
+/*!锟叫硷拷锟斤拷锟捷诧拷锟斤拷锟斤拷式*/
 	float:left;
 	margin:0px auto 0px auto;
 	width:950px;
