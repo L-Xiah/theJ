@@ -1,0 +1,42 @@
+<html>
+<head>
+	<meta charset="utf-8"/>
+	
+	<script>
+		var musicList = Array(
+		"算什么男人.mp3", "告白气球.mp3", "青花瓷.mp3",
+		"梵高先生.mp3", "定西.mp3", "翁庆年的六英镑.mp3",
+		"来了.mp3", "斜.mp3", "鸵鸟.mp3", "凤凰传奇.mp3", "天空之城.mp3"
+		);
+		
+		function playRandomMusic() {
+			var index = getRandom(musicList.length);
+			out("当前播放歌曲：" + musicList[index]);
+			musicList.splice(index, 1);
+			
+			if(musicList.length > 0) {
+				setTimeout("playRandomMusic()", 3000);
+			} else {
+				out("歌曲播放完成");
+			}
+		}
+		
+		function getRandom(max) {
+			var seed = Math.random();
+			return Math.floor(seed * max);
+		}
+		
+		function out(str) {
+			console.write(str);
+			// document.write(str + "<br/>");
+		}
+		
+		function start() {		
+			out("开始播放歌曲");
+			playRandomMusic();
+		}
+	</script>
+</head>
+<body onload="start()">
+</body>
+</html>

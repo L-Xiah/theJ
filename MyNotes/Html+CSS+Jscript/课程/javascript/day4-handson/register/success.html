@@ -1,0 +1,41 @@
+﻿<html>
+
+<head>
+	<style>
+	
+	</style>
+
+	<script>
+		function init() {
+			var user = getReq();
+			
+			var hh1 = document.getElementsByTagName("h1")[0];
+			hh1.innerHTML += user.username;
+			
+			var pp = document.getElementsByTagName("p")[0];
+			pp.innerHTML = "您的手机号是：" + user.phone +", 密码是：" + user.password +"，请妥善保管。";
+		}
+		
+		function getReq() {
+			var url = window.location.search;
+			var req = new Object(); 
+			if (url.indexOf("?") != -1) { 
+				var str = url.substr(1); 
+				var strs = str.split("&"); 
+				for(var i = 0; i < strs.length; i ++) { 
+					var key = strs[i].split("=")[0];
+					var value = strs[i].split("=")[1];
+					req[key] = value;
+				} 
+			}
+			console.log(req);
+			return req;
+		}
+	</script>
+</head>
+
+<body onload="init()">
+	<h1>欢迎您，</h1>
+	<p></p>
+</body>
+</html>

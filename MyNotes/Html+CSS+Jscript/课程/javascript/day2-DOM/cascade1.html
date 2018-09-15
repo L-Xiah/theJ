@@ -1,0 +1,58 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>注册</title>
+<script>
+  function changeMovie( ){
+    var star = document.myform.star.value;
+    var newoption1, newoption2;
+    switch(star){
+      case "施瓦辛格":
+        newoption1 = new Option("魔鬼终结者","moguizhongjiezhe");
+		newoption2 = new Option("金蝉脱壳","jinchantuoqiao");
+  			break;
+      case "李连杰":
+        newoption1 = new Option("中南海保镖","yuren");
+        newoption2 = new Option("倚天屠龙记","zhuangzhilingyun");
+        break;
+      case "布拉德皮特" :
+        newoption1 = new Option("加州杀手","jiazhoushashou");
+        newoption2 = new Option("温柔的杀戮","wenroudeshalu");
+        break;
+	  }
+	 document.myform.movie.options.length = 0;
+	 document.myform.movie.options.add(newoption1);
+	 document.myform.movie.options.add(newoption2);
+  }
+</script>
+ </head>
+<body>
+<h1>问卷调查</h1>
+<form name="myform">
+<table>
+  <tr>
+    <td>您的姓名</td>
+    <td><input name="username" type="text"></td>
+  </tr>
+  <tr>
+    <td>影星</td>
+    <td><select name="star" onChange="changeMovie()">
+      <option>--请选择影星名称--</option>
+      <option value="施瓦辛格">施瓦辛格</option>
+      <option value="李连杰">李连杰</option>
+      <option value="布拉德皮特">布拉德皮特</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td>电影</td>
+    <td><select name="movie">
+        <option>--请选择他的电影--</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td><input value="提交" type="submit"></input></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

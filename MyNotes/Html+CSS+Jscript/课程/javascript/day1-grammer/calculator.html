@@ -1,0 +1,123 @@
+<html>
+<head>
+	<meta charset="utf-8"/>
+	
+	<style>
+		.operat_btn {
+			width: 50px;
+			height: 50px;
+			margin-left: 20px;
+		}
+		
+		input {
+			width: 10em;
+		}
+		
+		#result, #equation {
+			font-size: 2em;
+			color: red;
+		}
+		
+		p {
+			vertical-align: middle;
+		}
+	
+	</style>
+	
+	<script>
+		function operator(opt) {
+			var v1 = document.getElementById("v1").value;
+			var v2 = document.getElementById("v2").value;
+			
+			if(v1 == "") {
+				v1 = "0";
+			}
+			
+			if(v2 == "") {
+				v2 = "0";
+			}
+			
+			v1 = parseFloat(v1);
+			v2 = parseFloat(v2);
+			
+			if(isNaN(v1) || isNaN(v2)) {
+				alert("请输入正确的数字");
+				return;
+			}
+			
+			var result = "";
+			switch(opt) {
+				case "+":
+					result = add(v1, v2);
+				break;
+				case "-":
+					result = minus(v1, v2);
+				break;
+				case "*":
+					result = multiply(v1, v2);
+				break;
+				case "/":
+					result = divide(v1, v2);
+				break;
+				case "%":
+					result = mod(v1, v2);
+				break;
+			}
+			
+			if(!isNaN(result)) {
+				var equation = v1 + (opt == "*" ? "x" : opt) + v2;
+				document.getElementById("equation").innerHTML = equation;
+				document.getElementById("result").innerHTML = result;
+			} else {
+				alert(result);
+			}
+		}
+		
+		function add(a, b) {
+			return a + b;
+		}
+		
+		function minus(a, b) {
+			return a - b;
+		}
+		
+		function multiply(a, b) {
+			return a * b;
+		}
+		
+		function divide(a, b) {
+			if(b == 0) {
+				return "除数不能为0";
+			}
+		
+			return a / b;
+		}
+		
+		function mod(a, b) {
+			if(b == 0) {
+				return "除数不能为0";
+			}
+			
+			return a % b;
+		}
+	</script>
+</head>
+<body>
+	数字1：
+	<input id="v1" type="text" maxlength="10" />
+	
+	数字2：
+	<input id="v2" type="text" maxlength="10" />
+	
+	<p><span id="equation"></span>计算结果为：<span id="result"></span></p>
+	
+	<br/>
+	<br/>
+	
+	<input class="operat_btn" type="button" onclick="operator('+')" value="+" style="margin-left: 0;"></input>
+	<input class="operat_btn" type="button" onclick="operator('-')" value="-"></input>
+	<input class="operat_btn" type="button" onclick="operator('*')" value="*"></input>
+	<input class="operat_btn" type="button" onclick="operator('/')" value="/"></input>
+	<input class="operat_btn" type="button" onclick="operator('%')" value="mod"></input>
+</body>
+</html>

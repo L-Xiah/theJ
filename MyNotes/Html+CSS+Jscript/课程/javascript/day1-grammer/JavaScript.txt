@@ -1,0 +1,150 @@
+JavaScript(JS)
+HTML+CSS+JavaScript
+
+1. JS的执行流程（网页的执行）
+1.1 用户从浏览器输入某些请求或者操作
+1.2 js将请求包含的数据进行打包，发送给远程服务器
+1.3 后台处理数据并返回
+1.4 浏览器接到返回值，并由js重新对返回数据进行解包（解析）
+1.5 根据需求重新排版（布局）页面
+
+2. JavaScript的引入方式
+2.1 外部引入，在head标签中添加script
+  <script type="text/javascript" src="xxx.js" />
+在使用外部引入的时候，尽量使用本地路径的js文件
+2.2 内部嵌入，在任何地方(head, body)都可以使用<script>进行js的编写/执行，数量也不做限制。
+
+3. JS变量
+3.1 var关键字进行定义var a;
+3.1.1 变量声明时可以没有初始值
+3.1.2 使用定义的方式进行变量赋值var a = 1;变量的类型是已经被确定的，但是在后面可以随意更改
+3.1.3 可以通过','的形式声明多个变量
+3.1.4 局部变量和全局变量（如果局部变量前没有var的声明，则会自动转换为全局变量）
+3.1.5 在JS或Java等语言上，是大小写严格的
+NOTE: 在使用Java及Java系的语言(如JS)上，一般使用驼峰式命名规则，首字母小写，类的首字母大写
+
+4. JS函数
+4.1 函数声明的关键字function xx(){}
+4.2 参数传递方式function xx(v1, v2, ..., vn) {}
+4.3 返回值的关键字return
+NOTE: <input type="button" onclick="函数名()"></input>
+
+5. JS注释，单行使用'//'，多行使用'/**/'进行注释
+
+6. JS中的基本运算
+6.1 加运算'+'
+6.1.1 普通数值类型的运算，就是正常的加法运算
+6.1.2 字符串类型的加运算
+6.2 减运算'-'
+6.1.1 普通数值类型的运算算，正常的减法
+6.1.2 字符串类型会尝试将字符串转换为数字，进行运算
+NOTE: 在非加法的基本运算中，JS都会尝试将变量转换成number类型进行运算
+6.3 乘运算'*'
+6.4 除运算'/'
+6.5 模运算'%'
+
+7. JS中的逻辑运算
+7.1 判断运算'==', '!=', '!', '===', '!=='
+7.2 比较运算'>', '<', '<=', '>='
+7.3 逻辑运算'&&', '||'
+
+8. JS数据输出
+8.1 alert() 提示框
+8.2 document.write() 输出到HTML中
+8.3 xx.innnerHTML 写入到具体的某个节点中
+8.4 console.log() 写入到控制台
+
+9. JS数据类型
+原始数据类型:
+9.1 数值类型number: 包含所有的整数和浮点型数据
+9.1.1 普通数据类型: 1, 1.0, 1E3, 1.23e-3
+9.1.2 特殊数据类型: infinify, NaN
+9.2 字符串类型string: 由双引号或者单引号括起来的"abc", 'abc'
+9.3 布尔类型boolean: true, false
+9.4 null类型
+9.5 undefined类型
+对象类型：
+9.6 object：包含了所有的对象Array, Date, Function
+
+10. JS里面内置对象
+JS对象
+10.1 Number 原始数据类型的包装类
+10.2 String 字符串数据类型的包装类
+10.3 Boolean 布尔类型的包装类
+10.4 Array 数组类型
+10.5 Math 包含基本数学运算的工具类
+10.6 Date 日期和时间相关操作的类
+10.7 RegExp 正则表达式的包装类
+10.8 Event 所有js事件的包装类
+10.9 Function 函数类型的包装类
+其他
+10.10 window对象，表示浏览器创建的窗口
+10.11 screen对象，属于window，包含了客户端显示器的信息
+10.12 history对象，属于window，包含了用户浏览历史记录
+10.13 document对象，包含整个HTML节点的dom树
+
+10.14 this对象，代表当前类的类原型实例。
+
+11. JS创建对象
+11.1 使用var a = new 类();
+11.2 使用var a = new Object(); 或 var a = {}; 进行自定义（空）类的创建
+// ------ new Object()
+var stu = new Object();
+stu.id = 1;
+stu.name = "张三";
+stu.math = 90;
+stu.chinese = 70;
+stu.avgScore = function() {
+  return (this.math + this.chinese) / 2;
+}
+
+// ------ {}
+var stu = {
+  id: 1,
+  name: "张三",
+  math: 90,
+  chinese: 70,
+  avgScore: function() {
+    return (this.math + this.chinese) / 2;
+  }
+}
+
+12. Array数组
+12.1 创建：
+  - new Array();
+  - new Array(长度);
+  - new Array(值1, 值2, ..., 值n);
+  - Array()三种
+12.2 通过[n]的形式取第n个值
+12.3 for(项目 in 数组)
+12.4 concat进行数组拼装
+12.5 sort进行数组排序
+
+13. Date类型
+13.1 通过new Date()的方式进行创建
+13.2 通过new Date(时间)的方式进行指定时间的创建
+13.3 通过getXXX/setXXX的方式进行时间的获取和设定
+13.4 可以直接通过比较运算<, >, == 等来进行判断
+
+14. Math类
+14.1 Math本身是一个“工具类”，它不能被创建，所有的内部成员都是静态的
+14.2 Math.random() 取随机数[0, 1)
+14.3 Math的常量 PI, SQRT2 等
+
+15. Number类型
+15.1 toString, toLocateString转成字符串
+15.2 toFixed 指定小数
+15.3 Number的常量NaN, POSITIVE_INFINITY, NEGATIVE...
+NOTE: parseInt, parseFloat, isNaN
+
+16. 类型判断
+16.1 typeof
+16.2 instanceof
+16.3 Object.prototype.toString();
+
+17. 基本语法
+17.1 if-else
+17.2 while, do-while
+17.3 for(var i = 0; i < n; i++)
+17.4 continue; break;
+17.5 switch-case

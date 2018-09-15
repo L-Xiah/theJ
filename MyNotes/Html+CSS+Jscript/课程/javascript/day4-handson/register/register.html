@@ -1,0 +1,344 @@
+﻿<html>
+
+<head>
+	<style>
+	* {
+		margin: 0;
+		padding: 0;
+		font-family: 微软雅黑;
+		font-size: 1em;
+	}
+	
+	#wrapper {
+		width: 422px;
+		padding: 20px 0;
+		margin: 0 auto;
+		border: 1px #888 dashed;
+	}
+	
+	form {
+		margin: 0 20px ;
+		margin-top: 20px;
+	}
+	
+	.input_box {
+		margin: 14px 0 2px 0; 
+		padding: 0 12px;
+		width: 350px;
+		height: 40px;
+		border: 1px #AAA solid;
+	}
+	
+	.input_left {
+		font-size: 0.9em;
+		display: inline-block;
+		width: 100px;
+		line-height: 40px;
+	}
+	
+	input[type=text], input[type=password] {
+		height: 40px;
+		border: none;
+		outline: none;
+	}
+	
+	#submit_btn {
+		margin-top: 16px;
+		width: 374px;
+		height: 40px;
+		background: red;
+		color: white;
+		border: none;
+	}
+	
+	.input_box img {
+		width: 16px;
+		height: 16px;
+		float: right;
+		margin-top: 12px;
+		visibility: hidden;
+	}
+	
+	.hint {
+		visibility: hidden;
+		height: 1.2em;
+	}
+	
+	.hint img {
+		vertical-align: middle;
+		width: 14px;
+		height: 14px;
+	}
+	
+	.hint span {
+		vertical-align: middle;
+		font-size: 0.8em;
+	}
+	#verify_code {
+		float: right;
+		width: 5em;
+		height: 35px;
+		margin-top: 2px;
+		margin-right: -8px;
+		line-height: 35px;
+		text-align:center;
+		background: green;
+		color: white;
+		font-style: italic;
+	}
+	</style>
+
+	<script>
+		var USERNAME = 0;
+		var PASSWORD = 1;
+		var PWD_CONFIRM = 2;
+		var PHONE = 3;
+		var VERIFY_CODE = 4;
+		var AGREEMENT = 5;
+		var ERROR_STRING = [
+			"用户名为4-20个字符",
+			"密码为6-20个字符",
+			"两次密码不一致",
+			"手机号码不正确",
+			"验证码不正确",
+			"如要注册，请同意协议并勾选",
+		];
+		var HINT_STRING = [
+			"支持中文，字母，下划线的组合，4-20个字符",
+			"建议使用字符和符号的组合，6-20个字符",
+			"请再次输入密码",
+			"可以通过手机号码找回密码",
+			"看不清？点击图片更换验证码"
+		];
+		
+		var allChecks = new Array(false, false, false, false, false, true);
+	
+		function init() {
+			inputs = document.getElementsByClassName("input_form");
+			hints = document.getElementsByClassName("hint");
+			
+			generateVerifyCode();
+		}
+		
+		function hintFocus(index) {
+			if(inputs[index].value.length == 0) {
+				makeHint(index);
+			}
+		}
+		
+		function hintBlur(index) {
+			if(inputs[index].value.length == 0) {
+				disableHint(index);
+			}
+		}
+		
+		function generateVerifyCode() {
+			inputs[VERIFY_CODE].value = "";
+			verifyCode = "";
+			
+			var charArr = new Array(0,1,2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z');
+			for(var i = 0; i < 4; i++) {
+				var index = Math.floor(Math.random() * charArr.length);
+				verifyCode += charArr[index];
+			}
+			
+			document.getElementById("verify_code").innerHTML = verifyCode;
+		}
+		
+		function textChange(index) {
+			var verifyOk = false;
+			switch(index) {
+			case USERNAME:
+				verifyOk = checkUserName(inputs[index].value);
+				break;
+			case PASSWORD:
+				verifyOk = checkPassword(inputs[index].value);
+				resetItem(PWD_CONFIRM);
+				break;
+			case PWD_CONFIRM:
+				verifyOk = checkPasswordConfirm(inputs[index].value);
+				break;
+			case PHONE:
+				verifyOk = checkPhone(inputs[index].value);
+				break;
+			case VERIFY_CODE:
+				verifyOk = checkVerifyCode(inputs[index].value);
+				break;
+			case AGREEMENT:
+				verifyOk = checkAgreement(inputs[index].checked);
+				break;
+			}
+			
+			allChecks[index] = verifyOk;
+			
+			if(verifyOk) {
+				makeSuccess(index);	
+			} else {
+				makeError(index);
+			}
+		}
+		
+		function checkUserName(text) {
+			return text.length >= 4 && text.length <=20;
+		}
+		
+		function checkPassword(text) {
+			return text.length >= 6 && text.length <= 20;
+		}
+		
+		function checkPasswordConfirm(text) {
+			var pwd = inputs[PASSWORD].value;
+			var pwdConfirm = inputs[PWD_CONFIRM].value;
+			return pwd == pwdConfirm;
+		}
+		
+		function checkPhone(text) {
+			var reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+			return reg.test(text);
+		}
+		
+		function checkVerifyCode(text) {
+			return text == verifyCode;
+		}
+		
+		function checkAgreement(checked) {
+			return checked;
+		}
+		
+		function makeError(index) {
+			var divBox = inputs[index].parentNode;
+			divBox.style.border = "1px solid red";
+			var icon = divBox.getElementsByTagName("img")[0];
+			if(icon) {
+				icon.style.visibility = "hidden";
+			}
+			
+			hints[index].style.visibility = "visible";
+			hints[index].style.color = "red";
+			hints[index].childNodes[1].src = "imgs/error.png";
+			hints[index].childNodes[3].innerHTML = ERROR_STRING[index];
+		}
+		
+		function makeSuccess(index) {
+			var divBox = inputs[index].parentNode;
+			divBox.style.border = (index == AGREEMENT ? "none" : "1px solid #AAA");
+			var icon = divBox.getElementsByTagName("img")[0];
+			if(icon) {
+				icon.style.visibility = "visible";
+			}
+			
+			hints[index].style.visibility = "hidden";
+		}
+		
+		function makeHint(index) {
+			var divBox = inputs[index].parentNode;
+			divBox.style.border = "1px solid #AAA";
+			var icon = divBox.getElementsByTagName("img")[0];
+			if(icon) {
+				icon.style.visibility = "hidden";
+			}
+			
+			hints[index].style.visibility = "visible";
+			hints[index].style.color = "#CCC";
+			hints[index].childNodes[1].src = "imgs/hint.png";
+			hints[index].childNodes[3].innerHTML = HINT_STRING[index];
+		}
+		
+		function disableHint(index) {
+			var divBox = inputs[index].parentNode;
+			divBox.style.border = "1px solid #AAA";
+			var icon = divBox.getElementsByTagName("img")[0];
+			if(icon) {
+				icon.style.visibility = "hidden";
+			}
+			
+			hints[index].style.visibility = "hidden";
+		}
+		
+		function resetItem(index) {
+			inputs[index].value = "";
+			var divBox = inputs[index].parentNode;
+			divBox.style.border = (index == AGREEMENT ? "none" : "1px solid #AAA");
+			var icon = divBox.getElementsByTagName("img")[0];
+			if(icon) {
+				icon.style.visibility = "hidden";
+			}
+			
+			hints[index].style.visibility = "hidden";
+		}
+		
+		function submitForm() {
+			for(var i = 0; i < allChecks.length; i++) {
+				if(!allChecks[i]) {
+					makeError(i);
+					return false;
+				}
+			}
+			
+			return true;
+		}
+	</script>
+</head>
+
+<body onload="init()">
+	<img src="imgs/topbanner.png"/> 
+	<div id="wrapper">
+	<form method="GET" onsubmit="return submitForm()" action="success.html">
+		<div class="input_box">
+			<span class="input_left">用户名</span>
+			<input class="input_form" type="text" maxlength="20" onchange="textChange(0)" onfocus="hintFocus(0)" onblur="hintBlur(0)" name="username"/>
+			<img src="imgs/correct.png" /> 
+		</div>
+		<div class="hint">
+			<img src="imgs/error.png" />
+			<span></span>
+		</div>
+		<div class="input_box">
+			<span class="input_left">设置密码</span>
+			<input class="input_form" type="password" maxlength="20" onchange="textChange(1)" onfocus="hintFocus(1)" onblur="hintBlur(1)"  name="password"/>
+			<img src="imgs/correct.png" /> 
+		</div>
+		<div class="hint">
+			<img src="imgs/error.png" />
+			<span></span>
+		</div>
+		<div class="input_box">
+			<span class="input_left">确认密码</span>
+			<input class="input_form" type="password" maxlength="20" onchange="textChange(2)" onfocus="hintFocus(2)" onblur="hintBlur(2)"  />
+			<img src="imgs/correct.png" /> 
+		</div>
+		<div class="hint">
+			<img src="imgs/error.png" />
+			<span></span>
+		</div>
+		<div class="input_box">
+			<span class="input_left" style="border-right: 1px solid #AAA">中国+86</span>
+			<input class="input_form" type="text" maxlength="11" onchange="textChange(3)" onfocus="hintFocus(3)" onblur="hintBlur(3)" name="phone"/>
+			<img src="imgs/correct.png" /> 
+		</div>
+		<div class="hint">
+			<img src="imgs/error.png" />
+			<span></span>
+		</div>
+		<div class="input_box">
+			<span class="input_left">验证码</span>
+			<input class="input_form" type="text" maxlength="4" style="width: 6em" onchange="textChange(4)" onfocus="hintFocus(4)" onblur="hintBlur(4)"  />
+			<span id="verify_code" onclick="generateVerifyCode();">40FF</span>
+		</div>
+		<div class="hint">
+			<img src="imgs/error.png" />
+			<span></span>
+		</div>
+		<div class="input_box" style="border: none; height: 24px">
+			<input class="input_form" type="checkbox" checked="true" name="agreementcb" onchange="textChange(5)">
+			<span style="">我已阅读并同意<a href="agreement.html">《用户注册协议》</a></span>
+		</div>
+		<div class="hint">
+			<img src="imgs/error.png" />
+			<span></span>
+		</div>
+		
+		<input id="submit_btn" type="submit" value="立即注册">
+	</form></div>
+</body>
+</html>

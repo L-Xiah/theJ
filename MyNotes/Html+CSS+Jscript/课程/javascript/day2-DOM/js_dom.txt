@@ -1,0 +1,90 @@
+JavaScript DOM
+文档对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展标志语言的标准编程接口。在网页上，组织页面（或文档）的对象被组织在一个树形结构中，用来表示文档中对象的标准模型就称为DOM。Document Object Model的历史可以追溯至1990年代后期微软与Netscape的“浏览器大战”，双方为了在JavaScript与JScript一决生死，于是大规模的赋予浏览器强大的功能。微软在网页技术上加入了不少专属事物，既有VBScript、ActiveX、以及微软自家的DHTML格式等，使不少网页使用非微软平台及浏览器无法正常显示。DOM即是当时蕴酿出来的杰作。
+
+1. document
+document是当前HTML页面（文档）本身，在HTML的DOM中，主要可以用于获取、修改、添加和删除元素或元素自身的属性（特征）
+1.1 body：是<body>，如果使用了<iframe><frameset>，则指的是最外层的frame
+1.2 domain 当前文档的域名
+1.3 open() 打开一个新的文档
+1.4 close() 和open()相对
+1.5 write()和writeln() 向文档中写入
+1.6 cookie 以key-value进行保存 
+
+2. 节点
+在HTML DOM中，所有的事物都是节点。DOM本身是视为节点树的HTML。
+2.1 节点特征：
+- 整个文档是一个文档节点
+- 每个HTML标签是一个元素节点
+- 包含在HTML元素中的文本是文本节点
+- 每一个HTML属性是一个属性节点
+- 注释属于注释节点
+2.2 节点的关系
+使用父亲(parent), 孩子(children), 同胞(sibling)等术语描述节点的关系。父节点拥有子节点。同级的节点被称之为同胞节点（兄弟姐妹）。
+- 节点树里面，有且仅有一个顶端节点，被称为根节点(root)
+- 每个节点都必须有父节点，除了根节点
+- 一个节点可以有任意数量的子节点
+- 同胞拥有相同的父节点     
+2.3 通过JS来控制HTML的节点(DOM)
+NOTE: 并不是仅有JavaScript才能控制DOM
+2.3.1 获取
+- getElementById("id名"); 获取指定ID的节点 
+- getElementElementsByClassName("class名"); 获取class节点组(IE8- 无效)
+- getElementsByTagName("标签名"); 获取指定标签的节点组
+- getElementsByName(""); 获取指定name的节点组
+NOTE:可以通过设定name="xx"的形式进行设定，直接用document.name来获取（不推荐）
+- node.parentNode 获取父节点
+- node.childNodes 获取子节点[]
+- node.attributes 获取属性节点[]
+- node.nodeValue 获取节点值
+  a. 元素节点获取到的是undefined或null
+  b. 文本节点的值是本身
+  c. 属性节点的值是属性
+- node.value 存在于<input>等标签，用于内容取值
+- node.nodeType 节点的类型: 元素=1, 属性=2, 文本=3, 注释=8, 文档=9
+2.3.2 修改
+a. 修改HTML的内容
+- node.innerHTML = "新的HTML"
+b. 改变CSS的样式
+- node.style.属性 = "值"
+c. 改变HTML的属性
+- node.属性 = "值"
+- node.setAttribute("属性", "值"); // IE8- 不支持
+d. 创建新的HTML元素
+- createElement() 创建一个新的元素
+- createTextNode() 创建一个文本节点
+- appendChild(node) 添加节点
+- insertBefore() 添加到指定节点之前
+e. 删除已有的HTML元素
+- 父节点.removeChild()
+- node.remove()  考虑兼容性
+- replaceChild() 替换一个已有元素
+f. 改变事件
+
+2.3.3 节点的常用属性
+- 通过[n]的形式可以获取到第n个节点
+- length里面定义了节点的数量
+- parentNode, firstChild, lastChild
+- childNodes 所有的孩子节点[]
+- nodeValue 节点值
+
+3. DOM事件
+NOTE: 大部分DOM事件在所有的DOM节点上都是适用的。
+3.1 DOM事件种类：
+- 用户点击鼠标
+  - onmousedown() onmouseup() 鼠标按下抬起
+- 网页/图片加载 
+  - onload() 标签和图片加载
+  - onunload() 网页关闭
+- 鼠标移动到某元素上 
+  - onmouseover() onmouseout() 鼠标移入移出
+- 输入字段发生改变
+  - onchange()
+- 焦点发生改变
+  - onfocus() 获取焦点
+  - onblur() 失去焦点 兼容性
+- 用户触发按键
+  - onkeydown() onkeyup()
+- 提交HTML表单 onsubmit()
+  - <form onsubmit="return xxx()" />
+  - <input onsubmit="return xxx()" />
+  - 自定义onclick后，需要在提交函数中添加form.submit()

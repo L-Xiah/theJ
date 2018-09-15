@@ -1,0 +1,61 @@
+jQuery
+jQuery本身是一个轻量级的javascript库，兼容了各个浏览器版本（2.0以后不兼容IE6）。提供了能快速处理HTML、EVENT及实现动画和ajax交互。
+
+http://jquery.com/download/
+下载js包
+
+放到需要引用的项目中，通过外部引入的方式进行引入。
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+
+1. jQuery的语法
+$ = JQuery
+
+2. jq选择器
+遵循CSS的选择器方式
+2.1 $("标签名") $("#id名") $(".类名")
+2.2 :first :last :eq(下标)
+2.3 :empty :contarins(文本) 
+2.4 [属性=值] $("[href='baidu.com']")
+2.5 :input输入文本 :text :button :checkbox ...
+2.6 :enabled :disabled :selected :checked
+
+3. 获取内容
+3.1 text() 设置或返回所选元素的文本内容
+3.2 html() 设置或返回所选元素的HTML内容（包含HTML标记）
+3.3 val() 设置或返回表单字段的值
+
+4. 设置属性
+4.1 attr() 获取属性
+4.2 attr() 设置属性
+  - 单个属性：attr("属性", "值")
+  - 多个属性：attr({
+      属性 1: 值,
+      属性 2: 值,
+      ...
+    });
+
+5. 调整元素（节点）
+5.1 append() 添加
+5.2 prepened() 开头添加
+5.3 after() before() 之后之前添加
+5.4 remove() 
+5.5 empty() 清空
+
+6. CSS
+- 单个样式
+css("属性", "值");
+- 多个样式
+css({
+  "样式1": "值",
+  "样式2": "值",
+  ...
+});
+
+7. 节点关系
+7.1 父节点 parent(), parents()
+7.2 子节点 children(), find()
+7.3 同胞 next() prev()
+
+8. 动画
+7.1 hide() show() toggle()
+7.2 其他动画

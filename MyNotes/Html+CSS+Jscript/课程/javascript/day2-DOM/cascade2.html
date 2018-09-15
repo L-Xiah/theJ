@@ -1,0 +1,52 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>注册</title>
+<script>
+  var cityList = new Array();
+  cityList[0] = ['成都', '绵阳', '德阳', '自贡', '内江', '乐山', '南充', '雅安', '眉山', '甘孜', '凉山', '泸州'];
+  cityList[1] = ['济南', '青岛', '淄博', '枣庄', '东营', '烟台', '潍坊', '济宁', '泰安', '威海', '日照'];
+  cityList[2] = ['武汉', '宜昌', '荆州', '襄樊', '黄石', '荆门', '黄冈', '十堰', '恩施', '潜江'];
+
+  function changeProvince(){
+    var pIndex = document.myform.province.selectedIndex - 1;
+	
+    with (document.myform.city.options) {
+      length = 0;
+      for (var i in cityList[pIndex]) {
+        var option = new Option(cityList[pIndex][i]);
+        add(option);
+      }
+    }
+  }
+</script>
+ </head>
+<body>
+<h1>银行卡开户</h1>
+<form name="myform">
+<table>
+  <tr>
+    <td>您的姓名</td>
+    <td><input name="username" type="text"></td>
+  </tr>
+  <tr>
+    <td>省份</td>
+    <td><select name="province" onChange="changeProvince()">
+      <option>--请选择省份--</option>
+      <option value="四川省">四川省</option>
+      <option value="山东省">山东省</option>
+      <option value="湖北省">湖北省</option></select></td>
+  </tr>
+  <tr>
+    <td>城市</td>
+    <td><select name="city">
+        <option>--请选择城市--</option>
+      </select></td>
+  </tr>
+  <tr>
+    <td><input value="提交" type="submit"></input></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

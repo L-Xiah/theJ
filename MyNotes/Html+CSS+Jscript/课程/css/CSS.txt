@@ -1,0 +1,146 @@
+CSS样式表
+
+CSS目前最新版本为CSS5，是能够真正做到网页表现与内容分离的一种样式设计语言。相对于传统HTML的表现而言，CSS能够对网页中的对象的位置排版进行像素级的精确控制，支持几乎所有的字体字号样式，拥有对网页对象和模型样式编辑的能力，并能够进行初步交互设计，是目前基于文本展示最优秀的表现设计语言。CSS能够根据不同使用者的理解能力，简化或者优化写法，针对各类人群，有较强的易读性。
+
+1. CSS的基本语法
+    元素 {
+      属性: 值;
+    }
+1.1 CSS是不区分大小写的，推荐使用小写
+1.2 每条样式用';'分开，一般写成多行的形式（规则比较简单的可以合并成一行）
+1.3 注释以/* 这是注释 */形式进行注释
+
+2. CSS属性
+2.1通用属性：
+2.1.1 background 背景
+    background-color: RGB颜色
+    background-image: url(文件路径)
+    background-repeat: repeat/no-repeat/repeat-x/y
+    background-attachment: fixed; 
+2.1.2 宽度、高度
+    width: 长度单位 px em %
+    height: 长度单位
+2.1.3 透明度 opacity 0~1
+2.1.4 隐藏 visiblity: visible, invisible
+
+2.2 文本属性 font
+2.2.1 text-indent 文本缩进
+2.2.2 text-align 文本对齐
+2.2.3 text-decoration 文本修饰
+      - none 
+      - underline
+      - overline
+      - line-through
+      - blink
+2.2.4 文本颜色 color
+2.2.5 文本行间距 line-height
+2.2.6 大小写转换 text-transform
+      - uppercase
+      - lowercase
+      - caplitalize
+2.2.7 禁止换行 white-space: no-wrap;
+2.2.8 字体 font-family
+2.2.9 字体大小 font-size: px, em相对大小，一个单位字体的大小
+2.2.10 字体的样式 font-style
+       - normal
+       - italic(oblique)
+2.2.11 字体粗细 font-weight 100~900 默认400
+
+2.3 列表属性 list-style
+2.3.1 列表项标志 list-style-type
+       - none
+       - circle
+       - square
+       - upper-roman, lower-alpha
+2.3.2 自定义列表图片 list-style-image: url(自定义)
+2.3.3 列表标志位置 list-style-position: inside, outside
+
+2.4 表格属性
+2.4.1 单线表格边框 border-collapse: collapse
+2.4.2 边框 border
+     边框样式 border-style:
+     - none 
+     - solid
+     - dotted
+     - dashed
+     边框颜色 border-color 
+     边框上右下左 border-top/right/bottom/left
+2.4.3 垂直对齐 vertical-align
+
+3. CSS引用方式
+3.1 内联式引用，直接把style写在标签内部
+   e.g.
+   <p style="color: red; font-size: 12px;"></p> 
+3.2 嵌入式引用，把style写在<head>标签中
+   e.g.
+   <head>
+     <style>
+       p {
+         ...
+       }
+     </style>
+   </head>
+3.3 外部引用（样式较多的时候，写在一个独立文件中）
+   e.g.
+   <link href="style.css" rel="stylesheet" type="text/css" />
+
+3.4 生效顺序：就近  内联 > 嵌入 > 外部
+
+4. CSS选择器
+4.1 标签选择器，针对某个标签的形式进行选择 p {}
+4.2 id选择器，针对某个id进行选择(id=xx) #xx {}
+4.3 类选择器，针对某个类进行选择(class=xx) .xx {}
+4.4 子选择器，针对元素的第一代孩子进行选择 xx>xx {}
+4.5 后代选择器，对元素所有的孩子进行选择 xx xx {}
+4.7 通用选择器， * {}
+4.8 伪类选择器，a:hover {}, a:link{}, a:visited{}等
+4.9 分组选择器，p, a, div {}
+
+5. CSS特性
+5.1 继承性，使用CSS的时候，某些属性是可以被继承的，如color,font等；而某些属性是不能被继承的如border
+5.2 权值性，在CSS样式发生重叠的时候，用权值的高低来进行判断，权值高的生效。其中id=100，class=10，标签=1，继承=0.1
+5.3 层叠性，CSS多重引用方式，以最近（最后）的为主
+
+6. 盒子模型
+6.1 元素分类
+6.1.1 块状元素block: (display: block)
+      - 包含div, p, h1~h6, ol, ul, dl, table, blockquote等
+      - 每个块状元素都占一行，其后的元素新起一行
+      - 高度、宽度都是可以设置，默认是父容器的100%
+6.1.2 内联元素inline: (display: inline)
+      - 包含span, a, label, strong等
+      - 和其他的元素都在一行上
+      - 元素的宽度、高端、顶底边距都不能设置，宽度就是内容的大小
+6.1.3 块状内联元素inline-block: (display: inline-block)
+      - 包含img, input等
+      - 和其他元素都在一行上
+      - 元素的宽度、高度和顶底边距都是可以设置的
+6.2 盒子模型
+      - 边距：margin
+      - 填充：padding
+      - 边框：border
+6.3 填充、边距、边框
+      div {
+	padding: 0 0 0 0; /* 上-右-下-左 */
+        padding: 0 0; /* 上下-左右 */
+        padding: 0; /* 上下左右（全部） */
+        
+        /*
+	padding-left/right/top/bottom 单独设置某一个方向
+        */
+      }
+7. CSS布局模型
+7.1 Flow流体模型，默认布局，从上倒下元素垂直排列。在默认情况下，块状元素宽度都是100%，而内联元素都是从左到右的。可以通过float的形式进行调整。
+      div {
+        float: left/right/center;  
+      }
+7.2 层模型-相对定位 使用自身相对位置进行定位
+      div {
+        position: relative;
+      }
+7.3 层模型-绝对定位 使用绝对坐标的形式进行定位
+      div {
+        position: absolute;
+        left: 100;
+        top: 100;
+      }

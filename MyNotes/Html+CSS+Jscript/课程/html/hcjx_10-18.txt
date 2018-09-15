@@ -1,0 +1,256 @@
+﻿个人介绍：
+	鄢克 Alex 
+	Email:alex.yan@infosys.com
+	
+1.Web基础
+	html -- 通过html勾勒出网页的基本内容和结构 
+	CSS  -- 给相应的网页“化妆”，产生页面美化的效果
+	JavaScript -- 让网页产生一种动态的效果和数据的相关验证；
+静态页面 vs 动态页面
+
+2.html-- Hyper Text Markup Language(html)
+		是超文本标记（标签）语言，是一种纯文本的语言，网页设计或创作的核心语言；
+		并不是编程语言（编程语言：C，C++，Java，C#。。。）
+	html语言特点：
+		1）简易性：html中各种标签简单易学，便于初学者进行页面设计和开发；
+		2）平台无关性：是html最大的特点，在任何操作系统中都可以使用；
+		
+3.html标签的分类
+	单标签
+		带有属性的单标签
+		syntax:
+			<标签名称 属性名称1="属性值1" 属性名称2="属性值2".../> 
+		eg:
+			<hr width="80%" align="center"/> 
+		没有属性的单标签:
+		syntax：
+			<标签名称/>
+		eg：<br/> --在页面中实现换行操作
+	
+	双标签
+		带有属性的双标签
+			syntax:
+				<开始标签><结束标签/>
+			eg:
+		<font color="red" size="5">被修饰的内容</font>
+		没有属性的双标签
+		<html></html>
+		<head></head>
+4.html 基本结构
+	<!-- html唯一的根元素-->
+	<html>
+		<!--html头部内容：页面文档的标题，编码格式，引入的外部样式和相关外部JavaScript资源-->
+		<head>
+			<title></title>
+			<meta charset="utf-8">
+			<link 引入外部样式文件(.css)>
+			<script>编写嵌入的jscode和外部引入</script>
+		</head>
+		
+		<body>
+		
+		</body>
+	</html>
+	<title></title> -- 用来设置页面的标签信息，便于搜索查询
+	<meta>-- 用来标记（说明）网页的基本信息，对网页的进行的说明，
+			便于搜索引擎进行查找操作，通常放置在head标签内部
+	设置网页关键字
+	<meta name="keyword" content="关键字内容">--如果涉及到多个关键字，通过“,”分隔开
+	设置网页作者信息
+	<meta name="author" content="author_name">-- 描述网页的作者信息
+	设置网页的编码格式
+	<meta http-equiv="Content-Type",content="text/html",charset="utf-8">
+	
+	网页中应用到的编码
+		gbk(gb2312):简体中文，主要应用于中文页面；
+		
+		ISO-885901：纯英文页面；
+			
+		big-5：主要是应用在繁体中文的页面
+				
+		
+		utf-8：国际通用的编码格式，适用于中文和英文的页面；
+			相对于gbk（gb2312）来说，通用性是utf-8更好，字符编码的压缩率比较低
+5.html元素通用属性
+	属性				属性
+	class			为html元素定义一个或多个类名（方便引入样式）,主要应用在类选择器
+	id				在页面中为元素定义唯一ID号（ID选择器）
+	style			应用在标签中的行内样式（inline style）
+	title			描述元素的额外信息（不常用）；
+6 标题标签
+	<h1>....<h6>其中h1标签字体最大，h6字体最小
+	所有被应用了标题标签的内容，字体都是加粗的效果；
+	eg:
+	<h1>我是h1标题</h1>
+	<h2>我是h2标题</h2>
+	<h3>我是h3标题</h3>
+	<h4>我是h4标题</h4>
+	<h5>我是h5标题</h5>
+	<h6>我是h6标题</h6>
+	<h10>我是h10标题</h10>
+7 文本内容的修饰
+	<b>粗体内容</b> -- bold
+	<i>斜体内容</i> -- italic
+	<u>附有下划线</u> -- underline
+	<s>附有删除线</s> -- strikethrough
+	<sub>设置上标</sub>
+	<sup>设置下标</sup>
+	<strong>设置加强语气的效果</strong>
+8 行级标签
+	8.1 标题标签
+	8.2 段落标签 
+		<p>自成段落的内容</p>
+	8.3 水平线
+		<hr color="blue" width="80%"/>
+9 块级标签-有序列表，无序列表，定义列表，表格，表单，分区标签（div）
+	9.1 有序标签<ol></ol> <li><li>
+			<ol type="a" or "A" or "I" or "i" or "1"> --默认序号是数字
+				<li>填写用户信息</li>
+				<li>注册账号</li>
+				<li>登录账号</li>
+			</ol>
+		并列多个选项，不同的选项之间有明显的先后顺序；
+	9.2 无序列表<ul></ul> 具体选项<li></li>
+		<ul type="disc" or "square" or "circle">
+			<li>电子产品</li>
+			<li>地方特产</li>
+			<li>生活用品</li>
+		</ul>
+	9.3 定义列表(html5中弱化)
+		定义列表标签<dl>,用来定义某个名称或术语的解释
+		<dl>
+			<dt>用来修饰术语</dt>
+			<dd>关于术语的具体解释</dd>
+		</dl>
+		eg：
+		<dl>
+			<dt>Infosys</dt>
+			<dd>Infosys总部位于印度共和国班加罗尔城市，而EAT总部位于Mysore市，中国总部位于上海市浦东新区</dd>
+		</dl>
+	9.4 表格<table> </table> 设置网页表格，让网页内容以规整的形式显示
+		<tr></tr> -- 用于描述行的内容
+		<td></td> --用于列的内容
+		eg:
+		<table>
+			<tr>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>球队</td>
+			</tr>
+			<tr>
+				<td>科比</td>
+				<td>39</td>
+				<td>湖人队</td>
+			</tr>
+			<tr>
+				<td>詹姆斯</td>
+				<td>32</td>
+				<td>骑士队</td>
+			</tr>
+		</table>
+	9.5 表单-- 文本框，密码框，单选按钮，多选按钮，下拉列表，提交，重置
+		<input type="text" or "password" "button" "checkbox">
+		需要在<body>标签内部嵌入一个<form>标签
+		eg:
+		<form action="网页提交地址" method="post or get">
+			<input type="表单类型" 属性1="属性值1".../>	
+		</form>
+		eg:
+			<form action="" method="post">
+			<p>用户名
+				<input type="text" size="20" maxlength="20">
+			</p>
+			<p>密码
+				<input type="password" size="20" maxlength="20">
+			</p>
+			</form>
+	9.6 分区标签<div> -- 用于页面布局时区块的划分，
+			在div整个大的“容器”可以放置 有序列表，无序列表，定义列表，表格，表单元素
+	常见的块级布局结构
+		1）div-ul(ol)-li --> 应用于导航或菜单选项； 
+		2）div-dl-dt-dd -->应用于图文混搭的场合；
+		3）table-tr-td --> 规整显示内容，应用于导航页面
+		4）form-table-tr-td-->用于表单布局的整合；
+	通常将marquee标签布局在<div>标签中
+10 超链接
+	syntax:
+		<a href="链接地址" target="目标窗口位置">链接的内容</a>
+		href 取值可以是本地页面，也可以是网络中各种链接
+		target 取值 _self 在当前页面中显示超链接的内容
+					_blank 在新的页面中显示超链接的内容；
+		eg:
+		<a href="tableDemo.html" target="_blank">课堂小案例</a>
+		<a href="http://www.baidu.com" target="_self">百度小页面</a>
+	超链接使用的场合
+		1)网页之间的链接
+		2）锚链接
+			完成步骤
+				step1： 在页面的B位置标记<a name="marker">目标位置B</a>
+				step2: 在A位置设置href属性值"#标记名"
+						
+		eg:
+		<p>
+			<a id="#C4">查看第四章节</a> 
+		</p>
+		<h3>段落1</h3>
+		<p>段落1：我是段落1</p>
+		<h3>段落2</h3>
+		<p>段落2：我是段落2</p>
+		<h3>段落3</h3>
+		<p>段落3：我是段落3</p>
+		<h3><a id="C4">段落4</a></h3>
+		<p>段落4：我是段落4</p>
+		<h3>段落5</h3>
+		<p>段落5：我是段落5</p>
+		<h3>段落6</h3>
+		<p>段落6：我是段落6</p>
+		3）功能性链接--发邮件的方式
+		<a href="mailto:infosys_user@infosys.com">发送邮件到Infosys</a>
+11 表单元素
+	文本框，
+	密码框，
+	单选按钮，
+	多选按钮，
+	复选项，
+	下拉列表，
+	多行文本框，
+	提交按钮，
+	重置按钮
+	11.1 form标签基本语法
+		<form action="表单提交页面" method="提交方法">
+			<!-- 布局文本框，密码框。。。-->  
+		</form>
+		action取值：规定表单提交信息时，向何处发送表单数据信息；
+			取值为缺省时，默认提交到当前页面；
+		method 取值分别为post和get
+			get方式：安全性不太高的场合；
+			post方式：安全性较高的场合；
+		
+	
+	11.2文本框
+		<input> --将input标签内容嵌入在form标签内部
+		syntax：
+			<input type="表单元素类类型"
+					value="表单元素取值"
+					name="表单元素名称"
+					id="表单元素ID"
+					maxlength="文本框最大输入长度"
+					size="文本框的显示宽度"
+					checked="checked"
+			/>
+		input属性取值
+		属性名称				取值（说明）
+		type				指定表单元素的类型
+							（text,password,checkbox,radio,submit,reset,file,image,button）
+							默认类型为text
+		name				给定表单元素名称
+		id					给定表单元素ID（唯一性）
+		size				指定表单元素的显示宽度
+							如果type被设置为text或password类型
+							表单元素以字符为单位来设置表单元素的显示长度；
+		maxlength			指定text或password表单元素输入的最大长度；
+		checked				该属性只有一个取值，“checked”，
+							表示被该属性修饰的选项为选中状态；
+	
+		在使用下拉框进行日期或时间选择时，可以使用html5中的type="date or month or week"
+	

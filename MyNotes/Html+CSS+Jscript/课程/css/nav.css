@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+nav {
+  display:inline-block;
+  border:1px solid #505255;
+  border-bottom: 1px solid #282C2F;
+  -webkit-border-radius: 5px;
+  margin:50px;
+  -webkit-box-shadow:1px 1px 3px #292929;
+}
+li {
+  list-style:none;
+  float:left;
+  border-right: 1px solid #2E3235;
+  position: relative;
+  background:#555D5F;
+}
+li:hover{
+  background:#3E4245;
+  -webkit-transition: background 1s ease-out;
+}
+li a {
+  display:block;
+  height:40px;
+  line-height:40px;
+  padding:0 30px;
+  font-size:12px;
+  color:#fff;
+  text-shadow: 0px -1px 0px #000;
+  text-decoration:none;
+  white-space:nowrap;
+  border-left: 1px solid #999E9F;
+  border-top: 1px solid #999E9F;
+  -webkit-border-top-left-radius: 2px;
+  z-index:100;
+}
+li > a {
+  position:relative;
+}
+li.first a {
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+}
+li.last {
+  border-right: 0 none;
+}
+dl {
+  position:absolute;
+  display:block;
+  top:40px;
+  left: -25px;
+  width:165px;
+  background:#222222;
+  -webkit-border-radius: 5px;
+  -webkit-box-shadow:1px 1px 3px #292929;
+  z-index:10;
+}
+li:hover dl {
+  top:50px;
+  display:block;
+  width:145px;
+  padding:10px;
+}
+dl a {
+  background:transparent;
+  border:0 none;
+  -webkit-border-radius: 5px;
+  -webkit-transition: background 0.5s ease-out;
+}
+dl a:hover{
+  color:#FFF;
+  background:#999E9F;
+  -webkit-transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+dd {
+  margin-top:-40px;
+  opacity:0;
+  width:145px;
+  -webkit-transition-property:all;
+  -moz-transition-property: all;
+}
+li:hover dd {
+  margin-top:0;
+  opacity:1;
+}
+li dd:nth-child(1) {
+  -webkit-transition-duration: 0.1s;
+}
+li dd:nth-child(2) {
+  -webkit-transition-duration: 0.2s;
+}
+li dd:nth-child(3) {
+  -webkit-transition-duration: 0.3s;
+}
+li dd:nth-child(4) {
+  -webkit-transition-duration: 0.4s;
+}
+dt {
+  display:none;
+  margin-top:-25px;
+  padding-top:15px;
+  height:10px;
+}
+li:hover dt {
+  display:block;
+}
+.Darrow{
+  float:right;
+  margin:18px 10px 0 0;
+  border-width:5px;
+  border-color:#FFF transparent transparent transparent;
+  border-style:solid;
+  width:0;
+  height:0;
+  line-height:0;
+  overflow:hidden;
+  cursor:pointer;
+  text-shadow: 0px -1px 0px #000;
+  -webkit-box-shadow:0px -1px 0px #000;
+}
