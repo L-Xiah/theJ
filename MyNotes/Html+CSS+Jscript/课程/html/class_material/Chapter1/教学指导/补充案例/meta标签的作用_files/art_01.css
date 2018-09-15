@@ -1,0 +1,168 @@
+DIV {
+	FONT-SIZE: 12px; COLOR: #333333; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
+}
+TD {
+	FONT-SIZE: 12px; COLOR: #333333; LINE-HEIGHT: 20px; FONT-FAMILY: "宋体"
+}
+INPUT {
+	FONT-SIZE: 12px; COLOR: #333333
+}
+SELECT {
+	FONT-SIZE: 12px; COLOR: #333333
+}
+.f14 {
+	FONT-SIZE: 14px; COLOR: #333333; LINE-HEIGHT: 150%; FONT-FAMILY: "宋体"
+}
+BODY {
+	PADDING-LEFT: 18px; BACKGROUND-IMAGE: url(/images/0531_left1.gif); MARGIN: 0px; BACKGROUND-REPEAT: repeat-y; FONT-FAMILY: '宋体','新宋体',arial,verdana,sans-serif; BACKGROUND-COLOR: #ffffff
+}
+A:link {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+A.blue:link {
+	COLOR: #000099; TEXT-DECORATION: underline
+}
+A.blue:visited {
+	COLOR: #000099; TEXT-DECORATION: underline
+}
+A.blue:active {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.blue:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.blue_1:link {
+	FONT-SIZE: 14px; COLOR: #0000c4; TEXT-DECORATION: underline
+}
+A.blue_1:visited {
+	COLOR: #0000c4; TEXT-DECORATION: underline
+}
+A.blue_1:hover {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+A.blue_1:active {
+	COLOR: #ff0000; TEXT-DECORATION: none
+}
+#itcomcn {
+	
+}
+#top {
+	FONT-SIZE: 12px; MARGIN-LEFT: auto; LINE-HEIGHT: 150%; MARGIN-RIGHT: auto; TEXT-ALIGN: left
+}
+#art_main {
+	BACKGROUND-COLOR: #f1f1f1; heightt: 100%; nowrap: 
+}
+#art_line {
+	BACKGROUND-IMAGE: url(/images/line_h.gif); HEIGHT: 1px
+}
+#cor_left_top {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/0830_cor_top.gif); WIDTH: 173px; HEIGHT: 5px
+}
+#cor_top {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/0830_cor_top.gif); HEIGHT: 5px
+}
+#cor_bot {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/0830_cor_bot.gif); HEIGHT: 5px
+}
+#cor_left_bot {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/0830_cor_bot.gif); WIDTH: 173px; HEIGHT: 5px
+}
+#cor_left {
+	FLOAT: left
+}
+#cor_right {
+	FLOAT: right
+}
+#art_top {
+	BACKGROUND-COLOR: #f5f5f5; TEXT-ALIGN: center
+}
+#art_main_right {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; BACKGROUND-COLOR: #ffffff
+}
+#art_main_left {
+	BORDER-RIGHT: #cccccc 1px solid; BORDER-LEFT: #cccccc 1px solid; WIDTH: 173px; BACKGROUND-COLOR: #ffffff; TEXT-ALIGN: center
+}
+#bottom {
+	CLEAR: both; COLOR: #ccc; TEXT-ALIGN: left
+}
+#bottom1 {
+	CLEAR: both; BORDER-TOP: #c8e0f5 1px solid; BORDER-BOTTOM: #c8e0f5 1px solid; BACKGROUND-COLOR: #eef8fe; TEXT-ALIGN: center
+}
+#main_left {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; LEFT: 19px; FLOAT: left; PADDING-BOTTOM: 5px; WIDTH: 183px; PADDING-TOP: 5px; TOP: 120px; BACKGROUND-COLOR: #f1f1f1; TEXT-ALIGN: center; POSsITION: absolute
+}
+#main_right {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; LEFT: 200px; FLOAT: right; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; BACKGROUND-COLOR: #f1f1f1
+}
+#bottom_left {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FLOAT: left; PADDING-BOTTOM: 5px; WIDTH: 65%; PADDING-TOP: 5px; BACKGROUND-COLOR: #f1f1f1; TEXT-ALIGN: center
+}
+#bottom_right {
+	FLOAT: left; WIDTH: 34%; BACKGROUND-COLOR: #f1f1f1; TEXT-ALIGN: center
+}
+#art_top1 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px; TEXT-ALIGN: center
+}
+#art_title {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; FONT-SIZE: 18px; PADDING-BOTTOM: 5px; COLOR: #333333; LINE-HEIGHT: 150%; PADDING-TOP: 5px; FONT-FAMILY: "宋体"; TEXT-ALIGN: center
+}
+#art_center {
+	PADDING-RIGHT: 1px; PADDING-LEFT: 1px; PADDING-BOTTOM: 1px; LINE-HEIGHT: 150%; PADDING-TOP: 1px; TEXT-ALIGN: center
+}
+#art_right {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; PADDING-BOTTOM: 2px; LINE-HEIGHT: 150%; PADDING-TOP: 2px; TEXT-ALIGN: right
+}
+#art_left {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; LINE-HEIGHT: 150%; PADDING-TOP: 3px; TEXT-ALIGN: left
+}
+#art_text {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-SIZE: 14px; PADDING-BOTTOM: 5px; LINE-HEIGHT: 150%; PADDING-TOP: 5px; TEXT-ALIGN: left; WORD-WRAP: break-word
+}
+#cor5 {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+#art_xgwz {
+	BORDER-TOP: #dddddd 2px solid; WIDTH: 95%; LINE-HEIGHT: 150%; BORDER-BOTTOM: #dddddd 2px solid; TEXT-ALIGN: left
+}
+.f14b {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; LINE-HEIGHT: 150%; FONT-FAMILY: "宋体"
+}
+#art_bgf1f1f1 {
+	BACKGROUND-COLOR: #f1f1f1; TEXT-ALIGN: left
+}
+.spanclass {
+	LEFT: 1px; VISIBILITY: hidden; WIDTH: 1px; POSITION: absolute; TOP: 1px; HEIGHT: 1px
+}
+#bar1 {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/title_bg.gif); PADDING-TOP: 5px; HEIGHT: 27px
+}
+#bar_left {
+	FLOAT: left
+}
+#bar_right {
+	FLOAT: right
+}
+#menu UL {
+	BORDER-RIGHT: medium none; PADDING-RIGHT: 0px; BORDER-TOP: medium none; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 5px 0px 0px 18px; BORDER-LEFT: medium none; LINE-HEIGHT: normal; PADDING-TOP: 0px; BORDER-BOTTOM: medium none; LIST-STYLE-TYPE: none
+}
+#menu LI {
+	BORDER-TOP: #fff 1px solid; FONT-SIZE: 12px; LIST-STYLE-IMAGE: url(http://www.it.com.cn/images/comm/bjk_11.gif); MARGIN: 0px; HEIGHT: 22px
+}
+#cor1_top {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/art/con_t.gif); HEIGHT: 8px
+}
+#cor1_bot {
+	BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/art/con_b.gif); HEIGHT: 8px
+}
+#cor1_maint {
+	BORDER-RIGHT: #d7d7d7 4px solid; BACKGROUND-IMAGE: url(http://www.it.com.cn/images/comm/art/con_bg.gif); BORDER-LEFT: #d7d7d7 4px solid; BACKGROUND-REPEAT: repeat-y; BACKGROUND-COLOR: #ededed
+}

@@ -1,0 +1,15 @@
+td{font-size:12px; font-family:Verdana}
+a{text-decoration:none; color:#6FB7FF;}
+a:hover{text-decoration:underline; color:#FF0000 }
+.throughline{text-decoration:line-through;font-family:"ËÎÌו"; } 
+.serach {color:#FFF;}
+
+.findInto {
+	width:240px;
+	border:1px solid #bbbbbb;
+	color:#808080;
+	height:22px;
+	padding:3px 0 0 4px;
+	font-family:"ËÎÌו"
+}
+.findGoto{background:url(../images/publicpic/headFind.gif);height:22px;width:47px;border:none;cursor:hand}

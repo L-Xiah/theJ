@@ -1,0 +1,67 @@
+.note{
+background:url(../shopping/images/arrow.gif) no-repeat;
+margin:0 0 15px;
+padding:2px 0 8px 25px;
+font-weight:bold;
+font-size:14px;
+height:16px;
+border-bottom:1px solid #E7E7E7
+}
+.bargainmain{
+	width:860px;
+	border:#ABDC97 solid 1px;
+	background-color:#F5FFF1;
+	line-height:20px;
+	margin:auto;
+	padding:5px;
+	margin-bottom:10px;
+	text-align:center;
+	display:none;
+}
+.zoneModify{background:#f4fbff;border-bottom:1px solid #fff;}
+.font {color: #FF6600}
+.lineDashed{border-bottom:1px dashed #DDDDDD}
+.title{background:#EEF3F6;border-top:1px solid #E7E7E7;font-size:14px;font-weight:bold;padding:5px 0 5px 25px;margin-top:20px}
+.submitBtn{
+background:url(../images/submitBg.gif) #83BBD9 repeat-x;
+color:#1E5494;
+padding:0 20px;
+font-weight:bold;
+font-size:14px;
+cursor:pointer;
+height:25px;
+border:1px solid #83BBD9;
+}
+
+.lefttd {text-align:right; padding-right:20px; font-family:"ÐÂËÎÌå"}
+
+.loginMain {
+	border:1px solid #57A0ED;
+	padding-bottom:10px;
+	background:#EEF5FF;
+	margin-bottom:25px
+}
+.inputMain {
+	border:1px solid #718DA6;
+	height:17px;
+	padding:2px 0 0 4px;
+	width:120px
+}
+.loginHead {
+	padding-left:50px; 
+	background-image:url(images/login_head.gif);
+	padding-top:14px; 
+	height:27px;
+	line-height:4px;
+	font-size:13px;
+	color:#fff;
+	font-weight:bold
+}
+.picButton{ background-image:url(images/login_submit.gif);
+   border:0px;
+   margin: 10px;
+   padding: 0px;
+   height: 30px;
+   width: 137px; 
+   font-size: 14px; 
+}
