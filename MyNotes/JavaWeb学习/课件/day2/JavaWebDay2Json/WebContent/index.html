@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+
+<script>
+	function fsubmit() {
+		$.ajax({
+			type : "post",
+			dataType : "json",
+			url : "login",
+			data : {
+				username : "qweqweqwe",
+				password : "123123123"
+			},
+			success : function(obj) {
+				$("#result").html(
+					"用户名：" + obj.username +
+					"<br/>密码：" + obj.password + 
+					"<br/>email:" + obj.email 
+					
+				);
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<input value="点击我" type="button" onclick="fsubmit()" />
+	<p id="result">P</p>
+</body>
+</html>

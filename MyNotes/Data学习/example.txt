@@ -1,0 +1,36 @@
+
+
+
+create table student2
+(
+id number primary key,
+name varchar2(20) not null,
+age number check(age>0),
+score number(8,2)
+)
+
+select * from student2
+insert into student2 values(1,'xiah',20,89.5)
+
+create sequence ser_student2_id_increment
+	increment by 1
+	start with 1
+	nomaxvalue
+	nocycle
+	nocache	
+
+
+insert into student2 values(ser_student2_id_increment.nextval,'xiah',20,89.5)
+
+
+
+
+--´´½¨´¥·¢Æ÷
+create trigger trg_student2_identified
+	before insert on student2 for each row
+	begin 
+	select ser_student2_id_increment.nextval into:new.id from dual;
+	end;
+
+
+insert into student2 (name,age,score) values('xiahy',68,90.2);

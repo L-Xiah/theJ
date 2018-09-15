@@ -1,0 +1,12 @@
+---------添加hibernate框架------
+1、新建项目，添加lib文件夹
+2、将路径（D:\Program Files\Data\hibernate\libs\hibernate\required）下的*.jar和jdbc.jar(数据库)添加到lib文件夹->右键全部add build path
+3、将路径（D:\Program Files\Data\hibernate\source）下的*.xml添加到srcxia
+4、add librariy 增加JUnit（测试）
+
+
+
+Mybatis 与 Hibernate的比较
+http://blog.csdn.net/jiuqiyuliang/article/details/45378065
+Mybatis：小巧、方便、高效、简单、直接、半自动化
+Hibernate：强大、方便、高效、复杂、间接、全自动化

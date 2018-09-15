@@ -1,0 +1,1 @@
+前言：Maven的中央仓库包含各种jar包  有些jar不好下载的都可以在这里进行下。下载方式简单，快捷。  一共就2个超级简单的文件（一个bat脚本，一个pom.xml文件）。具体操作流程：http://blog.csdn.net/u013791374/article/details/51985069

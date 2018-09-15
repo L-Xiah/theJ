@@ -1,0 +1,144 @@
+1. Session
+- 类似servlet中的session，在一个SessionFactory中会有多个session，但一个session只有一个SessionFactory
+- 包含基础的增删改查办法save(), delete(), update(), get()/load(), createQuery()
+
+获取session对象
+- factory.openSession()
+- factory.getCurrentSession()
+  需要在hibernate.cfg.xml中配置 <property name="hibernate.current_session_context_class"></property>
+  - thread
+  - jta
+  - SpringSessionContext
+open和getCurrent的区别：
+- getCurrentSession在提交事务或回滚之后会自动关闭，而openSession需要手动关闭
+- getCurrentSession使用的是一个对象，openSession使用的是多个对象
+
+2. Transaction
+事务（委托人），对数据库(session)的一系列操作进行统一管理，包含commit()提交方法和rollback()回滚
+NOTE: 回滚操作，即在某一系列步骤执行中间产生异常行为时，为了保证数据的同步性，需要对之前的操作进行反向回滚（撤销之前的操作）
+
+3. Hibernate中的关系映射
+3.1 组件形式 component
+  // Student.java
+  Address address; // 生成get/set
+
+  <!-- student.hbm.xml -->
+  <component name="address" class="model.Address">
+    <property name="postcode" column="POSTCODE" />
+    <property name="phone" column="PHONE" />
+    <property name="address" column="ADDRESS" />
+  </component>
+3.2 一对一 one-to-one
+- 通过从表ID(FK)=主表ID的形式实现一对一
+- 多对一
+
+3.3 一对多 one-to-many
+以外键的形式维护对应关系
+  // Teacher.java
+  Set<Student> students;
+
+  <!-- teacher.hbm.xml -->
+  <set name="students" table="student">
+    <key column="tid" />
+    <one-to-many class="model.Student" />
+  </set>
+
+3.4 多对一 many-to-one
+以外键的形式维护对应关系*
+  // Student.java
+  Teacher teacher;
+
+  <!-- student.hbm.xml -->
+  <many-to-one name="teacher"  class="model.Teacher" column="tid"/>
+
+3.5 多对多 many-to-many
+需要新建一张关系表，来维护多对多的对应关系
+如:relation_stules保存学生和课程关系,fk_sid, fk_lid
+  <!-- lesson.hbm.xml -->
+  <!-- 对应学生集合的名称 -->
+  <set name="students" table="relation_stules">
+    <!-- 在关系表中自身的外键 -->
+    <key column="rlesid" />
+    <!-- 对应的学生在关系表中的映射 -->
+    <many-to-many class="model.Student" column="rstuid" />
+  </set>
+
+3.6 Cascade 关键字
+设置Cascade之后（级联关系），Hibernate持久化时会自动将关联的属性进行保存。
+NOTE: 由于Hibernate的自动生成sql语句的特性，级联关系需要慎用
+- none 默认不关联
+- all  对所有操作都关联
+- save-update 仅对保存更新关联
+- delete  仅对删除关联
+
+3.7 Inverse 关键字
+<set>节点中，inverse的属性默认是false，双方均维护对应关系
+在双向对应关系中，将inverse属性设置为true，在多对一的关系中，只由一方维护，则可以去除无用操作。提高数据的性能
+
+4. HQL
+HQL - Hibernate Query Language，面向对象的SQL语言，与SQL几乎完全相同，在底层仍然会被转换为SQL执行。
+4.1 注意事项
+- 因为HQL是面向对象的SQL，具有对象映射关系，所以HQL是大小写敏感的
+- HQL中的SQL关键字是大小写不敏感的
+4.2 HQL的语法
+- 检索 from
+- 选择 select 
+- 限制条件 where
+- 排序 order by
+select ... from ... where ... group by ... having ... order by ...
+*** from子句是必须有的，其他的条件可以根据需求添加
+
+4.2.1 from + 类名
+NOTE: 默认使用auto-import在mapping中自动导入类。也可以使用包名+类的形式。
+- 使用as关键字定义别名，as可以省略
+- from可以查询多个持久化对象，以逗号隔开
+
+4.2.2 select
+- select不写的情况 = select * 
+- Object[]
+  ...object[0];
+- List
+  new list(xx, xx)       list.get(0).get(0)
+- Map 
+  - new map(xx, xx)     ..get("0")  ..get("1")
+  - new map(xx as a, xx as b)    ..get("a")
+- 自定义类型
+  需要定义与查询字段相符的构造函数
+
+4.2.3 where
+- =, >, <, <>不等于, <=, >=
+- null判断    
+  - is [not] null
+  - = <> null
+- 范围运算
+  - [not] in (列表/子集)
+  - [not] between (值1) and (值2) 
+- 通配符 like %任意字符匹配，_单个字符匹配
+- 逻辑运算 and, or, not
+- 集合运算
+  - is [not] empty 集合不为空（不包含任何元素）
+  - member of 属于集合中
+- 四则运算
+
+4.3 单个对象查询
+Query.uniqueResult() 查询单个对象
+NOTE: 查询的对象(where条件)必须仅有一个或没有
+
+5. Hibernate的缓存机制
+缓存(Cache)：在webapp(DB)中为了降低对物理数据库访问的频率，从而提高应用程序性能的一种策略。
+
+一级缓存（缓存命中）
+- 缓存是跟session相关的
+- 一级缓存在每个类持久化的时候都会有一个唯一的id，不会重复
+- 一级缓存的使用是与session的生命周期相关的
+- 一级缓存无法被取消，是默认开启的
+使用evict()进行清除具体对象的缓存，clear()方法进行清除所有缓存。
+
+5.1 List和Iterator
+- Query.List() 方法是不会使用一级缓存的
+- Query的Iterator方法，是从表中查到所有的ID（主键），然后先从缓存中找到这个id的对象，如果没有则重新查询
+
+5.2 二级缓存
+二级缓存又称为“全局缓存”、“应用级缓存”，适用于当前应用的所有会话。设计的初衷是可插拔式的，默认使用ehcache，同时也有其他缓存模组HashTable, OSCache, SwarmCache, JBossTreeCache
+- 在每个session都能公用的缓存
+- 二级缓存默认是不开启的，需要进行手动配置(ehcache)

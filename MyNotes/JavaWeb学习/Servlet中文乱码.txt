@@ -1,0 +1,36 @@
+
+Servlet中解决中文乱码的方法
+浏览：2880
+|
+更新：2014-07-02 17:07
+.
+
+
+
+
+
+Servlet中解决中文乱码:
+
+1) request中的中文乱码
+
+   a) POST方式提交
+
+  在获得提交表单信息之前调用request.setCharactersEncoding("UTF-8");
+
+  b) GET方式提交
+
+  在Tomcat的server.xml中配置
+
+   <Service>
+
+      <Connector URIEncoding="UTF-8">
+
+         ...
+
+      </Connector>
+
+  </Service>
+
+2) reponse中的中文乱码
+
+    在通过response获得输出流之前调用response.setCharacterEncoding("UTF-8");

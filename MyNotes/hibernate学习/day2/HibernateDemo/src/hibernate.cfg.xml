@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- 数据库连接的用户名 -->
+		<property name="connection.username">willi</property>
+		<!-- 数据库连接的密码 -->
+		<property name="connection.password">hahaha</property>
+		<!-- JDBC驱动的类 -->
+		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<!-- JDBC连接的url -->
+		<property name="connection.url">jdbc:oracle:thin:@192.168.199.107:1521:orcl</property>
+		<!-- 数据库的方言 -->
+		<property name="connection.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<!-- 是否输出sql语句 -->
+		<property name="show_sql">true</property>
+		<!-- 是否格式化sql语句 -->
+		<property name="format_sql">true</property>
+		<!-- 执行规则 -->
+		<property name="hbm2ddl.auto">update</property>
+
+		<mapping resource="student.hbm.xml" /> 
+	</session-factory>
+</hibernate-configuration>

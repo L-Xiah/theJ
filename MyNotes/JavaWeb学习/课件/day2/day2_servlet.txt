@@ -1,0 +1,65 @@
+Java web
+
+1. 通过Servlet获取表单信息
+在Servlet中可以通过request来获取请求中传递的参数。
+<form action="servlet" method="get">
+  姓名：
+  <input name="username" type="text" />
+  密码：
+  <input name="password" type="password" />
+  <input type="submit" value="提交" />
+</form>
+
+// 通过request获取参数
+@Override
+protected void doGet(req, resp) throws ... {
+  String username = req.getParameter("username");
+  String password = req.getParameter("password");
+  // ... 处理业务逻辑
+}
+
+String[] request.getParameterValues("xx"); // 获取多个值
+
+NOTE: 前台传来的参数中包含汉字的话，需要对request进行编码
+- request.setCharacterEncoding("utf-8");
+- new String(xx.getBytes("iso8859-1"), "UTF-8");
+- 在server.xml中<Connector>修改URLEncoding="utf-8"
+
+2. Date和Calendar 
+时间戳(timestamp)：目前在计算机中最广泛的用于表示时间的定义。它的标准是指“从格林威治时间1970年01月01日00时00分00秒000起到现在的毫秒数”（北京时间08:00）
+System.currentTimeMillis();
+
+2.1 java.util.Date 主要用于描述当前的时间
+- new Date() 当前时间
+- new Date(long) 指定时间戳(long)的时间
+- before() after() compareTo() 判断时间
+- setTime()getTime() 设置/获取date的时间戳
+
+2.2 java.util.Calendar 对Date类的一个扩展，主要是解决了时区、时间格式的问题
+- Calendar.getInstance() 当前时间
+- getTime() 获取到Date
+- add(日历的属性, value) 对当前时间进行操作
+- set(属性, value) get(属性) 操作/获取日期
+
+2.3 java.text.SimpleDateFormat 日期格式化类
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+"yyyy-MM-dd HH:mm:ss" 
+y 年
+M 月
+d 日期
+H 24小时制的小时
+m 分钟
+s 秒
+...
+
+// 日期转换为String
+String dateStr = sdf.format(date);
+
+
+// String转换成日期
+Date date = sdf.parse(dString); // 需要捕获异常
+
+3. Java中JSON的解析和拼装
+主流的库：JSON，Gson，FastJson, Jackson
+

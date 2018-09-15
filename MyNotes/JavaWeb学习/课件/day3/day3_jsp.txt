@@ -1,0 +1,159 @@
+Java web
+
+JSP(Java Server Page) 
+本身是一个简化了的Servlet设计，它实现了在Java中使用Html标签。JSP是一种动态网页技术，也是J2EE的标准。JSP和Servlet都是在服务器端运行的。
+NOTE: JSP就是Servlet
+
+JSP的核心语法： <% %>
+
+1. JSP的注释
+- HTML的普通注释 - 客户端可见的
+  <!-- 注释内容 -->
+- JSP的注释 - 客户端不可见
+  <%-- 注释内容 --%>
+- 脚本中的注释 - 客户端不可见
+  // JAVA注释
+
+2. JSP页面的组成
+2.1 指令 位于JSP页面的前端，声明JSP文件
+  <%@ %>
+  - page 页面的声明，包括文件类型、编码格式等
+  - include 包含外部文件
+  - taglib 自定标签库
+2.2 脚本
+  <%
+    // 任意Java代码
+  %>
+2.3 声明 - 全局
+  <%!
+    // 声明Java变量、函数
+  %>
+2.4 表达式 可以跟变量或有返回值的函数，无需加';'
+  <%= %> 只能有一行（一个）
+2.5 静态内容 HTML
+2.6 注释
+
+3. JSP的生命周期
+与Servlet在大方向是相同的（本身就是一个Servlet）
+不同的地方是在第一次访问时，JSP引擎会自动将JSP转换成为一个Servlet，生成字节码文件，并执行jspInit()的方法。而执行的时候，执行的是jspService()。销毁的时候执行的是jspDestory();
+NOTE: 所有的<% %>脚本部分的代码都在jspService()里面生成（执行）的。HTML代码也是在jspService()里面输出的。所以不能在这个方法中声明一个方法，应使用JSP的声明进行声明<%! %>.
+NOTE: 在Tomcat->work--->包--->xxx_jsp.java就能看到jsp编译后生成的java文件，所有代码都可以在这看到。
+对于每一个请求的客户端，JSP引擎都都会创建一个新的线程去执行这些代码（多线程），但要注意的是线程同步问题。Servlet本身也是常驻内存的，所以处理速度会非常快。
+
+4. JSP的内置对象
+4.1 out JspWriter的实例，输出流，负责输出内容
+  - print() / println() 输出
+  - clear() 清空缓冲区
+  - flush() 强制输出
+  - close() 关闭输出流
+  ... 其他的流操作的方法
+4.2 request, response
+request: 当前请求的实例(HttpServletRequest)，客户端发送来的请求会放在这个对象中，通过得到request中的内容，可以实现对请求作出相应。request对象本身有“作用域”的概念，当请求未结束之前，这个request都有效。
+  - String getParamter(String) 获取参数
+  - String[] getParameterValues(String) 获取参数组
+  - void setAttribute(String, Object) 设置属性
+  - Object getAttribute(String) 获取属性
+  - int getContentLength() 获取请求的长度
+  - String getProtocol() 获取请求协议及版本号
+  - String getServerName() 获取服务器的名称
+  - String getRemoteAddr() 获取主机地址
+  ...
+response: 和request相对应，是指响应给客户端的实例(HttpServletResponse)，同样也有作用域。
+  - String getCharacterEncoding() 字符编码格式(set)
+  - void setContentType() 设置MIME类型
+  - PrintWriter getWriter() 获取输出流
+  - sendRedirect(String) 重定向客户端请求
+  - addCookie(Cookie) 向客户端添加一个Cookie
+  ...
+4.3 session 会话，从打开网页/请求开始，就认为客户端和服务器开始了某一次会话。不同用户打开的session是不同的，由服务器来维护。默认从打开网站/请求开始，到关闭浏览器为止（session销毁），它是HttpSession的实例。
+  - String geId() // SESSION ID
+  - long getCreationTime() 
+  - void setMaxInactiveInterval(long) 设置session超时时间(同样可以get)
+  - setAttribute / get 
+  ...
+4.4 application 全局对象，从服务器启动就被创建，到服务器关闭被销毁，所有用户、页面都可以访问该对象。
+  - set / get 
+4.5 page 当前页面本身Object类似于this
+4.6 pageContext 集合了对JSP页面本身里所有的内置对象及名字空间的访问
+4.7 config 一般指页面初始化的时候，JSP引擎向其传递信息用的。一般包含servlet初始化时所需要调用的函数及服务器相关的信息。ServletContext实例
+4.8 exception 异常对象
+配合errorPage="xxx"和isErrorPage="true"使用
+
+5. 请求转发 和 请求重定向：
+请求转发：request.getRequestDispacher("url").forward(req, resp);服务器行为，是一次请求的行为，转发后请求对象会被保存，地址栏的URL不会变。
+请求重定向：response.sendRedirec("url");客户端行为，本质上来说是两次请求，前一次的请求对象不会被保存，地址栏会发生改变。
+
+6. scope作用域：
+与变量的定义类似，当前的bean在什么地方生效。
+- page 当前页面
+- request 当次的请求中生效
+- session 本次会话中生效
+- application 整个web应用中生效
+
+7. Cookie 
+HTTP本身是一种无状态的协议，所以在使用的时候，一般需要用户状态的获取。在JSP中，可以使用Session或Application等来保存用户信息，但是这两种（其他的作用域）都存在“服务器销毁”的问题。在某些数据不需要使用数据库的时候，可以将一些不太重要的数据保存在客户端。以这种形式保存的就称为Cookie.
+- 对特定行为的追踪
+- 保存用户的简易习惯
+- 简化登录流程
+Cookie的操作方式
+// 添加一个Cookie
+Cookie c = new Cookie("key", "value");
+response.addCookie(c);
+
+// 获取Cookie
+Cookie[] cookies = request.getCookies();
+// 需要对这个cookies进行遍历去拿到想要的Cookie
+
+- setMaxAge() 设置过期时间(get)
+- setName() setValue()
+
+NOTE: 如果需要保存汉字的话，需要使用java.net.URLEncoder和java.net.URLDecoder，同时编码和解码的字符集必须是相同。
+
+7.1 Cookie 和 Session的区别
+- Session是保存在服务器的，Cookie是保存在客户端（一般是浏览器）的
+- Session可以保存Object，Cookie只能保存String
+- Session相对来说时间比较短，Cookie可以长期保存
+
+8. JSP的动作元素
+JSP的动作元素是为请求阶段的处理提供信息。动作元素遵循xml定义的语法（实际上是一个自定义的XML标签），可以有属性、内容及正常的关闭标签。<jsp:xxx>
+8.1 分类
+- JavaBean相关的
+ <jsp:useBean> <jsp:setProperty> <jsp:getProperty>
+- JSP 1.2定义的基本动作
+ include, forward, param, plugin, params, fallback
+- JSP 2.0 操作document相关的
+ root, declaration, scriptlet, expression, text, output
+- 2.0+ 动态生成xml
+ attribute, body, element
+- 2.0+ tag file 解析xml
+ invoke, dobody
+
+8.2 include
+<%@include file="" %> 指令 - 引入的源文件（代码）
+<jsp:include page="" /> 动作 - 通过函数加载这个文件
+
+8.3 forward
+<jsp:forward page="xxx" />
+等同于
+request.getRequestDispather("xxx").forward(req, resp);
+
+8.4 param
+<jsp:forward page="xxx">
+  <jsp:param name="n1" value="v1"/>
+  <jsp:param name="n2" value="v2"/>
+  ...
+</jsp:forward>
+
+8.5 JavaBean
+JavaBean就是符合某种规范的Java类。使用JavaBean的好处是统一格式，减少代码的复杂度，功能明确，提高可维护性。JavaBean的四个原则：
+- 是一个public类
+- 无参public构造方法
+- 属性都是private的
+- 属性拥有getter和setter方法
+
+jsp:useBean 动作
+<jsp:useBean id="标识符（变量名）" class="具体类名" scope="作用域"/>
+
+jsp:param 动作
+jsp:getProperty 动作
+

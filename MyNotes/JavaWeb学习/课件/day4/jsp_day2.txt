@@ -1,0 +1,206 @@
+补充：
+
+JavaBean JSP
+- public 类
+- 无参构造方法
+- 属性都是private
+- 属性都拥有getter/setter方法
+
+动作标签
+<jsp:useBean>标签：
+使用JavaBean，自动创建一个名为vname的Xxx的实例
+<jsp:useBean id="vname" class="xx.xx.Xxx"
+  scope="作用域" />
+
+<jsp:setProperty>标签：
+设置vname的variable成员变量为value
+<jsp:setProperty name="vname" property="variable"    
+  value="value" />
+	
+NOTE: 可以通过property="*"的形式，让JSP对参数和JavaBean进行自动的装配（匹配、赋值），要求必须参数和成员变量一模一样（单词、大小写）
+
+接受参数赋值给JavaBean
+<jsp:setProperty name="vname" property="variable"    
+  param="value" />
+
+<jsp:getProperty>标签：
+获取vname中的variable属性（成员变量）
+<jsp:getProperty name="vname" property="variable" />
+
+Java Web 
+JSTL & EL
+JSTL是Java的一个定制标记库，可以直接使用。JSP的代码比较重复、复杂（HTML+Java的嵌套使用），所以使用JSTL可以简化某些简单的逻辑部分（判断、循环等），其次类似JSP标签，可以以HTML的形式编写JSP，使HTML的代码更加清晰易读。其实是自定义的XML标签。
+
+1. JSTL依赖库导入：
+  - 将jstl.jar和standard.jar复制到
+    WebContent\WEB-INF\lib目录下
+  - 右键这两个jar并添加到buildpath中
+
+NOTE: 
+jar - Java程序编译后打包生成的可执行程序，可以交给JVM直接运行，也可以通过包含源代码的形式进行依赖的引用（给其他项目提供库资源）
+buildpath - Java项目在编译的时候会自动进行查找的目录，如果添加了jar等依赖，则会将这些依赖进行打包编译
+
+
+2. JSTL标签导入
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"     prefix="c" %>
+uri 代表引入自定义标签库的uri标识符
+prefix 指标识名字空间中的前缀
+
+<c:out></c:out>
+
+3. EL表达式
+EL表达式是一种给定引用变量的写法，通常与JSTL配合使用，简洁化页面。
+3.1 定义
+  - 通过$进行定界，内容包含在{ }中
+  - 通过'[]'和'.'的形式可以访问具体某个属性，如student.name和student['name']都可以访问到student中的name属性
+    - []还可以表示数组的访问
+    - 通过特殊符号取值的时候
+
+3.2 内置变量
+  JSP          EL表达式
+- pageContext  pageScope
+- request      requestScope
+- session      sessionScope
+- application  applicationScope
+
+3.3 获取EL变量
+- 在调用EL变量的时候，如调用${ username }，查找顺序是page->request->session->application
+- 如果没有找到变量，则会返回""（空字符串）而不是null
+
+3.4 隐式变量
+- pageContext 当前页面的Context实例
+- pageScope 对应JSP的pageContext
+- requestScope 对应JSP的request
+- sessionScope 对应JSP的session
+- applicationScope 对应JSP的application
+- param 对应请求存储的map
+- paramValues 对应请求的map - String[]
+- header 对应请求头的map
+- headerValues 请求头的map - String[]
+- cookie 
+- initParam 按名称存储的map对应上下文初始化参数
+
+3.5 类型转换
+类似JavaScript，EL表达式中的类型匹配会自动进行转换，所以也要注意类型转换引发的问题。
+
+3.6 EL运算符
+- 算术运算符：+, -, *, /或div, %或mod
+- 关系运算符：==或eq, !=或ne, <或lt, >或gt, <=或le, >=或ge
+- 逻辑运算符：&&或and, ||或or, !或not
+- 验证运算符：empty 判断是否为空
+
+4. JSTL的分类
+- 核心标签
+- 格式化标签
+- SQL标签
+- XML标签
+
+使用JSTL的时候，输出可以有两种结果
+- 常量
+- 变量 - EL表达式
+- JSP表达式
+
+5. JSTL的标签
+JSTL常见的标签共有13个
+- 表达式控制标签：out, set, remove, catch
+- 流程控制标签：if, choose, when, otherwise
+- 循环标签：forEach, forTokens
+- URL操作标签：import, url, redirect
+
+5.1 out标签<c:out> 在value中设定输出的内容
+<c:out value="" default="" escapeXml="" />
+- 直接输出常量
+- 输出变量 EL表达式，JSP表达式
+  - default 输出默认值
+  - escapeXml 控制输出转义字符，默认false
+
+5.2 set标签<c:set> 
+- 保存到xxScope中
+<c:set value="" var="" scope="" />
+将value中的内容保存到名为var的变量中去，在scope作用域内生效
+- 设置JavaBean中的属性
+<c:set target="" property="" value="" />
+给target中的变量里面的property属性赋值为value
+
+5.3 remove标签<c:remove> 
+- 删除xxScope中的属性
+<c:remove var="" scope="" />
+NOTE: remove不能删除静态代码（源程序）中的JavaBean中的某个属性。
+ 
+5.4 catch标签<c:catch> 捕获异常用的
+<c:catch var="">
+  <!-- 执行xxxxxx语句 -->
+</c:catch>
+将执行语句中的异常赋值给var变量，可供后面使用
+
+5.5 if标签<c:if> if判断语句
+- <c:if test="" var="" scope="" />
+将test中的判断结果赋值给var中的变量，并保存至scope中
+- <c:if test="">
+  <!-- 执行xxxxx语句 -->
+  </c:if>
+
+5.6 choose-when-otherwise 判断语句，与Java中的switch-case-default类似，同样在这里实现了if-else的结构。
+<c:choose>
+  <c:when test=""> 
+    <!-- do something -->
+  </c:when>
+
+  ...
+
+  <c:otherwise>
+    <!-- do something -->
+  </c:otherwise>
+</c:choose>
+
+5.7 forEach <c:forEach>
+对items中的内容进行遍历，每项是var
+<c:forEach var="" items ="" ></c:forEach>
+- begin="" 从第几个开始
+- end="" 到第几个结束
+- step="" 步长，默认每次遍历几个
+- varStatus="" 属性
+  - index 总集合中是第几个 从0开始
+  - count 当前集合中是第几个 从1开始
+  - first 是否为第一个
+  - last 是否为最后一个
+
+5.8 forTokens <c:forTokens> 遍历分割字符串
+对items中的字符串进行以delims中的内容切割，相当于String.split()，将items中的内容以遍历的形式输出到var中
+<c:forTokens items="" delims="" var="">
+  <!-- do somthing -->
+</c:forTokens>
+
+5.9 import <c:import>
+将其他静态或动态的文件包含至当前页面
+<c:import url="" context="" var="" scope="" charEncoding="" varReader=""></c:import>
+- url 被导入的资源路径
+- context 是指相同服务器下的web工程，以"/"开头
+- var 以String形式导入内容到var变量中
+- scope var的作用域
+- charEncoding 字符编码
+- varReader 以Reader的类型存储
+NOTE: JSTL的import和JSP中的include，include只能包含当前项目中的文件（内容），而import可以包含任意文件。
+
+5.10 url标签
+动态地生成一个url
+<c:url value="xxx/xx/${el表达式拼接}" var="" scope="" >
+  <!-- 添加一个参数 -->
+  <c:param name="" value="" />
+</c:url>
+
+5.11 redirect标签 <c:redirect>
+重定向到url去
+<c:redirect url="">
+  <c:param name="" value="" />
+</c:redirect>
+
+6. JSTL的函数
+引入，使用fn作前缀：
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
+- fn:contains 字符串包含
+- fn:startWith endWith 以...开头/结束
+- fn:length() 长度
+- replace() 替换
+...

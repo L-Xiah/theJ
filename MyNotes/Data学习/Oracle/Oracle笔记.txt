@@ -1,0 +1,518 @@
+﻿数据库
+	1.数据库基本介绍
+	保存数据（信息）方式
+		手动保存-->文件保存-->数据库
+	数据：个人银行账号，手机号，订单号。。。
+	数据库：（数据的仓库），存储和管理海量的数据，货币的跟踪号
+			高效的访问数据，同时还要兼顾数据的安全访问和管理；
+	数据库关系系统（DBMS）：就是数据库的管理软件，可以有多个不同的数据库
+					给予彼此隔离的管理措施，分别进行存储和安全访问等操作；
+	eg：Oracle  	SQLserver	DB2
+						
+	关系数据库：不同数据库（数据表）之间存在一定的关联，数据库可以通过这些关联来维护和管理；
+	
+	T-SQL：结构化查询语言（Transact-Structure Query Language）
+		是应用程序（用户）对数据库中的数据进行操作的语言；
+	2.数据库的语言类型
+		1)DDL(Data Definition Language）:数据定义语言
+			主要涉及到：创建数据库，创建用户，创建数据表，创建序列（sequence）
+					创建索引，触发器，存储过程，函数，或事务。
+		2)DML（Data Manipulate Language）：数据操作语言
+			涉及： 增删改查（添加数据，删除，修改，查看【查找】）；
+		3)DCL（Data Control Langu）：数据控制语言
+			用于管理数据的权限（授权，取消权限）
+			eg：grant connect,resource,dba to student15;
+					 
+	3 数据库逻辑图
+		一个数据库可以有多个不同的表空间（tablespace）
+		一个表空间可以有多个不同的数据表（table）
+		一个数据表可以有多个不同的字段（域）（field）
+		一个字段（域）可以有多个不同的区间
+	java中
+	class student{
+		private string stuno;
+		private string stuname;
+		private int stuage;
+		private string gender;
+		private string address;
+		...
+	}
+	4 数据库用户--访问数据库的“人”，在数据库中，
+		可以对数据库的各种安全参数进行设置；
+	系统用户： sys，system
+			system可以直接登录
+			sysman：用于企业管理，管理员级别的账号
+			scott:默认密码是tiger;
+	5 Oracle的默认表空间
+		Oracle数据库中存在六个默认表空间：
+			EXAMPLE表空间：用于Oracle数据库的示例表空间
+			SYSAUX表空间：作为EXAMPLE的辅助表空间
+			SYSTEM表空间：系统表空间，用于存储系统用户的表、视图或存储过程等数据库对象;
+			在Oracle9i中，创建用户时如果没有为该用户指定默认的表空间，SYSTEM就被用作默认表空间，导致系统表空间迅速被用户数据占满
+			USERS表空间： Oracle10g中定义了数据库级别的默认表空间USERS，用于存储数据库用户创建的数据库对象；
+					在Oracle10g中创建用户时如果没有定义默认表空间，就会把USERS作为默认表空间，摒弃了10g之前把系统表空间（SYSTEMS）当作默认表空间的不合理做法
+			TEMP表空间：用于存储SQL语句处理的表和索引信息
+			UNDOTBS1表空间：回滚表空间，用于存储回滚信息
+		表空间和数据文件之间的关系：
+			一个表空间可以有多个数据文件构成（构成的数据文件内容，大小及存储位置由用户决定）；
+			用户需要知道的存储数据表，数据库，数据库中的一些其他对象都是存储在数据表空间中；
+		Oracle：永久表空间，临时表空间，undo表空间
+			永久表空间：永久存储数据库对象；比如：数据表，视图，索引，存储过程；
+			临时表空间：数据库操作过程中，中间执行的过程（操作），一旦数据库操作结束，临时表空间中的数据自动删除不会保留；
+			undo表空间：保存事务修改的旧值（被修改之前的值）
+						作用用于：撤销操作，保证了事务的回滚操作；
+	6 创建表空间：
+		6.1 syntax:
+			create [temporary] tablespace tablespace_name
+			tempfile|datafile '***.dbf' size number M 
+		eg:
+			create tablespace alex_tablespace
+			datafile 'alex.dbf' size 100m
+		6.2 修改表空间
+			添加数据文件
+			syntax:alter tablespace tablespace_name add datafile 'datafilename.dbf'; 
+			eg: alter tablespace alex_tablespace add datafile 'willi.dbf' size 200m;
+
+			修改表空的读写属性
+			alter tablespace tablespace_name READ ONLY|READ WRITE|WRITE ONLY;
+			alter tablespace alex_tablespace READ ONLY;
+		6.3 删除表空间
+			syntax: drop tablespace tablespace_name [including content];
+			ps 如果仅仅是删除表空间，而不删除其中的数据文件，可以省略 [including content]
+	
+	7 数据表： 数据存储的基本单元，相当于一个类型，表中的每一行，相当于该类型事物的一个对象；
+			数据表本质就是对象的集合；
+			student类中的字段：
+			stuNo	stuName		stuage  gender 	address
+			1001	张三			20 		  男			上海市浦东新区
+			1002	李四			21		  男			北京市海淀区
+			1003	王五			22								
+			1004	赵六			23		  女			嘉兴市南湖区
+			
+			。。。
+			数据表中的每一行，相当于一个对象，称之为一条记录
+			数据的列：相当于属性（有自己的数据类型），称之为字段（域）；
+	8 数据类型
+		字符类型	syntax:
+					char(n),varchar2(n) size的最大值（max）：2000
+					char(size); 表示固定长度字符串,可以存放size个字符（一个汉字占据2个字符）
+						eg:gender char(4),
+					varchar2(size);表示可变长度字符串，最多可以存放size个字符,如果数据没有占据完size个字符，多余的空间就会被节省；
+									size的最大值（max）：4000
+						eg :gender varcahr2(6),
+							_ _ _ _ _ _ 
+					nchar(n),nvarchar2(n)：支持在数据库中输入中文数据;
+					long 长度可变的字符类型，最大限度为2GB，类型比较老，已经被CLOB或BLOB类型所替代；
+		数值类型
+			number(p,s);  《--》 numeric(p,s)
+				p:有效数字的位数
+				s:表示小数点后面有效位数；
+				int 整数类型,number类型的子类型 
+			float(n)用于存储二进制数据，二进制数据0~126
+		日期类型
+			date:精确到秒单位； 表示范围公元前4712年1月1日~公元9999年12月31日；
+				 通常通过一个toDate('','')--获取时间信息；
+			timestamp：精确到小数秒；
+			
+		其他类型
+			blob：存储大数据量的二进制数据（最多4G），更多用于存储图形，音像数据；
+			clob：孕畜大数据量的字符串数据（最多4G），用于存储xml文件；
+	9 创建数据表（DDL）
+		9.1 通过关键create 来创建数据表
+			syntax：
+				create table tablename(
+					columnname1 datatype1 [contraint constraintname],
+					columnname2 datatype2 ,
+					....
+				)[tablespace tablespace_name];
+				tablename:要创建数据表的名称；
+				columnname:数据表中列的名称；
+				datatype：数据表中列所要指定的数据类型；
+				contraint: 指定数据表中列的约束条件
+				tablespace:为创建的数据表指定存储的表空间；
+			
+			eg:
+			create table tablename(
+					stuNo varchar2(6),
+					stuName nvarchar2(20),
+					stuAge int,
+					stuGender nvarchar2(6),
+					stuAddress nvarchar2(50)
+				)tablespace alex_tablespace;
+		9.2数据表（列名）命名规则
+			只能包含字母，数字，下划线(#和$),不推荐使用后两个符号；
+			只能字母开头；
+			名称的长度在1~30个字符之间；
+			表名和列名要具有较强的表意性；
+			不能使用数据库中的保留字（key word）
+			不区分大小写；
+		9.3 修改表
+			1）添加字段
+				syntax:
+				alter table tablename add columnname datatype;
+				eg:
+				alter table tablename add stuSeat int;
+			2)修改数据类型：
+				syntax:
+				alter table tablename modify columnname newdatatype;
+				eg:
+				alter table tablename modify stuGender nvarchar2(8);
+				添加两条测试数据
+				insert into tablename values('1001','张三',20,'男','上海市浦东新区',1);
+			insert into tablename values('1002','Dora',22,'Female','Beijing City',2);
+			3)删除字段
+				syntax:
+				alter table tablename drop column columnname;
+				eg:
+				alter table tablename drop column stuSeat;
+			4)修改字段名称
+				alter table tablename rename column OLDcolumnname to NEWcolumnname; 
+				alter table tablename rename column stuGender to stuSex;
+			5)修改数据表
+				syntax:
+					rename OLDtablename to NEWtablename;
+				eg:
+					rename to stuInfo;
+		9.4 添加数据
+			syntax:
+				insert into tablename (columnname1,columnname2,....)
+				values(value1,value2,....);
+			eg:
+				insert into stuInfo values('1003','李四',23,'男','嘉兴市南湖区');
+				insert into stuInfo (stuNo,stuName,stuAge,stuSex,stuAddress)values('1004','王五',24,'男','无锡市惠山区');
+			insert into stuInfo values('1001','张三',20,'男','上海市浦东新区');
+			insert into stuInfo values('1002','Dora',22,'Female','Beijing City');
+			insert into stuInfo values('1003','李四',23,'男','嘉兴市南湖区');
+			insert into stuInfo (stuNo,stuName,stuAge,stuSex,stuAddress)values('1004','王五',24,'男','无锡市惠山区');
+		
+		9.5修改数据
+			syntax:
+				update tablename set column1 = value1,....[where condition];
+			eg:
+				update stuInfo set stuAge = 25;[无条件的修改] 将表示所有记录的stuAge修改为25
+				update stuInfo set stuAge = 30 where stuNo='1001';
+		
+		9.6 删除表： 有两种操作
+			truncate: 用于清空表中的数据，而表的结构依然存在；
+				sytnax:
+					truncate table tablename;
+				eg:
+					truncate table stuInfo;
+			drop :删除表并且将表的结构一起删除；
+				syntax:
+					drop table tablename;
+				eg:
+					drop table stuInfo;
+		9.7删除数据
+			delete 
+			syntax: delete from tablename [where condition];
+			无条件删除：
+				delete from stuInfo; 功能上跟trancate功能是一样的；
+			条件删除：
+				delete from stuInfo where stuNo='1001';
+		PS: truncate drop delete 区别
+			1）truncate 和delete都是删除数据，而不删除表结构；
+				drop是将表的结构，以及跟表相关的约束，索引，触发器及一并删除；（drop之后表完全不存在）
+			2） delete是属于dml语句，这种操作通过会被放置在rollback segment中，事务提交之后，才会生效；
+				如果有错误操作，可以进行数据恢复；
+				truncate和 drop都是DDL语言，操作之后数据库中数据立即就进行了相应的更新，
+				原始数据不会被放置在rollback segment，数据无法恢复；
+			3）从安全角度而言，小心使用drop和truncate操作；
+			4）从删除速度而言：drop->truncate->delete;
+			5)使用上，想要删除部分数据行时，使用delete附上条件语句
+				如果要删除表，直接使用drop语句；
+	10 数据的完整性和约束
+		10.1数据的完整性（正确+准确）
+		正确：数据类型的正确
+		准确：数据的精确，要反映相应的客观现实；（eg： stuAge 5~40） age 0~150
+		约束的种类- 基于约束的级别： 表级约束 vs 列级约束
+			表级约束：约束放置在列的完整约束之外的称之为表级约束，可以约束表中所有列
+					而且约束多列通常将约束放置在列的后面；
+			列级约束：用来约束数据表中某一列
+		10.2 约束的类型： 
+			1）非空约束:约束该列的数值不能为空值（null） 
+				一种在建表的时候，直接约束字段（列名）为 not null, 如果没有显式标注not null默认为可空类型；
+				eg:
+				create table stuMarks(
+					examNo varchar(10) not null,	//在创建表时，直接指定非空约束；
+				)
+				第二种 在已经存在的表中修改约束
+				alter table tablename 
+					modify columnname not null;
+				eg:
+					alter table stuInfo modify stuNo not null;
+					alter table stuInfo modify stuName not null;
+					alter table stuInfo modify stuAge not null;
+					alter table stuInfo modify stuGender not null;
+				第三种：添加字段的同时，添加相应的非空约束
+				syntax:
+					alter table tablename add columnname1 datatype not null;
+				eg:
+					alter table stuInfo add stuRemarks nvarchar2(100) not null;
+					ps:在添加列和相应约束时，需要保证当前操作数据表是空的；
+					
+			2）唯一约束:保证设置唯一约束字段的唯一性；
+					唯一约束和主键约束的区别：
+						*主键约束的字段必须保证是非空的，而唯一约束只允许一个值为null
+						*主键约束一个表只能有一个，而唯一约束一个表可以有多个；
+					第一种在创建表时设置唯一约束
+						create table stuInfo(
+						stuNo varchar2(10) primary key,
+						stuName varchar2(50),
+						stuAge int,
+						stuGender nvarchar2(6),
+						stuAddress nvarchar2(50),
+						stuSeat int unique
+					)
+					第二种 添加唯一约束
+					syntax:
+						alter table tablename add constraint constraint_name unique(columnname);
+					eg:
+						alter table stuInfo add constraint u_stuSeat unique(stuSeat);
+						insert into stuInfo values('1001','Leah',20,'Male','Shanghai',1);
+						insert into stuInfo values('1002','Andy',21,'Male','Shanghai',1);
+					启用（禁用）唯一约束
+						syntax:
+							alter table tablename disable|enable constraint constraint_name;
+						eg:
+							alter table stuInfo disable constraint u_stuSeat;
+					删除唯一约束
+						syntax:
+							alter table tablename drop constraint constraint_name;
+						eg:
+							alter table stuInfo drop constraint u_stuSeat;
+			
+			
+			3）主键约束：确定表中每一行数据的唯一性；
+					被设置了主键约束的字段，必须是非空和唯一的；
+					一个数据表只能被设置一个主键；
+					一个主键可以有多个字段组成（联合主键或复合主键）；
+				第一种： 在创建表的同时，创建主键约束（primary key）
+					create table stuInfo(
+						stuNo varchar2(10) primary key;
+						....
+					)
+					eg:
+					create table stuInfo(
+					stuNo varchar2(10) primary key,
+					stuName varchar2(50),
+					stuAge int,
+					stuGender nvarchar2(6),
+					stuAddress nvarchar2(50)
+				)
+				完成删除主键约束的操作时，需要查询出主键约束的名称， 然后通过删除约束命令进行操作；
+				第二种：在创建表时创建主键约束(表级)
+				create table stuInfo(
+					stuNo varchar2(10),
+					stuName varchar2(50),
+					stuAge int,
+					stuGender nvarchar2(6),
+					stuAddress nvarchar2(50),
+					contraint pk_name primary key(stuNo)
+				)
+				eg:
+				create table stuMarks(
+					examNo varchar2(10),
+					stuNo varchar2(10),
+					writtenExam int,
+					labExam int,
+					constraint pk_examNo primary key(examNo)
+				)
+				第三种 修改表时设置主键约束
+					syntax:
+						alter table tablename add constraint constraintname primary key(columnname);
+					eg:
+						alter table stuMarks add constraint pk_examNo primary key(examNo);
+						
+				删除主键
+					alter table tablename drop constraint constraintname;
+				eg:
+					alter table stuMarks drop constraint pk_examNo; 
+					
+				查看主键约束
+				SELECT  constraint_name,search_condition FROM  user_constraints  
+				
+				启用（禁用）主键约束
+				alter table tablename disable|enable constraint constraintname;
+				
+			
+			外键约束(表示主从表主键的关联关系)
+
+				第一种在创建表时，之间设置外键约束(列级)
+				syntax:
+					create table tablename1(
+						columnname1 datatype1,
+						columnname2 datatype2 reference tablename2(columnname),
+						...
+					)
+				tablename2 即为主表
+				tablename1 为从表
+				PS:
+					* 设置外键约束时，主表字段必须是该表的主键字段
+					*主从表中相应的字段必须是同一个数据类型（外键约束的字段和主表的主键字段）
+					*从表中的外键字段的值必须来自主表中相应字段的值或null
+				eg：
+				create table typeinfo(
+					typeid varchar2(10) primary key,
+					typename varchar2(20)
+				)
+				
+				create table userinfo(
+					id varchar2(10) primary key,
+					username varchar2(20) not null,
+					typeid varchar2(10) references typeinfo(typeid)
+				)
+				
+				insert into typeinfo values('1','Iphone');
+				insert into userinfo values('101','Alex','1');
+				第二种 创建表时设置外键约束（表级）
+					create table tablename1(
+						....	//tablename1中若干个字段
+						columnname datatype constraint constraint_name foreign key(columnname) references tablename2(columnname)[on delete cascade]
+					)
+			
+			检查约束:保证数据的正确性，使得数据更有具体意义
+					一个表可以有多个检查约束
+				第一种 创建表的同时，设置检查约束
+					create table stuInfo(
+					stuNo varchar2(10),
+					stuName varchar2(50),
+					stuAge int,
+					stuGender nvarchar2(6) not null check(stuGender='male' or stuGender='female' or stuGender='男' or stuGender='女'),
+					stuAddress nvarchar2(50),
+					contraint pk_name primary key(stuNo)
+				)
+				eg： create table stuInfo(
+					stuNo varchar2(10) check(stuNo like 's2718[0-9][0-9]')
+				第二种在修改表时，添加检查约束
+				syntax:
+					alter table tablename add constraint constraint_name check(check-expression);
+				eg:
+					alter table stuInfo add constraint ck_stuAge check(stuAge between 1 and 40);
+				
+			insert into stuInfo values('1005','Andy',20,'男','上海市浦东新区',seq_stuSeat.nextval);
+			insert into stuInfo values('1006','Alex',22,'Female','Beijing City',seq_stuSeat.nextval);
+			insert into stuInfo values('1007','Willi',23,'男','嘉兴市南湖区',seq_stuSeat.nextval);
+			insert into stuInfo values('1008','Duke',42,'男','无锡市惠山区',seq_stuSeat.nextval);
+			
+			启用（禁用）检查约束
+			syntax：
+				alter table tablename disable|enable constraint constraintname;
+			eg：
+				alter table stuInfo disable constraint ck_stuAge;
+			
+			
+			默认约束（SQLserver）
+	11 序列(sequence）) 类似于SQLserver中 identity(startNo,extendNo);
+		Oracle中没有自增类型的字段，需要用户自定义序列来完成自增类型数据
+		主要用来解决主键唯一性，确保数值的自动增长
+		11.1 创建序列
+			syntax:
+				create sequence sequence_name
+					[increment by n]		//步长，按照步长来一次累加；
+					[start with n]			//起始数字
+					[{maxvalue n|nomaxvalue}] //设置自增最大值；
+					[{minvalue n|nominvalue}]	//设置最小值;
+					[cycle|nocycle]				//到达最大值之后，是否重新循环开始
+					[cache|nocache]				//是否预先缓存一定的数字，来提高存取速度；
+			eg：
+				create sequence seq_stuSeat
+					increment by 1
+					start with 1
+					maxvalue 100
+					nocycle
+		11.2 使用序列的值
+			NEXTVAL：返回下一个有效的序列号
+			CURRVAL：获取当前的序列号
+		syntax： sequence_name.nextval //获取序列的下一个值
+			查看上述两个属性值
+			select seq_stuSeat.nextval,seq_stuSeat.currval from dual;
+		
+		11.3 修改序列
+			syntax:
+			alter sequence sequence_name 
+				[increment by n]		//步长，按照步长来一次累加；
+				
+				[{maxvalue n|nomaxvalue}] //设置自增最大值；
+				[{minvalue n|nominvalue}]	//设置最小值;
+				[cycle|nocycle]				//到达最大值之后，是否重新循环开始
+				[cache|nocache]				//是否预先缓存一定的数字，来提高存取速度；
+			可以修改除了（起始值）之外的所有序列信息
+			修改序列之后，只能影响后续的序列值，已经使用的序列值是无法影响的
+			如果必须修改起始的话，只能先删除序列，之后在新建符合需求的序列；
+		11.4 删除序列
+			drop sequence sequence_name;
+			
+			
+	-创建主表stuInfo--
+CREATE TABLE stuInfo
+(stuName    NVARCHAR2(20)    NOT NULL,
+ stuNo      NCHAR(6)        NOT NULL,
+ stuSex     NCHAR(4)        NOT NULL,
+ stuAge     INT		        NOT NULL,
+ stuSeat    INT	        	NOT NULL,
+ stuAddress NVARCHAR2(50));      
+
+
+GO
+
+
+--为主表stuInfo创建约束--
+ALTER TABLE stuInfo
+  ADD CONSTRAINT PK_stuNo      PRIMARY KEY(stuNo),
+      CONSTRAINT CK_stuNo      CHECK(stuNo LIKE 'S253[0-9][0-9]'),
+      CONSTRAINT CK_stuSex     CHECK(stuSex='男' OR stuSex='女' or stuSex='male' or stuSex='female'),
+      CONSTRAINT CK_stuAge     CHECK(stuAge BETWEEN 15 AND 40),
+      CONSTRAINT CK_stuSeat    CHECK(stuSeat<=30),
+      CONSTRAINT DF_stuAddress DEFAULT ('地址不详') FOR stuAddress
+
+GO
+
+USE stuDB
+--判断此表是否存在，如果存在，删除此表--
+IF EXISTS(SELECT NAME FROM stuDB.dbo.SYSOBJECTS WHERE NAME=N'stuMarks')
+DROP TABLE stuMarks
+
+GO
+
+
+--创建从表stuMarks--
+CREATE TABLE stuMarks
+(ExamNo CHAR(7) NOT NULL,
+ stuNo NCHAR(6) NOT NULL,
+ writtenExam INT NOT NULL,
+ LabExam INT NOT NULL)
+
+GO
+
+--为从表stuMarks创建约束--
+ALTER TABLE stuMarks
+   ADD CONSTRAINT PK_ExamNo         PRIMARY KEY(ExamNo),
+       CONSTRAINT CK_ExamNo         CHECK(ExamNo LIKE 'S2718[0-9][0-9]'),
+       CONSTRAINT FK_stuNo          FOREIGN KEY(stuNo) REFERENCES stuInfo(stuNo),
+       CONSTRAINT CK_writtenExam    CHECK(writtenExam BETWEEN 0 AND 100),
+       CONSTRAINT DF_writtenExam    DEFAULT 0 FOR writtenExam,
+       CONSTRAINT CK_LabExam        CHECK(LabExam BETWEEN 0 AND 100),
+       CONSTRAINT DF_LabExam        DEFAULT 0 FOR LabExam
+
+GO
+
+--为stuInfo插入数据--
+INSERT INTO stuInfo(stuName,stuNo,stuSex,stuAge,stuAddress)VALUES('张秋丽','s25301','男',18,'北京海淀')
+INSERT INTO stuInfo(stuName,stuNo,stuSex,stuAge,stuAddress) VALUES('李斯文','s25303','女',22,'河南洛阳')
+INSERT INTO stuInfo(stuName,stuNo,stuSex,stuAge) VALUES('李文才','s25302','男',31)
+INSERT INTO stuInfo(stuName,stuNo,stuSex,stuAge,stuAddress) VALUES('欧阳俊雄','s25304','男',28,'新疆威武哈')
+
+GO
+
+--为stuMarks插入数据--
+INSERT INTO stuMarks(ExamNo,stuNo,writtenExam,LabExam) VALUES('S271811','s25303',80,58)
+INSERT INTO stuMarks(ExamNo,stuNo,writtenExam,LabExam) VALUES('S271813','s25302',50,90)
+
+INSERT INTO stuMarks(ExamNo,stuNo,writtenExam,LabExam) VALUES('S271816','s25301',77,82)
+
+	
+				
+			
+				
+					

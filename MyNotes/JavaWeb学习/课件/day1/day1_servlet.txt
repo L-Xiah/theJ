@@ -1,0 +1,132 @@
+Java EE(Java web)
+
+复习：
+前端、后端 和 静态、动态网页
+前端：浏览器、手机客户端、ATM
+后端：Java服务器、Php服务器、Asp.net服务器
+
+以Java服务器为例，使用任意一种前端工具（浏览器）访问Java程序，并且通过Java程序获取并处理数据，返回给前端，这一整套操作，都需要Java web应用服务器的支持。
+
+静态 - 网页中的数据内容是固定的
+动态 - 网页中的数据内容是会随着请求的不同发生变化的
+
+前端(HCJ) - 后端(Java) - 数据库端(Oracle)
+
+请求 - 响应
+
+---
+1. Tomcat 
+安装：
+- 解压缩
+- 添加环境变量：（确保Java环境变量正确）
+  变量名：CATALINA_HOME
+  路径：xxx\apache-tomcat-7.0.72	
+测试：
+运行%CATALINA_HOME%\bin\startup.bat
+http://localhost:8080/ 出现Tomcat猫的页面
+
+Tomcat是一种当前比较流行的web应用服务器，属于开源的、轻量级服务器，在中小型系统和并发量不是很大的情况下使用，是调试Servlet&JSP首选的服务器。
+
+Java - Tomcat, JBoss
+PHP - Apache
+ASP - Win Server
+
+Tomcat - Servlet - JSP
+Servlet本身是一种符合特定规则的Java类，一般是HttpServlet的子类，通过对servlet的控制能实现前后台页面的交互操作（动态地去修改前台页面）。JSP是基于Servlet推出的一种能直接在类似HTML页面中使用Java代码进行混合开发的形式。实际上，JSP仍然是一个Servlet，而它们的运行、交互、维护都是通过Tomcat来完成的。
+Tomcat本身是一系列Java程序的集合。包含了能对web应用系统的控制和转发、对网络层协议的解析、端口的监听等。同时它还可以帮助开发者去维护站点，如log功能，定时操作等。
+
+Tomcat容器：
+Tomcat: Container 
+          -> Engine
+            -> HOST
+              -> Servlet(Context: Wrapper * n)
+
+1.1 Tomcat的目录结构
+bin/  二进制目录，主要存放可执行文件
+conf/ 配置文件
+lib/  库目录，包含tomcat运行所必须的库
+logs/ 运行时存放的一些log信息
+temp/ 运行时生成一些临时文件
+webapps/ 网站/项目最终存放的路径（不是绝对的），用户可以以路径的形式访问具体的资源
+work/ Tomcat将JSP转为Servlet的地方
+
+1.2 修改端口号
+...\apache-tomcat-7.0.72\conf\server.xml
+修改port="8080"成为自己想要的端口号
+<Connector 
+  connectionTimeout="20000" 
+  port="8080" 
+  protocol="HTTP/1.1" redirectPort="8443"/>
+   
+
+1.3 端口
+端口(port)在计算机中的定义：主要是描述设备和外界通讯的接口。分为物理端口和虚拟端口，物理端口主要指物理设备上的接口（网线RJ45），虚拟端口指计算机内部或之间连接的“桥梁”。虚拟端口一般指的是TCP/IP协议所指定的一些接口，如所有的电脑是办公楼，每一个业务是在楼里的办公室完成的，开门的可以处理业务，关门的不行。而IP指的就是办公楼的具体地址，端口指的就是每个办公室的具体门牌号。端口的最大数是65535个（IPv4中定义端口是双字节的，16位）。
+监听指的就是办公室开门，针对这个办公室进行一个等待操作，类似于“传达室”，在数据包到达具体IP以后，首先由传达室进行检测（监听），如果监听正常（开启），数据包就会发送到具体的某个端口去。
+NOTE: 传达室是一个传达室，而监听是每个端口都有自己的监听。
+HTTP - 80, HTTPS - 443
+
+1.4 标准的web程序目录
+- Java源代码
+- 其他网页/资源等
+- WEB-INF/ web信息目录
+  - classes Java源代码编译后的字节码
+  - lib/    当前web项目所引用的库
+  - web.xml 储存当前web项目的配置信息
+
+WEB-INF 是一个私有目录（安全目录），只有服务器端可以访问到，客户端不行。
+
+修改欢迎界面<welcome-file-list>
+
+1.5 web项目的虚拟路径
+对于web项目来说，所有的请求都是访问当前web项目的路径（文件路径）中的资源，所以当前所有请求资源的位置都是相对于这个目录来说的。
+
+2. Servlet
+- 新建Java类，继承javax.servlet.HttpServlet类
+- 注册到web.xml中
+<servlet>
+  <description></description>
+  <display-name>xxServlet</display-name>
+  <!-- 定义的servlet名字 -->
+  <servlet-name>xxServlet</servlet-name>
+  <!-- 定义的servlet java实现类 -->
+  <servlet-class>xx.xx</servlet-class>
+</servlet>
+
+<servlet-mapping>
+  <!-- 上面定义好的servlet名 -->
+  <servlet-name>xxServlet</servlet-name>
+  <!-- 在url中访问的地址 -->
+  <url-pattern>/xx</url-pattern>
+</servlet-mapping>
+
+NOTE: 通过以下方式输出
+PrintWriter out = resp.getWriter();
+out.println("xxx");
+使用resp.setContentType("text/html;charset=utf-8");可以解决编码问题。
+out输出流只是在流中进行写操作，并不是生成了一个网页，如果需要输出网页，需要手动输出其余的标签。
+
+2.1 servlet的生命周期
+- init() servlet初始化时调用一次
+- service(): doPost() doGet() 每次请求处理的函数
+- destory() servlet被销毁时（服务器关闭）被调用
+
+NOTE: 通过使用<load-on-startup>1</load-on-startup>来进行默认装载（服务器启动自动装载），数字越小优先
+级越高
+
+3. Get方法和Post方法
+3.1 HTTP的定义
+超文本传输协议(HyperText Transfer Protocol - HTTP)是一个由客户端和服务器端请求和应答的标准，底层协议是TCP/IP。客户端就是终端用户，通过客户端发起的请求需要遵循一系列的内容格式才能被服务器端识别，HTTP即是对这些数据，包括响应和请求的一种封装。一般来说，服务器端保存着一些图片、网页、多媒体等资源文件，可供用户下载，用户发起请求(request)，由用户代理(user agent)协助发起，通过多个中间层，如网络代理(proxy)，网关(gateway)等进行协议的分发。如果数据包满足TCP/IP，能正确地访问到服务器端(origin server)的固定端口后，监听端口的服务会将具体内容分发给具体的业务去，然后再有具体业务处理，再包装成HTTP格式的内容，如包含"HTTP 1.1 200 OK"，从原来的通道上给客户端进行响应(response)。
+HTTP本身是一个上层协议，严格来讲，它只负责高效地封装和解析消息（数据）状态和内容，并不维护消息传递的过程。之所以选用TCP/IP是因为TCP连接的稳定性，同时IP地址的唯一性。它们一起通过资源标识符(Uniform Resource Identifiers - URLs)来进行访问。
+HTTPS:
+HTTPS是基于HTTP协议上，又添加了SSL(TLS)通道的加密算
+
+法。
+
+NOTE: HTTP底层是TCP（长连接），本身会维护TCP通道的开启和关闭操作（HTTP是一个无状态短链接）。即创建连接->传输数据->断开连接，频繁操作HTTP的话会对系统造成很大
+的开销。
+
+GET和POST:
+在目前的web中，HTTP协议是作为应用最多的资源协议，而HTTP中又包含许多请求资源的办法，如GET/POST/PUT/DELETE/UPDATE等。最广泛使用的还是GET/POST，作为HTTP请求的初衷，GET是“请求资源”的意思，POST指“提交资源”的意思。而多数实用时，仅仅已“安全性”和“易用性”来区分这二者。
+GET: url后面拼接字符串，明文，最大长度(2k)，效率较高
+POST: 请求里面包含(HEAD)，多种形式，非明文，没有（理论）长度限制，效率较低
+所以在使用中，用户注册、登录一般使用POST方式进行提交，而用户搜索、商品列表等就可以使用GET.

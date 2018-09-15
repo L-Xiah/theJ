@@ -1,0 +1,155 @@
+﻿//创建学生信息表mystudent
+
+create table mystudent(
+	sno int primary key,
+	sname varchar2(50) unique not null,
+	gender varchar2(10) not null,
+    sage int not null,
+	deptno int
+);
+
+//创建课程表mycourse
+create table mycourse(
+	courseno int,
+	cname varchar2(50) not null,
+	teacherno int,
+	credit int,
+	primary key(courseno,teacherno)
+);
+
+//创建学生选课表 myselectcourse
+create table myselectcourse(
+	sno int,
+	courseno int,
+	grade int,
+	primary key(sno,courseno)
+);
+
+//创建教师表 myteacher
+create table myteacher(
+	teacherno int,
+	teachername varchar2(50),
+	deptno int
+);
+
+//创建系表 mydept
+create table mydept(
+	deptno int primary key,
+	deptname varchar2(50) not null
+);
+
+//向mystudent表中添加数据
+insert into mystudent(sno,sname,gender,sage,deptno)values(1001,'Allen','Male',18,10);
+insert into mystudent(sno,sname,gender,sage,deptno)values(1002,'Leah','Female',19,10);
+insert into mystudent(sno,sname,gender,sage,deptno)values(1003,'Lynn','Male',20,10);
+insert into mystudent(sno,sname,gender,sage,deptno)values(1004,'Jenny','Female',21,10);
+insert into mystudent(sno,sname,gender,sage,deptno)values(1005,'Richard','Male',22,10);
+insert into mystudent(sno,sname,gender,sage,deptno)values(1006,'Leon','Male',26,20);
+insert into mystudent(sno,sname,gender,sage,deptno)values(1007,'Maureen','female',20,20);
+
+//向mycourse表中添加数据
+insert into mycourse(courseno,cname,teacherno,credit)values(1,'Data Structure',101,4);
+insert into mycourse(courseno,cname,teacherno,credit)values(2,'Database',102,4);
+insert into mycourse(courseno,cname,teacherno,credit)values(3,'Discret Math',103,4);
+insert into mycourse(courseno,cname,teacherno,credit)values(4,'OOP in Java',101,2);
+
+//向myselectcourse表中添加数据
+insert into myselectcourse(sno,courseno,grade)values(1001,1,80);
+insert into myselectcourse(sno,courseno,grade)values(1001,2,85);
+insert into myselectcourse(sno,courseno,grade)values(1001,3,78);
+insert into myselectcourse(sno,courseno,grade)values(1002,1,78);
+insert into myselectcourse(sno,courseno,grade)values(1002,2,82);
+insert into myselectcourse(sno,courseno,grade)values(1002,3,86);
+insert into myselectcourse(sno,courseno,grade)values(1003,1,92);
+insert into myselectcourse(sno,courseno,grade)values(1003,3,90);
+insert into myselectcourse(sno,courseno,grade)values(1004,1,87);
+insert into myselectcourse(sno,courseno,grade)values(1004,4,90);
+insert into myselectcourse(sno,courseno,grade)values(1005,1,80);
+insert into myselectcourse(sno,courseno,grade)values(1005,4,92);
+
+//向myteacher表中添加数据
+insert into myteacher(teacherno,teachername,deptno)values(101,'Ma Yun',10);
+insert into myteacher(teacherno,teachername,deptno)values(102,'Ma Huateng',10);
+insert into myteacher(teacherno,teachername,deptno)values(103,'Li Yanhong',10);
+insert into myteacher(teacherno,teachername,deptno)values(104,'Ren Zhengfei',20);
+
+
+//向mydept表中添加数据
+insert into mydept(deptno,deptname)values(10,'Dept of Computer');
+insert into mydept(deptno,deptname)values(20,'Dept of Electric');
+
+//学生信息表mystudent
+SNO	    SNAME	GENDER	SAGE	DEPTNO
+1001	Allen	Male	18		10
+1002	Leah	Female	19		10
+1003	Lynn	Male	20		10
+1004	Jenny	Female	21		10
+1005	Richard	Male	22		10
+1006	Leon	Male	26		20
+1007	Maureen	female	20		20
+
+//课程表mycourse
+COURSENO	CNAME			TEACHERNO	CREDIT
+		1	Data Structure		101		4
+		2	Database			102		4
+		3	Discret Math		103		4
+		4	OOP in Java			101		2
+
+//学生选课表 myselectcourse
+SNO	COURSENO	GRADE
+1001	1		80
+1001	2		85
+1001	3		78
+1002	1		78
+1002	2		82
+1002	3		86
+1003	1		92
+1003	3		90
+1004	1		87
+1004	4		90
+1005	1		80
+1005	4		92
+
+//教师表 myteacher
+TEACHERNO	TEACHERNAME	DEPTNO
+		101	Ma Yun			10
+		102	Ma Huateng		10
+		103	Li Yanhong		10
+		104	Ren Zhengfei	20
+
+//系表 mydept		
+DEPTNO	DEPTNAME
+10	Dept of Computer
+20	Dept of Electric
+
+基于上述SQL code完成以下操作，（第9,10需要用到oracle关键字exists，是选做题）；
+1.将 Ma Yun老师所教授课程的学生成绩全部加2分，并将结果查询出来
+update myselectcourse set grade = grade+2 where courseno = 1;
+select grade from myselectcourse where courseno = 1;
+
+2.查询所有学生信息
+select * from mystudent;
+
+3.查询所有female的姓名
+select sname from mystudent where gender in('female','Female');
+
+4.查询成绩在80~90分之间所有学生的选课记录，查询结果安装成绩降序排列
+select * from myselectcourse where grade between 80 and 90 order by grade desc;
+	
+5.查询各个系学生的人数
+select deptno , count(sno) from mystudent group by deptno;
+
+6.查询Electric系年龄在21岁以下female学生的姓名及年龄
+select sname,sage from mystudent,mydept where mystudent.deptno = mydept.deptno and mystudent.gender = 'female' and mydept.deptname = 'Dept of Electric' and mystudent.sage < 21;
+
+7.查询选修课总学分在10学分以下的学生的姓名
+select sname from mystudent where sno in (select myselectcourse.sno from myselectcourse natural join mycourse group by myselectcourse.sno having sum(mycourse.credit)<10 )
+
+8.查询各门课程的最高成绩的学生的姓名及成绩
+select mystudent.sname, myselectcourse.grade from mystudent, myselectcourse,(select myselectcourse.courseno, max(myselectcourse.grade)grade from myselectcourse group by myselectcourse.courseno)a where mystudent.sno =  myselectcourse.sno and myselectcourse.courseno = a.courseno and myselectcourse.grade = a.grade
+
+9.查询选修了1001号学生所选修的全部课程的学生的学号
+select sno from myselectcourse where courseno in (select courseno from myselectcourse where sno = 1001) group by sno having count(courseno) >= 3 and sno != 1001
+
+10.查询选修了Ma Yun老师所开设的全部课程的学生的姓名
+select sname from mystudent where sno in (select distinct sno from myselectcourse where courseno in(select courseno from mycourse natural join myteacher where myteacher.TEACHERNAME ='Ma Yun' group by courseno))

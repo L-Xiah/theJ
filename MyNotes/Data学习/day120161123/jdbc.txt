@@ -1,0 +1,45 @@
+JDBC - Java Data Base Connectivity
+用于访问操作数据库的接口的集合。定义在java.sql包中。数据库厂商根据JDBC定义好的接口去实现，将驱动以jar的形式进行打包并发布。由开发人员导入这些jar以链接具体的数据库。为了程序的扩展性，主业务架构描述用JDBC接口，具体相关的驱动可以用驱动管理负责。
+
+1. 使用JDBC for Oracle
+根据不同数据库厂商实现的不同版本的驱动，一般都是jar形式的依赖，进行导入到build path即可。
+- 将jar导入
+- 加载JDBC驱动
+Class.forName("oracle.jdbc.driver.OracleDriver");
+- 连接数据库
+url: "jdbc:oracle:thin:@数据库地址:端口号:实例"
+user: 数据库用户名
+pwd: 数据库密码
+Connection conn = DriverManager.getConnection(
+                    url, user, pwd);
+
+1.2 使用JDBC
+- DriverManager 驱动程序管理，查找驱动对象
+- Connection 具体数据的链接对象
+
+1.2.1 Statement
+数据库的操作对象
+Statement stmt = conn.createStatement();
+- 查询操作
+ResultSet rs = stmt.excuteQuery("sql查询语句");
+- 更新操作(insert, update, delete, create/drop table)
+int count = stmt.executeUpdate("sql语句");
+- 执行语句 
+boolean execute()
+- close() 
+
+CRUD - 增查改删
+
+1.2.2 PreparedStatement
+预处理数据库操作对象，同样能实现数据库的相关操作
+- ?通配符 可以通过这个形式进行占位操作，然后再调用setXxx(index, value)方法进行赋值，在JDBC底层会对当前的数据库语句进行一个预编译的优化操作，从而提升效率
+- setXxx(index, value) 也是从1开始，不是0
+
+1.2.3 ResultSet
+数据库查询的结果集，相当于一个虚拟表，存在于内存之中，通过它链接进行检索，这个链接关闭以后，就无法进行查询了。
+- next() 
+- close()
+- getXxx(int) // 以位置获取时，起始是1不是0
+- getXxx(String)
+
+1.2.4 CallableStatement 执行存储过程和函数

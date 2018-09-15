@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>用户注册</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+ul {
+	list-style: none;
+}
+
+li {
+	padding: 5px 10px;
+}
+
+li span {
+	display: inline-block;
+	width: 100px;
+}
+
+#submitbtn {
+	width: 80px;
+	height: 1.5em;
+}
+</style>
+</head>
+<body>
+	<form action="register" method="post">
+		<ul>
+			<li><span>用户名：</span> <input type="text" name="username" /></li>
+			<li><span>密码：</span> <input type="password" name="password" /></li>
+			<li><span>确认密码：</span> <input type="password" /></li>
+			<li><span>电子邮箱：</span> <input type="text" name="email" /></li>
+			<li><span>出生日期：</span> <input type="text" name="birth" /></li>
+			<li><span>性别：</span> 
+				<input type="radio" name="gender" value="male" />&nbsp;&nbsp;男
+				<input type="radio" name="gender" value="female" />&nbsp;&nbsp;女
+			</li>
+			<li><span>兴趣爱好：</span> 
+				<input type="checkbox" name="hobby" value="电影" />&nbsp;&nbsp;电影
+				<input type="checkbox" name="hobby" value="音乐" />&nbsp;&nbsp;音乐
+				<input type="checkbox" name="hobby" value="运动" />&nbsp;&nbsp;运动
+			</li>
+			<li><input type="checkbox" />&nbsp;&nbsp;接受我们的霸王条款</li>
+			<li><input id="submitbtn" type="submit" value="提交" /></li>
+		</ul>
+	</form>
+
+</body>
+</html>
