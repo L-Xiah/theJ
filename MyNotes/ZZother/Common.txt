@@ -17,13 +17,20 @@ tasklist  //PID--程序名
 
 
 常用快捷键eclipse
+Ctrl + Z（撤销/回退）
+Ctrl + I（格式化对齐）
 Ctrl + H（全局搜索）
 Ctrl + F（查找）
+Ctrl + D（删除）
+Ctrl + /（行注释）
+
+Ctrl + Shift + /（选中注释）
 Ctrl + Shift + R（查文件）
 Ctrl + Shift + T（查类）
-Ctrl + D（删除）
+
 Alt + D（复制）
 Alt + ↑↓（上下移动）
 Alt + →←（上次光标位置）
-Shift+Shift（任意搜索）
+Alt + /（提示补充）
 
+Shift+Shift（任意搜索）
