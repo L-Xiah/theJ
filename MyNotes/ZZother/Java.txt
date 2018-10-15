@@ -7,9 +7,18 @@ IDEA
 Git/SVN
 
 
+////////////////////////////////
+Java
+JVM（Java Virtual Machine）java虚拟机（使开发的程序可以在多平台上运行，不需要重新编译）
+JRE（Java Runtime Environment）java运行平台（包含JVM）
+JDK（Java Develop Kit）java开发工具包（类库）
 
 
 
+
+
+
+////////////////////////////////
 在CMD中运行*.class文件
 比如我写了最基础的一个类：
 class Hello{
