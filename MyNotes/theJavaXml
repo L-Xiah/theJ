@@ -1,19 +1,7 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 <!--"MyNotes"文件夹下常用文件-->
 <Project title = "TheJavaNote">
 
-
-    <chapter title="软件清单">
-        <section title="软件清单">
-            Java（环境变量配置）
-            Tomcat
-            MySql
-            Eclipse
-            IDEA
-            Git/SVN
-        </section>
-    </chapter>
     <chapter title="其它">
         <section title="运行*.class文件">
             在CMD中运行*.class文件
