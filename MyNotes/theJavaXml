@@ -1,5 +1,6 @@
 
 <?xml version="1.0" encoding="UTF-8"?>
+<!--"MyNotes"文件夹下常用文件-->
 <Project title = "TheJavaNote">
 
 
@@ -48,7 +49,7 @@
             2〉使用HttpServletResponse以流的方式给请求传输文件（输出流到客户端）
             注：可以下载网络文件（通过url）
         </section>
-        <section title = "文件上传"></section>
+        <section title = "文件上传">...</section>
 
 
     </chapter>
