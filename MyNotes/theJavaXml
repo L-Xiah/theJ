@@ -55,5 +55,44 @@
         </section>
     </chapter>
 
+    <chapter title = "Js">
+        <section title = "空格">
+            html中使用"&nbsp;"
+            或在style中设置"style='white-space:pre;'"//保留空格（默认浏览器会将多个空格处理成一个空格）
+        </section>
+        <section title = "样式冲突">
+            css中使用相同名称的样式;
+        </section>
+        <section title="父标签">
+            var $temp = $(this).closest("table").closest("div");//当前标签的table父标签的div父标签
+            var $temp = $(this).parent();//当前标签的父标签
+            var $temp = $(this).parents("div:eq(0)");//当前标签的div父标签（上一级eq(0)）
+        </section>
+
+        <section title="form">
+            form标签最好不要嵌套，提交时出问题
+        </section>
+
+        <section title="事件冒泡">
+            所以我就开始找其他解决问题的办法，知道后来发现在on绑定事件的时候没有阻止冒泡，在代码中加入 return false 阻止冒泡之后，事件正常运行了，代码如下：
+            $('.right').on('click','.tabDel',function(){
+                //删除所加 tab 节点的函数
+                // alert('tab的索引：'+$(this).parents('.contentLi2').index());
+                var iNum1 = $(this).parents('.contentLi2').index();
+                var iNum2 = $(this).parents('.anElement').index();
+                $scope.module.tab[iNum1].fieldList.splice(iNum2,1);
+                $(this).parents('.anElement').remove();
+                return false;
+            });
+            目前为止代码可以正常运行了，问题的元凶是冒泡。
+            然而，阻止冒泡的方法并不止 return false 这一种，还有event.stopPropagation()，这两种方法是有区别的，简单来说：
+            event.stopPropagation()会阻止事件往上冒泡，但是并不阻止事件本身；
+            return false 则是既阻止了事件往上冒泡又阻止了事件本身。
+            欲详细了解这两种方法的区别，请查找相关资料。
+        </section>
+
+
+    </chapter>
+
 
 </Project>
