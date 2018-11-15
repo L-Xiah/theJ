@@ -70,7 +70,9 @@
         </section>
 
         <section title="form">
-            form标签最好不要嵌套，提交时出问题
+            form标签最好不要嵌套，提交时出问题,
+            相邻两个form用div隔开
+            例：<!--<div><div><form></form></div><div><form></form></div></div>-->
         </section>
 
         <section title="事件">
@@ -109,7 +111,16 @@
             注：script引用js一般在html文件的最后
         </section>
 
+        <section title="format">
+            数字3转"03"->(Array(2).join("0") + theM).slice(-2)
+        </section>
     </chapter>
 
+    <chapter title="框架">
+        1>创建Maven项目
+        2>配置SpringBoot（pom文件-〉依赖jar包、application.java-〉Main程序）
+        3>配置shiro框架（认证登入）
+
+    </chapter>
 
 </Project>
