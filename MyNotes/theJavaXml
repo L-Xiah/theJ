@@ -117,10 +117,21 @@
     </chapter>
 
     <chapter title="框架">
-        1>创建Maven项目
-        2>配置SpringBoot（pom文件-〉依赖jar包、application.java-〉Main程序）
-        3>配置shiro框架（认证登入）
+        1>Spring
+        2>Spring MVC（SPM、RMD等项目）
+        3>SpringBoot（创建Maven项目-〉pom文件-〉依赖jar包、application.java-〉Main程序）
+        4>shiro框架（认证登入）
+        5>log4j2框架（日志输出）
+        5>mybatis
+        7>hibernate
+        8>Junit（测试）
+        9>JQuery
+    </chapter>
 
+    <chapter title="log4j2">
+        1〉pom中引入log4j2依赖（spring-boot-starter-log4j2）
+        2〉log4j2.xml配置（log4j2.xml和application.properties在同一目录下）
+        3〉application.properties中添加日志配置（logging.config=classpath:log4j2.xml）　
     </chapter>
 
 </Project>
