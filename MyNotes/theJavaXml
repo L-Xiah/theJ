@@ -132,6 +132,34 @@
         1〉pom中引入log4j2依赖（spring-boot-starter-log4j2）
         2〉log4j2.xml配置（log4j2.xml和application.properties在同一目录下）
         3〉application.properties中添加日志配置（logging.config=classpath:log4j2.xml）　
+
+        <section title="jar包冲突">
+            SpringBoot默认使用logback（比log4j2更新）来记录日志，如果加载log4j2依赖会和默认的logback冲突；
+            jar包冲突可以在（IDEA有用）“Maven Projects”(选项板)->选中项目-〉“Show Dependencies”(选项板上面的菜单栏)-〉检查冲突jar包；
+            解决方法：排除logback；
+            <dependency><!--排除logback冲突-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            如引用了solr,还需要排除slf4j；
+            <dependency>
+                <groupId>org.apache.solr</groupId>
+                <artifactId>solr-solrj</artifactId>
+                <version>7.2.0</version>
+                <exclusions>
+                    <exclusion><!--排除logback冲突-->
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>slf4j-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </section>
     </chapter>
 
 </Project>
