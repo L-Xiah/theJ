@@ -128,6 +128,26 @@
         9>JQuery
     </chapter>
 
+    <chapter title="SpringBoot">
+        <section title="jsp/html">
+            springboot不推荐jsp，推荐使用html。
+            application.properties中配置html：
+            #thymelea模板配置
+            spring.thymeleaf.prefix=classpath:/static/
+            spring.thymeleaf.suffix=.html
+            spring.thymeleaf.mode=HTML5
+            spring.thymeleaf.encoding=UTF-8
+            #热部署文件，页面不产生缓存，及时更新
+            spring.thymeleaf.cache=false
+            spring.resources.chain.strategy.content.enabled=true
+            spring.resources.chain.strategy.content.paths=/**
+
+        </section>
+        <section title="访问受限">
+            src/main/resources路径下设置static文件可以访问（templates不能访问）
+        </section>
+    </chapter>
+
     <chapter title="log4j2">
         1〉pom中引入log4j2依赖（spring-boot-starter-log4j2）
         2〉log4j2.xml配置（log4j2.xml和application.properties在同一目录下）
