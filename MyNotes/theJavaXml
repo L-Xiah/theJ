@@ -128,26 +128,6 @@
         9>JQuery
     </chapter>
 
-    <chapter title="SpringBoot">
-        <section title="jsp/html">
-            springboot不推荐jsp，推荐使用html。
-            application.properties中配置html：
-            #thymelea模板配置
-            spring.thymeleaf.prefix=classpath:/static/
-            spring.thymeleaf.suffix=.html
-            spring.thymeleaf.mode=HTML5
-            spring.thymeleaf.encoding=UTF-8
-            #热部署文件，页面不产生缓存，及时更新
-            spring.thymeleaf.cache=false
-            spring.resources.chain.strategy.content.enabled=true
-            spring.resources.chain.strategy.content.paths=/**
-
-        </section>
-        <section title="访问受限">
-            src/main/resources路径下设置static文件可以访问（templates不能访问）
-        </section>
-    </chapter>
-
     <chapter title="log4j2">
         1〉pom中引入log4j2依赖（spring-boot-starter-log4j2）
         2〉log4j2.xml配置（log4j2.xml和application.properties在同一目录下）
@@ -182,4 +162,58 @@
         </section>
     </chapter>
 
+    <chapter title="SpringBoot">
+        <section title="jsp/html">
+            springboot不推荐jsp，推荐使用html。
+            application.properties中配置html：
+            #thymelea模板配置
+            spring.thymeleaf.prefix=classpath:/static/
+            spring.thymeleaf.suffix=.html
+            spring.thymeleaf.mode=HTML5
+            spring.thymeleaf.encoding=UTF-8
+            #热部署文件，页面不产生缓存，及时更新
+            spring.thymeleaf.cache=false
+            spring.resources.chain.strategy.content.enabled=true
+            spring.resources.chain.strategy.content.paths=/**
+
+        </section>
+
+        <section title="静态资源路径配置">
+            直接通过路径访问的文件（开放给浏览器）；
+            可访问的路径：/static/、/public/
+
+            src/main/resources路径下设置static文件可以访问（templates不能访问）
+        </section>
+
+        <section title="部署tomcat">
+            @SpringBootApplication//主程序入口
+            public class Application extends SpringBootServletInitializer {
+                @Override//部署到tomcat上需要
+                protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {return application.sources(Application.class); }
+                public static void main(String[] args){SpringApplication.run(Application.class,args); }
+            }
+        </section>
+
+        <section title="thymeleaf">
+            获取项目名
+            如果是资源文件，th:+href/src="@{资源文件地址}"，该地址与使用内置Tomcat启动地址相同，只是包上@{}
+            <!--<link rel="stylesheet" th:href="@{/reg_assets/css/sky-forms.css}"/>
+            <script th:src="@{/reg_assets/js/jquery-1.9.1.min.js}"></script>-->
+
+            js获取项目名的方式：
+            var context_path = "[[@{/}]]";<!--<script th:inline="javascript">-->
+            这样获取到  /项目名/,所以ajax中url使用：
+            url : "[[@{/}]]face/search/url",
+
+        </section>
+
+    </chapter>
+
+    <chapter title="jar包冲突">
+        由于jar包版本的升级，新版的jar包涵盖了一些原来没有的jar包，
+        这样会导致jar包冲突，
+        同时新项目需要引用到的jar包也少了（大的jar包更新之后，包含了以前一些没有的jar包）。
+        原因：版本升级（主要是jar包版本升级）
+        解决方法：排除冲突jar包（Show Dependencies）
+    </chapter>
 </Project>
