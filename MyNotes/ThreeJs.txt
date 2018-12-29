@@ -1,0 +1,17 @@
+
+ThreeJs
+(官网中的文档和示例是最全、最新的书，但需要耐心去查找)
+ThreeJs是使用WebGL技术的前端3D开源框架，WebGL是html5所支持的一种特性，故而相对于其它3D技术（unity3D等）浏览器支持/兼容性好不需要安装额外的插件。
+官网：https://threejs.org
+github：https://github.com/mrdoob/three.js
+在线编辑：https://jsfiddle.net/
+
+
+工具Blender
+Blender是三维开源软件，支持fbx格式三维文件，导出gltf文件（需要在Blender中安装插件，插件在github中）；原先Blender可导出json、js文件，由于在github中导出json的插件已移除了而推荐使用gltf文件。
+
+
+插件glTF-Blender-Exporter（Blender2.79b,Khronos Group）
+https://github.com/KhronosGroup/glTF-Blender-Exporter
+插件glTF-Blender-IO(Blender 2.80,included by default in the Blender 2.8 Beta,Khronos Group)
+https://github.com/KhronosGroup/glTF-Blender-IO
