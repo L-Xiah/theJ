@@ -8,10 +8,17 @@ github：https://github.com/mrdoob/three.js
 
 
 工具Blender
-Blender是三维开源软件，支持fbx格式三维文件，导出gltf文件（需要在Blender中安装插件，插件在github中）；原先Blender可导出json、js文件，由于在github中导出json的插件已移除了而推荐使用gltf文件。
-
-
+Blender是三维开源软件，支持fbx格式三维文件，导出gltf文件（需要在Blender中安装插件，插件在github中）；原先Blender可导出json、js文件，由于在github中导出json的插件已移除了而推荐使用gltf文件。（Blender 2.8不需要插件）
 插件glTF-Blender-Exporter（Blender2.79b,Khronos Group）
 https://github.com/KhronosGroup/glTF-Blender-Exporter
 插件glTF-Blender-IO(Blender 2.80,included by default in the Blender 2.8 Beta,Khronos Group)
 https://github.com/KhronosGroup/glTF-Blender-IO
+
+
+工具FBX2glTF
+将fbx文件转为gltf文件(Facebook维护，在github中找源码)
+FBX2glTF-windows-x64.exe（windows 64位）
+使用方式：
+1>进入cmd（FBX2glTF-windows-x64.exe路径下）
+2>命令1：FBX2glTF-windows-x64.exe -e -i ***.fbx（只有一个gltf文件，不带bin文件）
+2>命令2：FBX2glTF-windows-x64.exe ***.fbx（默认，带bin文件）
