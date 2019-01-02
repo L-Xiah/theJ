@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <!--"MyNotes"文件夹下常用文件-->
 <Project title = "TheJavaNote">
 
@@ -56,6 +56,9 @@
     </chapter>
 
     <chapter title = "Js">
+	    <section title = "title ico">
+	    <!--<link href="favicon.ico" rel="shortcut icon"/>网页标题图标-->
+        </section>	
         <section title = "空格">
             html中使用"&nbsp;"
             或在style中设置"style='white-space:pre;'"//保留空格（默认浏览器会将多个空格处理成一个空格）
@@ -176,6 +179,7 @@
             spring.resources.chain.strategy.content.enabled=true
             spring.resources.chain.strategy.content.paths=/**
 
+            html文件中：每个标签都需要“/”结束，不能省略，否则会报错
         </section>
 
         <section title="静态资源路径配置">
