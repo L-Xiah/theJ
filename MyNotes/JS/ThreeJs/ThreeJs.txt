@@ -22,3 +22,41 @@ FBX2glTF-windows-x64.exe（windows 64位）
 1>进入cmd（FBX2glTF-windows-x64.exe路径下）
 2>命令1：FBX2glTF-windows-x64.exe -e -i ***.fbx（只有一个gltf文件，不带bin文件）
 2>命令2：FBX2glTF-windows-x64.exe ***.fbx（默认，带bin文件）
+
+
+
+
+
+//THREE.Js编程
+常用对象：camera、scene、renderers、Light、OrbitControls、Canvas
+三维展示原理（即camera对三维物体的投影）
+
+##坐标##
+世界坐标系：三维坐标
+屏幕坐标系：二维屏幕显示坐标
+标准设备坐标系：二维平面坐标（原点在中心，向左和向上为正，x、y轴最大为1最小为-1）
+(各坐标系之间的转换) 
+
+
+##ObjectLoader##
+加载三维文件
+
+##Raycaster##
+射线拾取，点击事件
+
+##Box##
+Box2/Box3
+Object3D 获取中心点和尺寸（参考：https://segmentfault.com/a/1190000015169256）
+Object3D 物体可以获取一个包含物体的 Box, 这个 Box 有一些功能, 比如获取中心点:
+const box = new THREE.Box3().setFromObject(object);
+const center = box.getCenter(new THREE.Vector3());
+
+也可以用了获取物体的大小:
+const size = box.getSize(new THREE.Vector3()).length();
+
+
+##sprite##
+二维标签（直接面向camera）
+
+
+
