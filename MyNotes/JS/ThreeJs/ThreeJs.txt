@@ -45,7 +45,7 @@ FBX2glTF-windows-x64.exe（windows 64位）
 射线拾取，点击事件
 
 ##Box##
-Box2/Box3
+Box2/Box3(获取中心、大小->计算camera位置)
 Object3D 获取中心点和尺寸（参考：https://segmentfault.com/a/1190000015169256）
 Object3D 物体可以获取一个包含物体的 Box, 这个 Box 有一些功能, 比如获取中心点:
 const box = new THREE.Box3().setFromObject(object);

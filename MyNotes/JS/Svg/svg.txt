@@ -1,0 +1,11 @@
+
+Svg
+http://javascript.ruanyifeng.com/htmlapi/svg.html
+svg（scalable vector graphics）是在html中绘图的技术
+
+
+
+##viewBox##
+https://www.jb51.net/html5/375064.html
+svg中显示的视窗（svg画布是无限大的）
+保持viewBox的宽高比和svg的宽高比一致
