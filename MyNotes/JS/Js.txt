@@ -3,3 +3,101 @@
 
 JavaScript
 https://wangdoc.com/javascript/index.html
+
+####属性设置####
+用JS来动态设置CSS样式，常见的有以下几种
+（https://www.cnblogs.com/LiuWeiLong/p/6058059.html）
+1. 直接设置style的属性  某些情况用这个设置 !important值无效
+如果属性有'-'号，就写成驼峰的形式（如textAlign）  如果想保留 - 号，就中括号的形式  element.style['text-align'] = '100px';
+
+element.style.height = '100px';
+2. 直接设置属性（只能用于某些属性，相关样式会自动识别）
+
+element.setAttribute('height', 100);
+element.setAttribute('height', '100px');
+3. 设置style的属性
+
+element.setAttribute('style', 'height: 100px !important');
+4. 使用setProperty  如果要设置!important，推荐用这种方法设置第三个参数
+
+element.style.setProperty('height', '300px', 'important');
+5. 改变class   比如JQ的更改class相关方法
+
+因JS获取不到css的伪元素，所以可以通过改变伪元素父级的class来动态更改伪元素的样式
+
+element.className = 'blue';
+element.className += 'blue fb';
+6. 设置cssText
+
+element.style.cssText = 'height: 100px !important';
+element.style.cssText += 'height: 100px !important';
+
+
+####json字符串转换####
+在数据传输过程中，json是以文本，即字符串的形式传递的，而JS操作的是JSON对象，所以，JSON对象和JSON字符串之间的相互转换是关键。例如：
+JSON字符串:
+var str1 = '{ "name": "cxh", "sex": "man" }'; 
+JSON对象:
+var str2 = { "name": "cxh", "sex": "man" };
+一、JSON字符串转换为JSON对象
+//由JSON字符串转换为JSON对象
+var obj = eval('(' + str + ')');
+var obj = str.parseJSON(); //由JSON字符串转换为JSON对象
+var obj = JSON.parse(str); //由JSON字符串转换为JSON对象
+特别注意：如果obj本来就是一个JSON对象，那么使用eval（）函数转换后（哪怕是多次转换）还是JSON对象，但是使用parseJSON（）函数处理后会有问题（抛出语法异常）。
+
+二、可以使用toJSONString()或者全局方法JSON.stringify()将JSON对象转化为JSON字符串。
+例如：
+var last=obj.toJSONString(); //将JSON对象转化为JSON字符
+或者
+var last=JSON.stringify(obj); //将JSON对象转化为JSON字符
+
+注意：
+上 面的几个方法中，除了eval()函数是js自带的之外，其他的几个方法都来自json.js包。新版本的 JSON 修改了 API，将 JSON.stringify() 和 JSON.parse() 两个方法都注入到了 Javascript 的内建对象里面，前者变成了 Object.toJSONString()，而后者变成了 String.parseJSON()。如果提示找不到toJSONString()和parseJSON()方法，则说明您的json包版本太低。
+
+
+####数学运算####
+parseInt()取整
+Math.ceil()向上取整
+Math.floor()向下取整
+Math.round()四舍五入
+% 取余运算符（例6%4->2）
+
+
+####forEach####
+
+数组的forEach
+[].forEach(function(value, index, array) {
+  // ...
+});
+对比jQuery中的$.each方法：
+$.each([], function(index, value, array) {
+  // ...
+});
+
+map
+这里的map不是“地图”的意思，而是指“映射”。[].map(); 基本用法跟forEach方法类似：
+[].map(function(value, index, array) {
+  // ...
+});
+
+
+####字符串####
+1.slice方法
+
+var str="abc12345";
+
+alert(str.slice(3))   //   =>  12345
+
+截取掉前三位字符，保留后几位
+
+alert(str.slice(-3))   //   =>  345
+
+保留后3位
+
+
+2.substring方法
+
+var str="abc12345";
+
+alert(str.substring(3));    //   =>  12345

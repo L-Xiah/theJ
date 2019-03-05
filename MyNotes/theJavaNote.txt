@@ -6,5 +6,20 @@
 注解作用：简化配置，自动化（一些java框架，spring、mybatis、hibernate等都会使用注解来简化配置）
 
 
+####泛型####
+泛型类、接口、方法
+目的：代码块的通用性（不用考虑不同的类型），常用于集合；例如：List<String>
 
+class Box<T>{
+	private T theT;
+	
+	public T theB(){
+		return theT;
+	}
+}
 
+public <E,T> T theM(E e,T t){
+	T result = t;
+	...
+	return result; 
+}

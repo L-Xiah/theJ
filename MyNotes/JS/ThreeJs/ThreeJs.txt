@@ -59,4 +59,11 @@ const size = box.getSize(new THREE.Vector3()).length();
 二维标签（直接面向camera）
 
 
+##加载三维文件操作步骤##
+条件：三维文件-〉stp格式，工具软件-〉UG(组装约束)、Navisworks(分拆导出fbx)、FBX2glTF(导出gltf)、threeJs
+1〉源文件：通用的三维文件格式->stp(简化)
+2〉三维软件（UG）：新建模型文件-〉加载各源组件(stp)->设置约束->导出一个stp总资源文件
+3〉导出fbx：使用Navisworks打开该stp总资源文件-〉可分别导出各部分fbx(隐藏其它部分，可配色)
+4〉导出gltf：使用FBX2glTF工具将fbx导出成gltf
+5〉threeJs中加载gltf文件(文件总大小建议不要超过30M)
 
