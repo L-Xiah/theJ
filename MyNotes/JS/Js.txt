@@ -3,6 +3,9 @@
 
 JavaScript
 https://wangdoc.com/javascript/index.html
+http://es6.ruanyifeng.com/
+(ECMAScript标准-〉由ECMA组织发布-〉最新版本ES6{有浏览器不支持情况})
+
 
 ####属性设置####
 用JS来动态设置CSS样式，常见的有以下几种

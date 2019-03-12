@@ -5,7 +5,12 @@ svg（scalable vector graphics）是在html中绘图的技术
 
 
 
-##viewBox##
+####viewBox####
 https://www.jb51.net/html5/375064.html
 svg中显示的视窗（svg画布是无限大的）
 保持viewBox的宽高比和svg的宽高比一致
+
+
+####拖拽缩放####
+http://liuxiaojun.win/page/3/
+（svg作为一个html文件嵌入在主页面中-〉使用iframe标签）
