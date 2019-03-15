@@ -121,7 +121,7 @@
 
     <chapter title="框架">
         1>Spring
-        2>Spring MVC（SPM、RMD等项目）
+        2>SpringMVC（SPM、RMD等项目）
         3>SpringBoot（创建Maven项目-〉pom文件-〉依赖jar包、application.java-〉Main程序）
         4>shiro框架（认证登入）
         5>log4j2框架（日志输出）
@@ -211,6 +211,12 @@
 
         </section>
 
+        <section title="SpringBoot项目创建">
+            SpringBoot项目创建的两种方式：
+            1> Maven项目-〉添加依赖
+            2> Spring Initializr(需要链接到http://start.spring.io)
+        </section>
+
     </chapter>
 
     <chapter title="jar包冲突">
@@ -219,5 +225,29 @@
         同时新项目需要引用到的jar包也少了（大的jar包更新之后，包含了以前一些没有的jar包）。
         原因：版本升级（主要是jar包版本升级）
         解决方法：排除冲突jar包（Show Dependencies）
+    </chapter>
+
+    <chapter title="Maven项目Jar包加载">
+
+
+        第一种是将本地jar包安装在本地maven库
+        例：
+        ①我要上传的jar包为：ipdatabase-1.0.jar
+        ②找到本地安装maven的位置的bin目录输入cmd进入到命令行 输入 如下面命令，敲击回车开始执行：
+        mvn install:install-file -Dfile=C:\Users\zhangsf\Desktop\ipdatabase.jar -DgroupId=zhang.jar -DartifactId=ipdatabase -Dversion=1.0 -Dpackaging=jar
+
+
+        第二种是将本地jar包放入项目目录中
+        <!--例
+        <dependency>
+            <groupId>com.spm</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.3</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/jar/json-lib-2.3-jdk15.jar</systemPath>
+        </dependency>-->
+
+
+
     </chapter>
 </Project>
