@@ -1,3 +1,9 @@
+####Java开发安装列表####
+JDK(jre)
+IDE(eclipse\IDEA)
+Maven
+Tomcat
+
 
 ####JUnit####
 JUnit单元测试（引用JUnit.jar包）
