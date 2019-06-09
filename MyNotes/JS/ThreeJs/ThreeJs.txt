@@ -5,6 +5,7 @@ ThreeJs是使用WebGL技术的前端3D开源框架，WebGL是html5所支持的一种特性，故而相对于
 官网：https://threejs.org
 github：https://github.com/mrdoob/three.js
 在线编辑：https://jsfiddle.net/
+中文教程：https://techbrood.com/threejs/docs/
 
 
 工具Blender
