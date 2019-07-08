@@ -7,6 +7,20 @@ http://es6.ruanyifeng.com/
 (ECMAScript标准-〉由ECMA组织发布-〉最新版本ES6{有浏览器不支持情况})
 
 
+
+####兼容IE####
+(IE10、IE11)
+1〉IE不支持ES6
+	const、let变量不能使用
+	不支持=>语法
+	
+2〉svg的classList属性不支持
+
+
+
+
+
+
 ####属性设置####
 用JS来动态设置CSS样式，常见的有以下几种
 （https://www.cnblogs.com/LiuWeiLong/p/6058059.html）

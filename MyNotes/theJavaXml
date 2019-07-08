@@ -294,4 +294,15 @@
 
 
     </chapter>
+
+    <chapter title="一般项目Jar包加载">
+
+
+        第一种是将本地jar包放入项目目录中（可以新建一个lib文件夹用来存放jar包）
+        在idea中右键jar包-〉添加到库（add to library）
+
+
+
+    </chapter>
+
 </Project>
