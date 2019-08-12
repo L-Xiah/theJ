@@ -5,7 +5,7 @@ JavaScript
 https://wangdoc.com/javascript/index.html
 http://es6.ruanyifeng.com/
 (ECMAScript标准-〉由ECMA组织发布-〉最新版本ES6{有浏览器不支持情况})
-
+ECMAScript标准（JS的语法） + 文档对象模型DOM（网页内容的方法、接口） + 浏览器对象模型BOM（浏览器交换的方法、接口）
 
 
 ####兼容IE####
@@ -81,7 +81,7 @@ Math.round()四舍五入
 % 取余运算符（例6%4->2）
 
 
-####forEach####
+####forEach\every\some####
 
 数组的forEach
 [].forEach(function(value, index, array) {
@@ -97,6 +97,15 @@ map
 [].map(function(value, index, array) {
   // ...
 });
+
+
+数组的forEach不能跳出for循环，推荐使用every、some
+Arr.every(function (value) {
+	if(true){
+        	return false;//不能使用break,对于every而言-〉return false 跳出整个遍历循环
+         }
+	return true;//return true 跳出这次遍历循环
+})
 
 
 ####字符串####
