@@ -17,8 +17,8 @@ ECMAScript±ê×¼£¨JSµÄÓï·¨£© + ÎÄµµ¶ÔÏóÄ£ÐÍDOM£¨ÍøÒ³ÄÚÈÝµÄ·½·¨¡¢½Ó¿Ú£© + ä¯ÀÀÆ÷¶ÔÏ
 2¡µsvgµÄclassListÊôÐÔ²»Ö§³Ö
 
 
-
-
+####±êÇ©id¡¢class####
+²»Í¬Ò³Ãæ¾ßÓÐÏàÍ¬idµÄ±êÇ©£»É÷ÓÃÖ±½Óµ÷ÓÃ£¬ÐèÊ¹ÓÃÏÞ¶¨¸¸±êÇ©
 
 
 ####ÊôÐÔÉèÖÃ####
@@ -129,6 +129,22 @@ var str="abc12345";
 alert(str.substring(3));    //   =>  12345
 
 
+
+/**¸ñÊ½»¯Êý×ÖÎªÒ»¸ö¶¨³¤µÄ×Ö·û´®£¬Ç°Ãæ²¹£°
+ *²ÎÊý:
+ * Source ´ý¸ñÊ½»¯µÄ×Ö·û´®
+ * Length ÐèÒªµÃµ½µÄ×Ö·û´®µÄ³¤¶È
+ * @return {string}
+ */
+function FormatNum(Source,Length){
+    var strTemp="";
+    for(var i=1;i<=Length-Source.length;i++){
+        strTemp+="0";
+    }
+    return strTemp+Source;
+}
+
+
 ####parent/parents####
 ¹ØÓÚJqueryµÄparentºÍparents
 parentÊÇÖ¸È¡µÃÒ»¸ö°üº¬×ÅËùÓÐÆ¥ÅäÔªËØµÄÎ¨Ò»¸¸ÔªËØµÄÔªËØ¼¯ºÏ¡£
@@ -145,4 +161,32 @@ $('p').parent('.a')È¡µ½µÄÊÇdiv3
 $('p').parent().parent()È¡µ½µÄÊÇdiv1£¬Õâµã±È½ÏÆæÌØ£»²»¹ýJquery¶ÔÏó±¾ÉíµÄÌØµã¾ö¶¨ÁËÕâÊÇ¿ÉÐÐµÄ¡£
 $('p').parents()È¡µ½µÄÊÇdiv1,div2,div3,div4
 $('p').parents('.a')È¡µ½µÄÊÇdiv3
+
+
+####promise####
+//region "promise"
+function test(){
+		thePromise($funSvg,
+					{intI:tempTubeCode,intJ:tempJ+1},
+					theArrColorStateMaterial[theArrTubeMaterial[tempI][tempJ]],theOverhaulClass
+					).then(function onResolved(value) {
+						console.log("-void_setTubeMaterial-success:" + value);
+					})
+					.catch(function onRejected(error) {
+						console.log("-void_setTubeMaterial-error:" + error);
+					});
+}
+
+function thePromise($funSvg,funArrVar,funColor,funClass) {
+	return new Promise(function(resolve, reject) {
+		var tempIsTrue = bool_setSvgLineColor($funSvg,funArrVar,funColor,funClass);
+		if(tempIsTrue){
+			resolve("³É¹¦..." + funArrVar.intI + "-" + funArrVar.intJ);
+		}else{
+			reject("´íÎó...");
+		}
+	});
+}
+
+//endregion
 
