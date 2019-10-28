@@ -8,6 +8,12 @@ http://es6.ruanyifeng.com/
 ECMAScript标准（JS的语法） + 文档对象模型DOM（网页内容的方法、接口） + 浏览器对象模型BOM（浏览器交换的方法、接口）
 
 
+####input file选择框####
+选择框延迟时间较长（chrome浏览器）
+（http://www.piaoyi.org/computer/Google-Chrome-input-file-delay-3-5.html）
+chrome设置里去掉“保护您和您的设备不受危险网站的侵害”前面的勾即可。
+
+
 ####兼容IE####
 (IE10、IE11)
 1〉IE不支持ES6
@@ -190,3 +196,31 @@ function thePromise($funSvg,funArrVar,funColor,funClass) {
 
 //endregion
 
+
+####获取变量名（挺有意思的）####
+//region unUsed
+    function getParamName() {
+    }
+
+    function fn() {
+        var param1 = 0;
+        var paramThe = 1;
+        console.log(getParamName(param1));
+        console.log(getParamName(paramThe));
+    }
+
+    function callWithVariableName(fn) {
+        eval('(' + fn.toString().replace(/\bgetParamName\s*\(([a-zA-Z_$][\w_$]*)\)/g, function (u, v) {
+            return "'" + v + "'"
+        }) + '())')
+    }
+
+    var unUsedFunc = function (param) {
+        //console.log("--thePk--unUsedFunc------/" + param);
+        if (!param && !!param) {
+            console.log("--unUsedFunc--" + param);
+            callWithVariableName(fn);
+        }
+    };
+
+//endregion

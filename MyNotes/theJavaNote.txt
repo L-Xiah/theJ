@@ -1,6 +1,6 @@
 ####Java开发安装列表####
 JDK(jre)
-IDE(eclipse\IDEA)
+IDE(eclipse\IDEA\VS Code)
 Maven
 Tomcat
 
