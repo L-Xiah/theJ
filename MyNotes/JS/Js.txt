@@ -86,6 +86,9 @@ Math.floor()向下取整
 Math.round()四舍五入
 % 取余运算符（例6%4->2）
 
+####字符串转换数字####
+js提供了parseInt()和parseFloat()两个转换函数。前者把值转换成整数，后者把值转换成浮点数。
+只有对String类型调用这些方法，这两个函数才能正确运行；对其他类型返回的都是NaN(Not a Number)。
 
 ####forEach\every\some####
 
