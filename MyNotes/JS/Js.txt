@@ -13,6 +13,11 @@ ECMAScript±ê×¼£¨JSµÄÓï·¨£© + ÎÄµµ¶ÔÏóÄ£ĞÍDOM£¨ÍøÒ³ÄÚÈİµÄ·½·¨¡¢½Ó¿Ú£© + ä¯ÀÀÆ÷¶ÔÏ
 £¨http://www.piaoyi.org/computer/Google-Chrome-input-file-delay-3-5.html£©
 chromeÉèÖÃÀïÈ¥µô¡°±£»¤ÄúºÍÄúµÄÉè±¸²»ÊÜÎ£ÏÕÍøÕ¾µÄÇÖº¦¡±Ç°ÃæµÄ¹´¼´¿É¡£
 
+####ÊÂ¼şEvent####
+$(document).on('theGasPurClosedEvent', theGasPurClosedEventFun);
+$(document).unbind('theGasPurClosedEvent', theGasPurClosedEventFun);
+$(document).trigger("theGasPurClosedEvent");
+
 
 ####¼æÈİIE####
 (IE10¡¢IE11)
@@ -54,6 +59,25 @@ element.className += 'blue fb';
 
 element.style.cssText = 'height: 100px !important';
 element.style.cssText += 'height: 100px !important';
+
+####·Ö±æÂÊ####
+s = " ÍøÒ³¿É¼ûÇøÓò¿í£º"+ document.body.clientWidth+"<br />";
+s = " ÍøÒ³¿É¼ûÇøÓò¸ß£º"+ document.body.clientHeight+"<br />";
+s = " ÍøÒ³¿É¼ûÇøÓò¿í£º"+ document.body.offsetWidth + " (°üÀ¨±ßÏßºÍ¹ö¶¯ÌõµÄ¿í)"+"<br />";
+s = " ÍøÒ³¿É¼ûÇøÓò¸ß£º"+ document.body.offsetHeight + " (°üÀ¨±ßÏßµÄ¿í)"+"<br />";
+s = " ÍøÒ³ÕıÎÄÈ«ÎÄ¿í£º"+ document.body.scrollWidth+"<br />";
+s = " ÍøÒ³ÕıÎÄÈ«ÎÄ¸ß£º"+ document.body.scrollHeight+"<br />";
+s = " ÍøÒ³±»¾íÈ¥µÄ¸ß(ff)£º"+ document.body.scrollTop+"<br />";
+s = " ÍøÒ³±»¾íÈ¥µÄ¸ß(ie)£º"+ document.documentElement.scrollTop+"<br />";
+s = " ÍøÒ³±»¾íÈ¥µÄ×ó£º"+ document.body.scrollLeft+"<br />";
+s = " ÍøÒ³ÕıÎÄ²¿·ÖÉÏ£º"+ window.screenTop+"<br />";
+s = " ÍøÒ³ÕıÎÄ²¿·Ö×ó£º"+ window.screenLeft+"<br />";
+s = " ÆÁÄ»·Ö±æÂÊµÄ¸ß£º"+ window.screen.height+"<br />";
+s = " ÆÁÄ»·Ö±æÂÊµÄ¿í£º"+ window.screen.width+"<br />";
+s = " ÆÁÄ»¿ÉÓÃ¹¤×÷Çø¸ß¶È£º"+ window.screen.availHeight+"<br />";
+s = " ÆÁÄ»¿ÉÓÃ¹¤×÷Çø¿í¶È£º"+ window.screen.availWidth+"<br />";
+s = " ÄãµÄÆÁÄ»ÉèÖÃÊÇ "+ window.screen.colorDepth +" Î»²ÊÉ«"+"<br />";
+s = " ÄãµÄÆÁÄ»ÉèÖÃ "+ window.screen.deviceXDPI +" ÏñËØ/Ó¢´ç"+"<br />";
 
 
 ####json×Ö·û´®×ª»»####
@@ -106,7 +130,9 @@ map
 [].map(function(value, index, array) {
   // ...
 });
-
+$.each(map, function(value, index) {
+  // ...
+});
 
 Êı×éµÄforEach²»ÄÜÌø³öforÑ­»·£¬ÍÆ¼öÊ¹ÓÃevery¡¢some
 Arr.every(function (value) {
